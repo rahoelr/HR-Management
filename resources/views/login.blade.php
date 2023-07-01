@@ -39,13 +39,43 @@
             /* Add other custom styles here */
         }
 
-        .password-toggle-icon {
-            cursor: pointer;
+
+        @media only screen and (max-width: 600px) {
+            .row {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .vertical-center {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
         }
 
-        body {
-            background-color: #F5F7F9;
+        .img-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            padding: 30px;
         }
+
+        .custom-btn {
+            background-color: #64B58A !important;
+            /* Custom background color with !important */
+            color: white !important;
+            border: none;
+            /* Custom text color with !important */
+            /* Add other custom styles here */
+        }
+
+        #floo-logo{
+            width: 70%;
+        }
+        }
+
     </style>
 </head>
 
@@ -53,12 +83,12 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="img-logo">
-                    <img src="{{ asset('storage/logo_floo.png') }}" alt="logo">
+                    <img src="{{ asset('storage/logo_floo.png') }}" alt="logo" id="floo-logo">
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="vertical-center">
                     <form>
                         <h2>Welcome Back</h2>
@@ -69,8 +99,8 @@
                         </div>
                         <div class="form-group">
                             <div class="mb-3">
-                            <input type="password" class="form-control my-3" id="password" id="passwordInput"
-                                placeholder="Password" style="width: 300px; height: 40px;">
+                                <input type="password" class="form-control my-3" id="password" id="passwordInput"
+                                    placeholder="Password" style="width: 300px; height: 40px;">
                             </div>
                             <div class="text-end">
                                 <a href="#" style="color: #63676F">Forgot Password</a>

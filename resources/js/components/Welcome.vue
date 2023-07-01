@@ -5,23 +5,32 @@
                 <div class="vue-test">
                     <button class="btn btn-primary m-4">Click Me!</button>
                     <h1>Vue JS 3 x Laravel 8 x Bootstrap 5</h1>
+                    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="card-link">Card link</a>
+    <a href="#" class="card-link">Another link</a>
+  </div>
+</div>
                 </div>
             </div>
 
         </div>
     </div>
 </template>
+
 <script>
     export default {
-
     }
 </script>
 
 <style>
-    .vue-test{
+    .vue-test {
         display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
     }
 </style>
