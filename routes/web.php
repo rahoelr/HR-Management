@@ -14,9 +14,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    return view('loginvue');
+});
+
+Route::get('/dashboard', function () {
     return view('welcome');
 });
 
-Route::get('/login', function () {
-    return view('loginvue');
+Route::get('/timesheet', function () {
+    return view('timesheet');
+});
+
+Route::get('/addtimesheet', function () {
+    return view('addtimesheet');
 });
