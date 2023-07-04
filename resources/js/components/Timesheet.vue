@@ -1,4 +1,4 @@
-<template id="page-top">
+<template id="page-ts">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -18,14 +18,14 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/timesheet">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Timesheet</span></a>
@@ -101,80 +101,56 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-                    </div>
-
-                    <!-- Content Row -->
                     <div class="row">
-
-                        
-                        <div class="col-xl mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
+                        <div class="col-md-6">
+                            <!-- Page Heading -->
+                            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                                <h1 class="h3 mb-0 text-gray-800">Timesheet</h1>
+                                <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                        class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                             </div>
                         </div>
-                        
+                        <div class="col-md-6">
+                            <div class="row justify-content-end" style="padding-right: 20px;">
+                                <!-- Page Heading -->
+                                <button type="button" class="btn btn-primary custom-btn my-3"
+                                data-target="#quoteForm" data-toggle="modal"
+                                style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row">
-                                            
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    
-                    <!-- Content Row -->
-                    <div class="row">
-    
-                        <div class="col-xl mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Project</th>
+                            <th scope="col">Tanggal</th>
+                            <th scope="col">Jam Kerja</th>
+                            <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row"></th>
+                            <td>Testing App</td>
+                            <td>27-06-2023</td>
+                            <td>08.00 - 17.00</td>
+                            </tr>
+                            <tr>
+                            <th scope="row"></th>
+                            <td>Testing App</td>
+                            <td>27-06-2023</td>
+                            <td>08.00 - 17.00</td>
+                            </tr>
+                            <tr>
+                            <th scope="row"></th>
+                            <td>Testing App</td>
+                            <td>27-06-2023</td>
+                            <td>08.00 - 17.00</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                 </div>
                 <!-- /.container-fluid -->
