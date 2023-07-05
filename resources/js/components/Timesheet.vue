@@ -113,7 +113,7 @@
                         <div class="col-md-6">
                             <div class="row justify-content-end" style="padding-right: 20px;">
                                 <!-- Page Heading -->
-                                <button type="button" class="btn btn-primary custom-btn my-3"
+                                <button type="button" class="btn btn-primary custom-btn my-3 rounded-pill font-weight-bold"
                                 data-target="#quoteForm" data-toggle="modal"
                                 style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
                             </div>
@@ -151,10 +151,8 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
                 <!-- /.container-fluid -->
-
             </div>
             <!-- End of Main Content -->
 
@@ -198,6 +196,62 @@
             </div>
         </div>
     </div>
+    
+    <!--GET a QUOTE MODAL -->
+    <div class="modal fade" id="quoteForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+              <div class="modal-content p-md-3">
+                <div class="modal-header" style="background-color: #64B58A;">
+                  <h4 class="modal-title" style="color: white;"><b>Add Timesheet</b></h4>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close"
+                  style="color: white;"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                  <form action="#">
+                    <div class="row" style="color: #455A64;">
+                      <div class="form-group col-lg-12">
+                        <label class="font-weight-bold text-small" for="project">Project<span class="text-primary ml-1">*</span></label>
+                        <input class="form-control" id="project" type="text" placeholder="Pilih project" required="" />
+                      </div>
+                      <div class="form-group col-lg-12">
+                        <label class="font-weight-bold text-small" for="tanggal">Tanggal<span class="text-primary ml-1">*</span></label>
+                        <input class="form-control" id="tanggal" type="text" placeholder="DD/MM/YYYY" required="" />
+                      </div>
+                      <div class="form-group col-lg-12">
+                        <label class="font-weight-bold text-small" for="lokasi">Lokasi<span class="text-primary ml-1">*</span></label>
+                        <input class="form-control" id="lokasi" type="text" placeholder="Tambahkan lokasi" required="" />
+                      </div>
+                      <h4><b>Jam Kerja</b></h4>
+                      <div class="form-group col-lg-6">
+                        <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span class="text-primary ml-1">*</span></label>
+                        <input class="form-control" id="jammulai" type="text" placeholder="Jam mulai" required="" />
+                      </div>
+                      <div class="form-group col-lg-6">
+                        <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span class="text-primary ml-1">*</span></label>
+                        <input class="form-control" id="jamselesai" type="text" placeholder="Jam selesai" required="" />
+                      </div>
+                      <div class="form-group col-lg-12">
+                        <label class="font-weight-bold text-small" for="task">Task</label>
+                        <textarea class="form-control" id="task" type="text" placeholder="Deskripsi task yang sedang dikerjakan" />
+                      </div>
+                      <div class="form-group col-lg-12">
+                        <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span class="text-primary ml-1">*</span></label>
+                        <textarea class="form-control" id="taskselesai" type="text" placeholder="Task yang sudah selesai dikerjakan" required="" />
+                      </div>
+                      <div class="form-group col-lg-12">
+                        <label class="font-weight-bold text-small" for="todo">To Do Task<span class="text-primary ml-1">*</span></label>
+                        <textarea class="form-control" id="todo" type="text" placeholder="Task yang akan dikerjakan" required="" />
+                      </div>
+                      <div class="form-group col-lg-12 text-center">
+                        <button class="btn btn-primary custom-btn my-3 font-weight-bold rounded-pill" type="submit"
+                        style="font-style: bold; width: 300px; height: 40px;">Tambahkan</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
 </template>
 
     <script>
