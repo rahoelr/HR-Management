@@ -31,6 +31,8 @@
                     <span>Timesheet</span></a>
             </li>
 
+
+
             <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
@@ -38,6 +40,12 @@
                     <span>Pengajuan Cuti</span></a>
             </li>
 
+
+            <li class="nav-item">
+                <a class="nav-link">
+                    <button type="button" class="btn btn-danger" @click="logout">Logout</button>
+                </a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -68,8 +76,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Feby Eka Pradiyanto</span>
-                                <img class="img-profile rounded-circle"
-                                    src="Foto PP.png">
+                                <img class="img-profile rounded-circle" src="Foto PP.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -91,6 +98,9 @@
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
+                                <form action="/logout" method="post">
+                                    <button type="submit" class="btn btn-danger">Logout</button>
+                                </form>
                             </div>
                         </li>
 
@@ -112,63 +122,71 @@
                     <!-- Content Row -->
                     <div class="row">
 
-                        
+
                         <div class="col-xl mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
                                     <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-
-                    <!-- Content Row -->
-                    <div class="row">
-                                            
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <a href="#" class="btn btn-primary">Button</a>
+                                    <!-- <div>
+                                        <button type="button" class="btn btn-danger" @click="logout">Logout</button>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    
                     <!-- Content Row -->
                     <div class="row">
-    
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                    <a href="#" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                    <a href="#" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
+                                    <a href="#" class="btn btn-primary">Button</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Content Row -->
+                    <div class="row">
+
                         <div class="col-xl mb-4">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <p class="card-text">With supporting text below as a natural lead-in to additional
+                                        content.</p>
                                     <a href="#" class="btn btn-primary">Button</a>
                                 </div>
                             </div>
@@ -224,10 +242,23 @@
     </div>
 </template>
 
-    <script>
-        export default {
-        mounted() {
-            console.log('Component mounted.')
+<script>
+    export default {
+        methods: {
+            logout() {
+                axios.post('/logout')
+                    .then(() => {
+                        // Perform any additional actions after successful logout
+                        // For example, you can clear local storage, update component state, or redirect the user
+                        console.log('Logout successful');
+                        // Redirect the user to the login page
+                        window.location.href = '/';
+                    })
+                    .catch(error => {
+                        // Handle the error
+                        console.error(error);
+                    });
+            }
         }
     }
-    </script>
+</script>
