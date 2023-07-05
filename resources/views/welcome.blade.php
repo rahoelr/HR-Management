@@ -34,6 +34,7 @@
         <div id="app">
             <div>
                 <welcome/>
+
             </div>
 
         </div>

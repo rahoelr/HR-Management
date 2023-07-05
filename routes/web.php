@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,14 +14,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ 
 Route::get('/', function () {
     return view('loginvue');
 });
 
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+// Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+
+
 Route::get('/dashboard', function () {
     return view('welcome');
-});
+})->middleware('auth');
 
 Route::get('/timesheet', function () {
     return view('timesheet');

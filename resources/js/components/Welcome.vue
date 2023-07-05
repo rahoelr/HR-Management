@@ -91,6 +91,9 @@
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
+                                <form action="/logout" method="post">
+                                    <button type="submit" class="btn btn-danger">Logout</button>
+                                </form>
                             </div>
                         </li>
 
