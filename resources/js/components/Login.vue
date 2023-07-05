@@ -8,7 +8,7 @@
             </div>
             <div class="col-md-6">
                 <div class="vertical-center">
-                    <form @submit.prevent="authenticate">
+                    <form @submit.prevent="login">
                         <div v-if="loginError" class="error">{{ loginError }}</div>
                         <h2>Welcome Back</h2>
                         <p class="text-muted" style="margin-bottom: 30px">Login to make attendance </p>
@@ -47,9 +47,9 @@
             };
         },
         methods: {
-            async authenticate() {
+            async login() {
                 try {
-                    const response = await axios.post('/login', {
+                    const response = await axios.post('/', {
                         email: this.email,
                         password: this.password
                     });

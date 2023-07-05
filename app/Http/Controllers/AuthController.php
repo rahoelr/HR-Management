@@ -5,19 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller
+class AuthController extends Controller
 {
     public function index()
     {
-        return view('login', [
-            'title'=> 'Login'
-        ]);
+        return view('loginvue');
     }
 
-    public function authenticate(Request $request){
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
             'email' => 'required|email:dns',
-            'password' => 'required'
+            'password' => 'required',
         ]);
 
         if(Auth::attempt($credentials)){
@@ -32,10 +31,14 @@ class LoginController extends Controller
     {
         Auth::logout();
 
-        request()->session()->invalidate();
+        request()
+            ->session()
+            ->invalidate();
 
-        request()->session()->regenerateToken();
+        request()
+            ->session()
+            ->regenerateToken();
 
-        return redirect('/login');
+        return redirect('/');
     }
 }

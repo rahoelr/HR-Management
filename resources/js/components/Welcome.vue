@@ -252,7 +252,7 @@
                         // For example, you can clear local storage, update component state, or redirect the user
                         console.log('Logout successful');
                         // Redirect the user to the login page
-                        window.location.href = '/login';
+                        window.location.href = '/';
                     })
                     .catch(error => {
                         // Handle the error
