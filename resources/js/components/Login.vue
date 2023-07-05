@@ -69,6 +69,10 @@
             /* Add other custom styles here */
         }
 
+        #floo-logo{
+            width:50%;
+        }
+
 
         @media only screen and (max-width: 600px) {
             .row {
@@ -102,7 +106,7 @@
         }
 
         #floo-logo{
-            width: 70%;
+            width:50%;
         }
         }
 

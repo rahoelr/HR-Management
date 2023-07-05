@@ -1,4 +1,4 @@
-<template id="page-ts">
+<template>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
