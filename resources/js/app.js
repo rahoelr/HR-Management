@@ -9,7 +9,7 @@ import AddTimesheet from './components/AddTimesheet.vue'
 const app = createApp({})
 
 app.component('dashboard', Dashboard)
-app.component('login', Login)
+app.component('Login', Login)
 app.component('timesheet', Timesheet)
 app.component('addtimesheet', AddTimesheet)
 
