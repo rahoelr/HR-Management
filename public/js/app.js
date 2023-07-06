@@ -23186,18 +23186,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Dashboard.vue */ "./resources/js/components/Dashboard.vue");
 /* harmony import */ var _components_Login_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Login.vue */ "./resources/js/components/Login.vue");
 /* harmony import */ var _components_Timesheet_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Timesheet.vue */ "./resources/js/components/Timesheet.vue");
-Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/AddTimesheet.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }());
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
 
+// import AddTimesheet from './components/AddTimesheet.vue'
 
 var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)({});
 app.component('dashboard', _components_Dashboard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]);
-app.component('Login', _components_Login_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+app.component('login', _components_Login_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
 app.component('timesheet', _components_Timesheet_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
-app.component('addtimesheet', Object(function webpackMissingModule() { var e = new Error("Cannot find module './components/AddTimesheet.vue'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+// app.component('addtimesheet', AddTimesheet)
+
 app.mount('#app');
 
 /***/ }),
