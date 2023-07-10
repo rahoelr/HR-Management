@@ -18,21 +18,21 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                        <span>Dashboard</span></a>
             </li>
 
-            <!-- Nav Item - Charts -->
+            <!-- Nav Item - Timesheet -->
             <li class="nav-item">
                 <a class="nav-link" href="/timesheet">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Timesheet</span></a>
+                        <span>Timesheet</span></a>
             </li>
 
-            <!-- Nav Item - Tables -->
+            <!-- Nav Item - Cuti -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
-                    <span>Pengajuan Cuti</span></a>
+                        <span>Pengajuan Cuti</span></a>
             </li>
 
             <!-- Divider -->
