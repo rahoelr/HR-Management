@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Timesheet</title>
+        <title>Dashboard</title>
 
         <!-- Custom fonts for this template-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -16,7 +16,7 @@
             rel="stylesheet">
 
         <!-- Custom styles for this template-->
-        <link href="css/adminDashboard.css" rel="stylesheet">
+        <link href="css/dashboard.css" rel="stylesheet">
 
         <!-- Fonts -->
         <!-- <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"> -->
@@ -36,8 +36,7 @@
     <body class="antialiased">
         <div id="app">
             <div>
-                <welcome/>
-
+                <dashboard/>
             </div>
 
         </div>

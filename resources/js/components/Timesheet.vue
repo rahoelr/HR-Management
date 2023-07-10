@@ -201,7 +201,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-danger" @click="logout">Logout</a>
                 </div>
             </div>
         </div>
@@ -281,6 +281,7 @@
     </div>
 </template>
 
+<<<<<<< HEAD
 <script>
     import axios from 'axios';
 
@@ -315,5 +316,25 @@
             //         });
             // }
         },
+=======
+    <script>
+        export default {
+            methods: {
+            logout() {
+                axios.post('/logout')
+                    .then(() => {
+                        // Perform any additional actions after successful logout
+                        // For example, you can clear local storage, update component state, or redirect the user
+                        console.log('Logout successful');
+                        // Redirect the user to the login page
+                        window.location.href = '/';
+                    })
+                    .catch(error => {
+                        // Handle the error
+                        console.error(error);
+                    });
+            }
+        }
+>>>>>>> dashboard_login_fix
     }
 </script>
