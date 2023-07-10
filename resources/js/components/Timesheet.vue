@@ -123,7 +123,7 @@
                     <table class="table table-hover">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col"></th>
+                                <th scope="col">ID</th>
                                 <th scope="col">Project</th>
                                 <th scope="col">Tanggal</th>
                                 <th scope="col">Jam Kerja</th>
@@ -152,6 +152,7 @@
                             <tr v-for="(data, index) in this.timesheet" :key="index">
                                 <!-- <td> {{ projectName }}</td> -->
                                 <td> {{ data . ms_project_id }} </td>
+                                <td> {{ data . project_name }} </td>
                                 <td> {{ data . work_date }} </td>
                                 <td> {{ data . workhour_start }} - {{ data . workhour_end }} </td>
                                 <td>
@@ -293,7 +294,6 @@
         },
         mounted() {
             this.getTimesheet();
-            this.getProjectName();
         },
         methods: {
             getTimesheet() {
