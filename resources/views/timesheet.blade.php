@@ -5,7 +5,8 @@
 @stop
 
 @section('css')
-    <!-- <link href="main.css" /> -->
+    <!-- <link href="{{asset('css/timesheet.css')}}"></script> -->
+    <link href="css/timesheet.css" rel="stylesheet"/>
 @stop
 
 @section('menu')

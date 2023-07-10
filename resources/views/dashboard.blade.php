@@ -6,6 +6,7 @@
 
 @section('css')
     <!-- <link href="main.css" /> -->
+    <link href="css/dashboard.css" rel="stylesheet">
 @stop
 
 @section('menu')
