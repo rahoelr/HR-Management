@@ -25,16 +25,15 @@ Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('gu
 Route::post('/', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-
-
 Route::get('/dashboard', function () {
-    return view('welcome');
-})->middleware('auth');
+    return view('dashboard');
+});
+// })->middleware('auth');
 
 Route::get('/timesheet', function () {
     return view('timesheet');
 });
 
-Route::get('/addtimesheet', function () {
-    return view('addtimesheet');
-});
+// Route::get('/addtimesheet', function () {
+//     return view('addtimesheet');
+// });

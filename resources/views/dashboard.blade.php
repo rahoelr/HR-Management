@@ -1,7 +1,7 @@
 @extends('layout.sidebar')
 
 @section('title')
-    <title>Timesheet</title>
+    <title>Dashboard</title>
 @stop
 
 @section('css')
@@ -10,14 +10,14 @@
 
 @section('menu')
 <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item active">
         <a class="nav-link" href="/dashboard">
             <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
     </li>
 
 <!-- Nav Item - Timesheet -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="/timesheet">
             <i class="fas fa-fw fa-chart-area"></i>
                 <span>Timesheet</span></a>
@@ -34,11 +34,15 @@
 @section('content')
     <div id="app">
         <div>
-            <timesheet/>
+            <dashboard/>
         </div>
     </div>
 @stop
 
-@section('javascript')
-    
-@stop
+@push('javascript')
+    <!-- <script src="{{asset('js/chart-bar.js')}}" type="text/javascript"></script> -->
+    <script src="{{asset('js/Chart.js')}}" type="text/javascript"></script>
+
+    <script type="text/javascript" src="{{ URL::asset ('js/chart-bar.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ URL::asset ('js/Chart.js') }}"></script> -->
+@endpush
