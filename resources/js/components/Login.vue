@@ -7,6 +7,7 @@
                 </div>
             </div>
             <div class="col-md-6">
+                
                 <div class="vertical-center">
                     <form @submit.prevent="login">
                         <div v-if="loginError" class="error">{{ loginError }}</div>
@@ -57,15 +58,35 @@
                     if (response.status === 200) {
                         // Handle successful authentication, e.g., redirect to the dashboard page.
                         window.location.href = '/dashboard';
+                        // this.loginError = 'Login Failed!';
                     } else {
                         // Handle authentication failure, e.g., display error message.
                         this.loginError = 'Login Failed!';
+
+                    
                     }
                 } catch (error) {
                     // Handle error during authentication, e.g., display error message.
                     this.loginError = 'An error occurred during login.';
                 }
             }
+
+    //         login() {
+    //   axios.post('/api/user', {
+    //     email: this.email,
+    //     password: this.password
+    //   })
+    //   .then(response => {
+    //     // Autentikasi berhasil
+    //     console.log(response.data);
+    //     window.location.href = '/dashboard';
+    //   })
+    //   .catch(error => {
+    //     // Autentikasi gagal
+    //     console.log(error.response.data);
+    //     this.loginError = 'Login Failed!';
+    //   });
+    // }
         }
     };
 </script>

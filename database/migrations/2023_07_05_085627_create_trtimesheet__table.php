@@ -26,6 +26,8 @@ class CreateTrtimesheetTable extends Migration
 			$table-> text('todo_task');
 			$table->foreign('ms_employee_id')->references('id')->on('employees');
 			$table->foreign('ms_project_id')->references('id')->on('projects');
+            $table->softDeletes();
+            $table->timestamps();
         });
     }
 
