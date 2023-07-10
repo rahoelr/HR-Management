@@ -31,18 +31,27 @@
     </li>
 @stop
 
-@section('content')
-    <div id="app">
-        <div>
-            <dashboard/>
+        <style>
+            body {
+                font-family: 'Nunito', sans-serif;
+            }
+        </style>
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    </head>
+    <body class="antialiased">
+        <div id="app">
+            <div>
+                <dashboard/>
+            </div>
+
         </div>
-    </div>
-@stop
 
-@push('javascript')
-    <!-- <script src="{{asset('js/chart-bar.js')}}" type="text/javascript"></script> -->
-    <script src="{{asset('js/Chart.js')}}" type="text/javascript"></script>
+        <script src="{{ mix('js/app.js') }}"></script>
+        
+        <!-- <script src="{{ asset('js/chart-bar.js') }}"></script> -->
+        
+        <script src="{{ asset('js/chart-bar.js') }}"></script>
+        <script src="js/chart-bar.js" type="text/javascript"></script>
 
-    <script type="text/javascript" src="{{ URL::asset ('js/chart-bar.js') }}"></script>
-    <!-- <script type="text/javascript" src="{{ URL::asset ('js/Chart.js') }}"></script> -->
-@endpush
+    </body>
+</html>
