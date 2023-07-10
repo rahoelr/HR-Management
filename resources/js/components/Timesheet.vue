@@ -293,7 +293,7 @@
         },
         mounted() {
             this.getTimesheet();
-            this.getProjectName();
+            // this.getProjectName();
         },
         methods: {
             getTimesheet() {
