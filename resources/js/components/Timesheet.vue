@@ -113,7 +113,7 @@
                         <div class="col-md-6">
                             <div class="row justify-content-end" style="padding-right: 20px;">
                                 <!-- Page Heading -->
-                                <button type="button" class="btn btn-primary custom-btn2 my-3 rounded-pill font-weight-bold"
+                                <button type="button" class="btn btn-primary custom-btn2 rounded-pill font-weight-bold"
                                 data-target="#quoteForm" data-toggle="modal"
                                 style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
                             </div>
