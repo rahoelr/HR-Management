@@ -150,7 +150,7 @@
                             <td>08.00 - 17.00</td>
                             </tr> -->
                             <tr v-for="(data, index) in this.timesheet" :key="index">
-                                <!-- <td> {{ projectName }}</td> -->
+                                <td> {{ data.project_name }}</td>
                                 <td> {{ data . ms_project_id }} </td>
                                 <td> {{ data . work_date }} </td>
                                 <td> {{ data . workhour_start }} - {{ data . workhour_end }} </td>
@@ -293,27 +293,21 @@
         },
         mounted() {
             this.getTimesheet();
-            this.getProjectName();
+            // this.getProjectName();
         },
         methods: {
             getTimesheet() {
                 axios.get('http://127.0.0.1:8000/api/timesheet').then(res => {
-                    this.timesheet = res.data.data
-                    console.log(this.timesheet)
-                });
+                        this.timesheet = res.data.data
+                        // console.log(this.timesheet)
+                        // const timesheets = res.data.data;
+                        console.log(this.timesheet);
+                        console.log(res);
+                    })
+                    .catch(error => {
+                        console.log(error);
+                    });
             },
-
-            // getProjectName() {
-            //     axios.get('http://127.0.0.1:8000/api/timesheet/' + 1 + '/name')
-            //         .then(response => {
-            //             // Tangkap nama proyek dari respons API
-            //             const projectName = response.data[0].project_name;
-            //             console.log(projectName)
-            //         })
-            //         .catch(error => {
-            //             console.log(error);
-            //         });
-            // }
-        },
+        }
     }
 </script>

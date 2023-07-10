@@ -19,14 +19,26 @@ class TimesheetController extends Controller
     public function index()
     {
         //
-        $data = Timesheet::all();
+        $timesheets = Timesheet::all();
 
-        if($data){
-            return ApiFormatter::createApi(200, 'Success', $data);
+        if ($timesheets) {
+            $formattedTimesheets = [];
+
+            foreach ($timesheets as $timesheet) {
+                $projectName = $this->getProjectName($timesheet->ms_project_id);
+                $timesheetData = [
+                    'id' => $timesheet->id,
+                    'project_name' => $projectName,
+                    // tambahkan data timesheet lainnya sesuai kebutuhan
+                ];
+
+                $formattedTimesheets[] = $timesheetData;
+            }
+
+            return ApiFormatter::createApi(200, 'Success', $timesheets);
         } else {
             return ApiFormatter::createApi(400, 'Failed');
         }
-
     }
 
     /**
@@ -57,7 +69,7 @@ class TimesheetController extends Controller
                 'work_location' => 'required',
                 'task' => 'required',
                 'completed_task' => 'required',
-                'todo_task' => 'required'
+                'todo_task' => 'required',
             ]);
 
             $timesheet = Timesheet::create([
@@ -65,21 +77,20 @@ class TimesheetController extends Controller
                 'ms_project_id' => $request->ms_project_id,
                 'work_date' => $request->work_date,
                 'workhour_start' => $request->workhour_start,
-                'workhour_end'=> $request->workhour_end,
+                'workhour_end' => $request->workhour_end,
                 'work_location' => $request->work_location,
                 'task' => $request->task,
                 'completed_task' => $request->completed_task,
-                'todo_task' => $request->todo_task
+                'todo_task' => $request->todo_task,
             ]);
 
             $data = Timesheet::where('id', '=', $timesheet->id)->get();
 
-            if($data){
+            if ($data) {
                 return ApiFormatter::createApi(200, 'Success', $data);
             } else {
                 return ApiFormatter::createApi(400, 'Failed');
             }
-
         } catch (Exception $error) {
             return ApiFormatter::createApi(400, 'Failed');
         }
@@ -96,7 +107,7 @@ class TimesheetController extends Controller
         //Ambil Data 1 aja
         $data = Timesheet::where('id', '=', $id)->get();
 
-        if($data){
+        if ($data) {
             return ApiFormatter::createApi(200, 'Success', $data);
         } else {
             return ApiFormatter::createApi(400, 'Failed');
@@ -134,7 +145,7 @@ class TimesheetController extends Controller
                 'work_location' => 'required',
                 'task' => 'required',
                 'completed_task' => 'required',
-                'todo_task' => 'required'
+                'todo_task' => 'required',
             ]);
 
             $timesheet = Timesheet::findOrFail($id);
@@ -144,21 +155,20 @@ class TimesheetController extends Controller
                 'ms_project_id' => $request->ms_project_id,
                 'work_date' => $request->work_date,
                 'workhour_start' => $request->workhour_start,
-                'workhour_end'=> $request->workhour_end,
+                'workhour_end' => $request->workhour_end,
                 'work_location' => $request->work_location,
                 'task' => $request->task,
                 'completed_task' => $request->completed_task,
-                'todo_task' => $request->todo_task
+                'todo_task' => $request->todo_task,
             ]);
 
             $data = Timesheet::where('id', '=', $timesheet->id)->get();
 
-            if($data){
+            if ($data) {
                 return ApiFormatter::createApi(200, 'Success', $data);
             } else {
                 return ApiFormatter::createApi(400, 'Failed');
             }
-
         } catch (Exception $error) {
             return ApiFormatter::createApi(400, 'Failed');
         }
@@ -174,12 +184,11 @@ class TimesheetController extends Controller
     {
         //
         try {
-
             $timesheet = Timesheet::findOrFail($id);
 
             $data = $timesheet->delete();
 
-            if($data){
+            if ($data) {
                 return ApiFormatter::createApi(200, 'Success Destroy Data');
             } else {
                 return ApiFormatter::createApi(400, 'Failed');
@@ -189,13 +198,24 @@ class TimesheetController extends Controller
         }
     }
 
-    public function getProjectName($id)
-{
-    $projectName = DB::table('projects')
-        ->select('projects.project_name')
-        ->join('tr_timesheet', 'projects.id', '=', 'tr_timesheet.ms_project_id')
-        ->where('projects.id', '=', $id)
-        ->get();
-    return response()->json($projectName);
-}
+        public function getProjectName($id)
+    {
+        $projectName = DB::table('projects')
+            ->select('projects.project_name')
+            ->join('tr_timesheet', 'projects.id', '=', 'tr_timesheet.ms_project_id')
+            ->where('projects.id', '=', $id)
+            ->get();
+        return response()->json($projectName);
+    }
+
+    // public function getProjectName($id)
+    // {
+    //     $projectName = DB::table('projects')
+    //         ->select('projects.project_name')
+    //         ->join('tr_timesheet', 'projects.id', '=', 'tr_timesheet.ms_project_id')
+    //         ->where('projects.id', '=', $id)
+    //         ->first();
+
+    //     return $projectName ? $projectName->project_name : null;
+    // }
 }
