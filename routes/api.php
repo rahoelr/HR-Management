@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\DivisionController;
 use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\TimesheetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +28,23 @@ Route::get('timesheet/show/{id}', [TimesheetController::class, 'show']);
 Route::post('timesheet/update/{id}', [TimesheetController::class, 'update']);
 Route::get('timesheet/destroy/{id}', [TimesheetController::class, 'destroy']);
 Route::get('timesheet/{id}/name', [TimesheetController::class, 'getProjectName']);
+
+
+Route::get('project', [ProjectController::class, 'index']);
+Route::post('project/store', [ProjectController::class, 'store']);
+Route::post('project/show/{id}', [ProjectController::class, 'show']);
+Route::post('project/update/{id}', [ProjectController::class, 'update']);
+Route::get('project/destroy/{id}', [ProjectController::class, 'destroy']);
+
+
+Route::get('division', [DivisionController::class, 'index']);
+Route::post('divison/store', [DivisionController::class, 'store']);
+
+
+
+
+
+
 
 // Route::post('user', [LoginController::class, 'login']);
 // Route::post('user/store', [LoginController::class, 'store']);

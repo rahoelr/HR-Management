@@ -20,7 +20,6 @@ class TimesheetController extends Controller
     public function index()
     {
         //
-
         $data = Timesheet::join('projects', 'tr_timesheet.ms_project_id', '=', 'projects.id')
             ->select('tr_timesheet.*', 'projects.project_name')
             ->get();
@@ -189,13 +188,13 @@ class TimesheetController extends Controller
         }
     }
 
-    public function getProjectName($id)
-    {
-        $projectName = DB::table('projects')
-            ->select('projects.project_name')
-            ->join('tr_timesheet', 'projects.id', '=', 'tr_timesheet.ms_project_id')
-            ->where('projects.id', '=', $id)
-            ->get();
-        return response()->json($projectName);
-    }
+    // public function getProjectName($id)
+    // {
+    //     $projectName = DB::table('projects')
+    //         ->select('projects.project_name')
+    //         ->join('tr_timesheet', 'projects.id', '=', 'tr_timesheet.ms_project_id')
+    //         ->where('projects.id', '=', $id)
+    //         ->get();
+    //     return response()->json($projectName);
+    // }
 }
