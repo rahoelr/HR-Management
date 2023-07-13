@@ -20,14 +20,14 @@ class LoginController extends Controller
     public function index()
     {
         //
-        // $data = User::all();
+        $data = User::all();
 
         
-        // if($data){
-        //     return ApiFormatter::createApi(200, 'Success', $data);
-        // } else {
-        //     return ApiFormatter::createApi(400, 'Failed');
-        // }
+        if($data){
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
@@ -53,14 +53,14 @@ class LoginController extends Controller
                 'name' => 'required',
                 'email' => 'required',
                 'username' => 'required',
-                'password' => 'required'
+                'password' => 'required',
             ]);
 
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
                 'username' => $request->username,
-                'password' => $request->password
+                'password' => Hash::make($request->password),
             ]);
 
             $data = User::where('id', '=', $user->id)->get();
@@ -85,6 +85,13 @@ class LoginController extends Controller
     public function show($id)
     {
         //
+        $data = User::where('id', '=', $id)->get();
+
+        if ($data) {
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
@@ -108,6 +115,34 @@ class LoginController extends Controller
     public function update(Request $request, $id)
     {
         //
+        try {
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+                'username' => 'required',
+                'password' => 'required',
+            ]);
+
+            $user = User::findOrFail($id);
+
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'username' => $request->username,
+                'password' => Hash::make($request->password),
+            ]);
+
+            $data = User::where('id', '=', $user->id)->get();
+
+            if($data){
+                return ApiFormatter::createApi(200, 'Success', $data);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
@@ -119,6 +154,19 @@ class LoginController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $user = User::findOrFail($id);
+
+            $data = $user->delete();
+
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success Destroy Data');
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     // public function login(Request $request)

@@ -22,6 +22,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('user', [LoginController::class, 'index']);
+Route::post('user/store', [LoginController::class, 'store']);
+Route::get('user/show/{id}', [LoginController::class, 'show']);
+Route::post('user/update/{id}', [LoginController::class, 'update']);
+Route::get('user/destroy/{id}', [LoginController::class, 'destroy']);
+
+
+
+
 Route::get('timesheet', [TimesheetController::class, 'index']);
 Route::post('timesheet/store', [TimesheetController::class, 'store']);
 Route::get('timesheet/show/{id}', [TimesheetController::class, 'show']);
