@@ -38,7 +38,11 @@ Route::get('project/destroy/{id}', [ProjectController::class, 'destroy']);
 
 
 Route::get('division', [DivisionController::class, 'index']);
-Route::post('divison/store', [DivisionController::class, 'store']);
+Route::post('division/store', [DivisionController::class, 'store']);
+Route::post('division/show/{id}', [DivisionController::class, 'show']);
+Route::post('division/update/{id}', [DivisionController::class, 'update']);
+Route::get('division/destroy/{id}', [DivisionController::class, 'destroy']);
+
 
 
 

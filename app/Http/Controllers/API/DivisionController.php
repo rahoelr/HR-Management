@@ -79,6 +79,13 @@ class DivisionController extends Controller
     public function show($id)
     {
         //
+        $data = Division::where('id', '=', $id)->get();
+
+        if ($data) {
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
@@ -101,7 +108,30 @@ class DivisionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $request->validate([
+                'division_name' => 'required',
+                'is_active' => 'required',
+            ]);
+
+            $division = Division::findOrFail($id);
+
+            $division->update([
+                'division_name' => $request->division_name,
+                'is_active' => $request->is_active,
+            ]);
+
+            $data = Division::where('id', '=', $division->id)->get();
+
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success', $data);
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 
     /**
@@ -113,5 +143,18 @@ class DivisionController extends Controller
     public function destroy($id)
     {
         //
+        try {
+            $division = Division::findOrFail($id);
+
+            $data = $division->delete();
+
+            if ($data) {
+                return ApiFormatter::createApi(200, 'Success Destroy Data');
+            } else {
+                return ApiFormatter::createApi(400, 'Failed');
+            }
+        } catch (Exception $error) {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
     }
 }
