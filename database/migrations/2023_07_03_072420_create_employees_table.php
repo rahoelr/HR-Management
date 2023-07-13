@@ -15,7 +15,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('nik');
             $table->string('npwp');
             $table->string('full_name');
@@ -26,6 +26,8 @@ class CreateEmployeesTable extends Migration
             $table->dateTime('start_masa_kerja');
             $table->dateTime('end_masa_kerja');
             $table->boolean('is_active');
+			$table->foreign('user_id')->references('id')->on('users');
+
 
             $table->softDeletes();
             $table->timestamps();
