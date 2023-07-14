@@ -22690,7 +22690,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "container-fluid bg-content"
+  "class": "container-fluid"
 };
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-md-6\"><!-- Page Heading --><div class=\"d-sm-flex align-items-center justify-content-between mb-4\"><h1 class=\"h3 font-weight-bold\">Timesheet</h1><!-- &lt;a href=&quot;#&quot; class=&quot;d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm&quot;&gt;&lt;i\r\n                                        class=&quot;fas fa-download fa-sm text-white-50&quot;&gt;&lt;/i&gt; Generate Report&lt;/a&gt; --></div></div><div class=\"col-md-6\"><div class=\"row justify-content-end\" style=\"padding-right:20px;\"><!-- Page Heading --><button type=\"button\" class=\"btn custom-btn2 rounded-pill font-weight-bold\" data-target=\"#quoteForm\" data-toggle=\"modal\" style=\"font-style:bold;width:200px;height:40px;\">Add Timesheet</button></div></div></div>", 1);
 var _hoisted_3 = {

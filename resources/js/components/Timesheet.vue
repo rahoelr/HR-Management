@@ -2,7 +2,7 @@
 
 
     <!-- Begin Page Content -->
-    <div class="container-fluid bg-content">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
                 <!-- Page Heading -->
@@ -10,86 +10,12 @@
                     <h1 class="h3 font-weight-bold">Timesheet</h1>
                     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                         class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
-<<<<<<< HEAD
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row justify-content-end" style="padding-right: 20px;">
-                                <!-- Page Heading -->
-                                <button type="button" class="btn custom-btn2 rounded-pill font-weight-bold"
-                                data-target="#quoteForm" data-toggle="modal"
-                                style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <center><table class="table table-hover">
-                        <thead class="thead-green">
-                            <tr>
-                                <th scope="col" style="border-radius: 8px 0px 0px 0px;"><center></center></th>
-                                <th scope="col"><center>Project</center></th>
-                                <th scope="col"><center>Tanggal</center></th>
-                                <th scope="col"><center>Jam Kerja</center></th>
-                                <th scope="col" colspan="3" style="border-radius: 0px 8px 0px 0px;"><center>Action</center></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row"><center></center></th>
-                                <td><center>Testing App</center></td>
-                                <td><center>27-06-2023</center></td>
-                                <td><center>08.00 - 17.00</center></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#editForm" data-toggle="modal">
-                                        <img src="edit-icon.png"/></button></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#deleteModal" data-toggle="modal">
-                                        <img src="delete-icon.png"/></button></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#viewForm" data-toggle="modal">
-                                        <img src="eye-icon.png"/></button></td>
-                                
-                            </tr>
-                            <tr>
-                                <th scope="row"><center></center></th>
-                                <td><center>Testing App</center></td>
-                                <td><center>27-06-2023</center></td>
-                                <td><center>08.00 - 17.00</center></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#editForm" data-toggle="modal">
-                                        <img src="edit-icon.png"/></button></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#deleteModal" data-toggle="modal">
-                                        <img src="delete-icon.png"/></button></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#viewForm" data-toggle="modal">
-                                        <img src="eye-icon.png"/></button></td>
-                            </tr>
-                            <tr>
-                                <th scope="row"><center></center></th>
-                                <td><center>Testing App</center></td>
-                                <td><center>27-06-2023</center></td>
-                                <td><center>08.00 - 17.00</center></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#editForm" data-toggle="modal">
-                                        <img src="edit-icon.png"/></button></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#deleteModal" data-toggle="modal">
-                                        <img src="delete-icon.png"/></button></td>
-                                <td><button class="btn mx-1" style="padding: 0px;" role="button"
-                                    data-target="#viewForm" data-toggle="modal">
-                                        <img src="eye-icon.png"/></button></td>
-                            </tr>
-                        </tbody>
-                    </table></center>
-=======
->>>>>>> 432fecba2674da95c5a78da90102288be7f55840
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="row justify-content-end" style="padding-right: 20px;">
                     <!-- Page Heading -->
-                    <button type="button" class="btn btn-primary custom-btn2 rounded-pill font-weight-bold"
+                    <button type="button" class="btn custom-btn2 rounded-pill font-weight-bold"
                         data-target="#quoteForm" data-toggle="modal"
                         style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
                 </div>
