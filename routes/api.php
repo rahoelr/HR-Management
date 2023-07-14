@@ -23,12 +23,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('user', [LoginController::class, 'index']);
+// Route::post('login', [LoginController::class, 'login']);
 Route::post('user/store', [LoginController::class, 'store']);
 Route::get('user/show/{id}', [LoginController::class, 'show']);
 Route::post('user/update/{id}', [LoginController::class, 'update']);
 Route::get('user/destroy/{id}', [LoginController::class, 'destroy']);
-
-
 
 
 Route::get('timesheet', [TimesheetController::class, 'index']);
@@ -41,7 +40,7 @@ Route::get('timesheet/{id}/name', [TimesheetController::class, 'getProjectName']
 
 Route::get('project', [ProjectController::class, 'index']);
 Route::post('project/store', [ProjectController::class, 'store']);
-Route::post('project/show/{id}', [ProjectController::class, 'show']);
+Route::get('project/show/{id}', [ProjectController::class, 'show']);
 Route::post('project/update/{id}', [ProjectController::class, 'update']);
 Route::get('project/destroy/{id}', [ProjectController::class, 'destroy']);
 

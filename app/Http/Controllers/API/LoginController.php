@@ -125,7 +125,7 @@ class LoginController extends Controller
 
             $user = User::findOrFail($id);
 
-            $user = User::create([
+            $user->update([
                 'name' => $request->name,
                 'email' => $request->email,
                 'username' => $request->username,
