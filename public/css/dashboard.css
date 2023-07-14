@@ -11279,3 +11279,26 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+/* Layouting */
+.bg-floo-main{
+  background-color: #64B58A;
+}
+
+.bg-content{
+  background-color: #F5F7F9;
+}
+
+.bg-menu-active{
+  background-color: #64B58A;
+  color: white;
+}
+
+.bg-menu:hover {
+  background-color: #64B58A;
+  color: white;
+}
+
+.bg-menu{
+  color: #3A3A3A;
+}

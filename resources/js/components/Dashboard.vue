@@ -1,6 +1,6 @@
 <template>
     <!-- Begin Page Content -->
-    <div class="container-fluid">
+    <div class="container-fluid bg-content">
 
         <!-- Page Heading -->
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -14,7 +14,7 @@
 
                         
             <div class="col-xl mb-4">
-                <div class="card shadow h-100 py-2">
+                <div class="card bg-white shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-10">
@@ -51,7 +51,7 @@
         <div class="row">
                                             
             <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-success shadow h-100 py-2">
+                <div class="card bg-white border-left-success shadow h-100 py-2">
                     <div class="card-body">
                                     
                         <div class="row">
@@ -74,7 +74,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card bg-white border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                                     
                         <div class="row">
@@ -94,7 +94,7 @@
             </div>
 
             <div class="col-xl-4 col-md-6 mb-4">
-                <div class="card border-left-danger shadow h-100 py-2">
+                <div class="card bg-white border-left-danger shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
@@ -118,7 +118,7 @@
         <!-- <div class="row"> -->
 
         <!-- Bar Chart -->
-            <div class="card shadow mb-4">
+            <div class="card bg-white shadow mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Average Working Hour</h5>
                     <div class="chart-bar">
