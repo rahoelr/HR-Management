@@ -44,18 +44,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr v-for="(data, index) in this.timesheet" :key="index">
                         <th scope="row">
-                            <center></center>
+                            <center>{{ data . ms_project_id }}</center>
                         </th>
                         <td>
-                            <center>Testing App</center>
+                            <center>  {{ data . project_name }} </center>
                         </td>
+                      
+                        <td><center>{{ data . work_date }}</center>  </td>
                         <td>
-                            <center>27-06-2023</center>
-                        </td>
-                        <td>
-                            <center>08.00 - 17.00</center>
+                            <center>{{ data . workhour_start }} - {{ data . workhour_end }}</center>
                         </td>
                         <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#editForm"
                                 data-toggle="modal">
@@ -68,52 +67,7 @@
                                 <img src="eye-icon.png" /></button></td>
 
                     </tr>
-                    <tr>
-                        <th scope="row">
-                            <center></center>
-                        </th>
-                        <td>
-                            <center>Testing App</center>
-                        </td>
-                        <td>
-                            <center>27-06-2023</center>
-                        </td>
-                        <td>
-                            <center>08.00 - 17.00</center>
-                        </td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#editForm"
-                                data-toggle="modal">
-                                <img src="edit-icon.png" /></button></td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
-                                data-toggle="modal">
-                                <img src="delete-icon.png" /></button></td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#viewForm"
-                                data-toggle="modal">
-                                <img src="eye-icon.png" /></button></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <center></center>
-                        </th>
-                        <td>
-                            <center>Testing App</center>
-                        </td>
-                        <td>
-                            <center>27-06-2023</center>
-                        </td>
-                        <td>
-                            <center>08.00 - 17.00</center>
-                        </td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#editForm"
-                                data-toggle="modal">
-                                <img src="edit-icon.png" /></button></td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
-                                data-toggle="modal">
-                                <img src="delete-icon.png" /></button></td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#viewForm"
-                                data-toggle="modal">
-                                <img src="eye-icon.png" /></button></td>
-                    </tr>
+                  
                 </tbody>
             </table>
         </center>
@@ -383,6 +337,15 @@
 
 <script>
     export default {
+        name: 'timesheet',
+        data() {
+            return {
+                timesheet: []
+            }
+        },
+        mounted() {
+            this.getTimesheet();
+        },
         methods: {
             logout() {
                 axios.post('/logout')
@@ -397,7 +360,14 @@
                         // Handle the error
                         console.error(error);
                     });
-            }
+            },
+            getTimesheet() {
+                axios.get('http://127.0.0.1:8000/api/timesheet').then(res => {
+                    this.timesheet = res.data.data
+                    console.log(this.timesheet)
+                });
+            },
+
         }
     }
 </script>
