@@ -14,8 +14,9 @@
 
                         
             <div class="col-xl mb-4">
-                <div class="card bg-white shadow h-100 py-2">
-                    <div class="card-body">
+                <div class="card bg-white shadow h-100">
+                <!-- <div class="card bg-white shadow h-100 py-2"> -->
+                    <div class="card-body" id="box">
                         <div class="row">
                             <div class="col-md-10">
                                 <h5 class="card-title">Check Log</h5>
@@ -30,15 +31,21 @@
                                 </div>                                   
                             </div>
                             <div class="col-md-2 my-auto">
-                                <!-- <a href="#" class="btn btn-primary mx-1">.</a> -->
-                                <button onclick="getElementById('demo').innerHTML=Date()" class="btn mx-1" style="border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;" href="#!" role="button">
+                                <!-- <button id="btn" onclick="getElementById('demo').innerHTML=Date()" class="btn mx-1 non-active" style="border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;" href="#!" role="button">
                                         <img src="presensi-icon-before.svg" height ="32" width="32" />
                                 </button>
-                                <button onclick="" class="btn mx-1" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;" href="#!" role="button">
-                                        <img src="shutdown-icon-before.svg" height ="32" width="32" />
+                                <button id="btn2" onclick="" class="btn mx-1" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;" href="#!" role="button">
+                                        <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange" onclick="changeImage()"/>
+                                </button> -->
+
+                                <button id="btn" onclick="getElementById('demo').innerHTML=Date()" class="btn mx-1 non-active" href="#!" role="button" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
+                                        <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange"/>
+                                </button>
+                                <button id="btn2" onclick="" class="btn mx-1" href="#!" role="button" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
+                                        <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2"/>
                                 </button>
                                 <!-- tes date demo -->
-                                <p id="demo"></p>
+                                <!-- <p id="demo"></p> -->
                             </div>
                         </div>                                    
                     </div>
@@ -135,9 +142,56 @@
 </template>
     
     <script>
+
     export default {
         mounted() {
             console.log('Component mounted.')
+
+            // button-stop
+            if (box.style.backgroundColor = '#E37C77'){
+                const btn = document.getElementById('btn');
+                btn.addEventListener('click', function onClick(event) {
+                const box = document.getElementById('box');
+
+                if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg"){
+                    document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+                } else {
+                    btn.style.backgroundColor = "#E37C77";
+                    btn.style.border = "4px solid white"
+                    document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+                }
+
+                box.style.backgroundColor = 'white';
+                box.style.color = 'black';
+                });
+                
+            } else {
+                box.style.backgroundColor = '#E37C77';
+                box.style.color = 'white';
+            }
+
+            // button-start
+            if (box.style.backgroundColor = 'white'){
+                const btn2 = document.getElementById('btn2');
+                btn2.addEventListener('click', function onClick(event) {
+                const box = document.getElementById('box');
+
+                if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-after.svg"){
+                    document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+                } 
+                else {
+                    btn2.style.backgroundColor = 'white';
+                    document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+                }
+
+                box.style.backgroundColor = '#E37C77';
+                box.style.color = 'white';
+                });
+                
+            } else {
+                box.style.backgroundColor = 'white';
+                box.style.color = 'black';
+            }
         }
     }
 
@@ -218,4 +272,7 @@
         setTimeout(clock, 1000);
     }
     });
+
+
+
     </script>

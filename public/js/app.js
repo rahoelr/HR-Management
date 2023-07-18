@@ -22225,6 +22225,45 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
+
+    // button-stop
+    if (box.style.backgroundColor = '#E37C77') {
+      var btn = document.getElementById('btn');
+      btn.addEventListener('click', function onClick(event) {
+        var box = document.getElementById('box');
+        if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg") {
+          document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+        } else {
+          btn.style.backgroundColor = "#E37C77";
+          btn.style.border = "4px solid white";
+          document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+        }
+        box.style.backgroundColor = 'white';
+        box.style.color = 'black';
+      });
+    } else {
+      box.style.backgroundColor = '#E37C77';
+      box.style.color = 'white';
+    }
+
+    // button-start
+    if (box.style.backgroundColor = 'white') {
+      var btn2 = document.getElementById('btn2');
+      btn2.addEventListener('click', function onClick(event) {
+        var box = document.getElementById('box');
+        if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-after.svg") {
+          document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+        } else {
+          btn2.style.backgroundColor = 'white';
+          document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+        }
+        box.style.backgroundColor = '#E37C77';
+        box.style.color = 'white';
+      });
+    } else {
+      box.style.backgroundColor = 'white';
+      box.style.color = 'black';
+    }
   }
 });
 window.addEventListener("load", function () {
@@ -22403,9 +22442,10 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card bg-white shadow h-100 py-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "card-body"
+  "class": "card bg-white shadow h-100"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "card-body",
+  id: "box"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -22420,38 +22460,39 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   id: "date"
 })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-md-2 my-auto"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"#\" class=\"btn btn-primary mx-1\">.</a> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  id: "btn",
   onclick: "getElementById('demo').innerHTML=Date()",
-  "class": "btn mx-1",
+  "class": "btn mx-1 non-active",
+  href: "#!",
+  role: "button",
   style: {
     "border": "4px solid #E37C77",
     "border-radius": "24%",
-    "background-color": "white",
     "padding": "5px 5px"
-  },
-  href: "#!",
-  role: "button"
+  }
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "presensi-icon-before.svg",
   height: "32",
-  width: "32"
+  width: "32",
+  id: "imgClickAndChange"
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  id: "btn2",
   onclick: "",
   "class": "btn mx-1",
+  href: "#!",
+  role: "button",
   style: {
     "background-color": "#64B58A",
     "border-radius": "24%",
     "padding": "8px 8px"
-  },
-  href: "#!",
-  role: "button"
+  }
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "shutdown-icon-before.svg",
   height: "32",
-  width: "32"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  id: "demo"
-})])])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  width: "32",
+  id: "imgClickAndChange2"
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"demo\"></p> ")])])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
