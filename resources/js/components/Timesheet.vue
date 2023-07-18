@@ -109,13 +109,15 @@
                                 <label class="font-weight-bold text-small" for="project">Project<span
                                         class="text-primary ml-1">*</span></label>
                                         <select class="form-select" aria-label="Default select example">
-                                        <option v-for="(data, index) in this.timesheet" :key="index"  value="data.ms_project_id">{{data.project_name}}</option>
+                                        <option v-for="(data, index) in this.projects" :key="index"  value="data.ms_project_id">
+                                            {{data.project_name}}</option>
                                     </select>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                         class="text-primary ml-1">*</span></label>
-                                        <input v-model="work_date" class="form-control" id="work_date" type="text" placeholder="DD/MM/YYYY" required=""  />
+                                        <input class="form-control" v-model="work_date" id="tanggal" type="date" placeholder="DD/MM/YYYY"
+                                    required="" />
 
 
                             </div>
@@ -129,13 +131,13 @@
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                         class="text-primary ml-1">*</span></label>
-                                        <input v-model="workhour_start" class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
+                                        <input v-model="workhour_start" class="form-control" id="jammulai" type="time" placeholder="Jam mulai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                         class="text-primary ml-1">*</span></label>
-                                        <input v-model="workhour_end" class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
+                                        <input v-model="workhour_end" class="form-control" id="jamselesai" type="time" placeholder="Jam selesai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-12">
@@ -342,9 +344,11 @@
 <script>
     export default {
         name: 'timesheet',
+        name: 'projects', 
         data() {
             return {
                 timesheet: [],
+                projects: [],
                 ms_employee_id: '',
                 ms_project_id: '',
                 work_date: '',
@@ -359,6 +363,7 @@
         mounted() {
             this.getTimesheet();
             this.submitForm();
+            this.getProject();
         },
         methods: {
             logout() {
@@ -375,6 +380,12 @@
                         console.error(error);
                     });
             },
+            getProject(){
+                axios.get('http://127.0.0.1:8000/api/project').then(res => {
+                    this.projects = res.data.data
+                    console.log(this.projects);
+                });
+            },
             getTimesheet() {
                 axios.get('http://127.0.0.1:8000/api/timesheet').then(res => {
                     this.timesheet = res.data.data
@@ -383,8 +394,12 @@
             },
             postTimesheet() {
                 axios.post('http://127.0.0.1:8000/api/timesheet/store').then(res => {
-                    this.timesheet = res.data.data
-                    console.log(this.timesheet)
+                                            // Handle successful response
+                        console.log(response.data);
+                        // Refresh the timesheet data
+                        this.getTimesheet();
+                        // Reset the form data
+                        this.resetForm();
                 });
 
         },
@@ -401,8 +416,7 @@
                 todo_task: this.todo_task,
       };
 
-      axios
-        .post('http://127.0.0.1:8000/api/timesheet/store', formData)
+      axios.post('http://127.0.0.1:8000/api/timesheet/store', formData)
         .then(response => {
           // Handle successful response
           console.log(response.data);
@@ -411,6 +425,18 @@
           // Handle error
           console.error(error);
         });
-    }
+    },
+    resetForm() {
+                // Reset the form data properties
+                this.ms_employee_id = '';
+                this.ms_project_id = '';
+                this.work_date = '';
+                this.workhour_start = '';
+                this.workhour_end = '';
+                this.work_location = '';
+                this.task = '';
+                this.completed_task = '';
+                this.todo_task = '';
+            },
     }}
 </script>

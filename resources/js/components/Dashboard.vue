@@ -98,7 +98,7 @@
                                     
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
-                                <a class="btn" style="background-color: #DFE5FB; padding: 8px 8px; border-radius: 24%;" href="#!" role="button">
+                                <a class="btn" style="background-color: #DFE5FB; padding: 8px 8px; border-radius: 24%;" href="/timesheet" role="button">
                                     <img src="timesheet-icon.svg" height ="48" width="48" />
                                 </a>
                             </div>
