@@ -108,14 +108,16 @@
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="project">Project<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="project" type="text"
-                                    placeholder="Pilih project" required="" />
+                                        <select class="form-select" aria-label="Default select example">
+                                        <option v-for="(data, index) in this.timesheet" :key="index"  value="data.ms_project_id">{{data.project_name}}</option>
+                                    </select>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="tanggal" type="text" placeholder="DD/MM/YYYY"
-                                    required="" />
+                                        <input v-model="work_date" class="form-control" id="work_date" type="text" placeholder="DD/MM/YYYY" required=""  />
+
+
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
@@ -127,13 +129,13 @@
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
+                                        <input v-model="workhour_start" class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
+                                        <input v-model="workhour_end" class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-12">
