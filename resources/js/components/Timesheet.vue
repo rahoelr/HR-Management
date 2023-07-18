@@ -92,7 +92,7 @@
         </div>
     </div>
 
-    <!--add timesheet -->
+    <!--GET a QUOTE MODAL -->
     <div class="modal fade" id="quoteForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
         aria-hidden="true">
         <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -108,20 +108,14 @@
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="project">Project<span
                                         class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option v-for="(data, index) in this.timesheet" :key="index"  value="data.ms_project_id">{{data.project_name}}</option>
-                                    </select>
-                            </div>
-                            <!-- <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="project" v-for="(data, index) in this.timesheet" :key="index">{{ data.project_name }}<span
-                                        class="text-primary ml-1">*</span></label>
-                                <input v-model="ms_employee_id" class="form-control" id="project" type="text"
+                                <input class="form-control" id="project" type="text"
                                     placeholder="Pilih project" required="" />
-                            </div> -->
+                            </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                         class="text-primary ml-1">*</span></label>
-                                <input v-model="work_date" class="form-control" id="work_date" type="text" placeholder="DD/MM/YYYY" required=""  />
+                                <input class="form-control" id="tanggal" type="text" placeholder="DD/MM/YYYY"
+                                    required="" />
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
@@ -133,13 +127,13 @@
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                         class="text-primary ml-1">*</span></label>
-                                <input v-model="workhour_start" class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
+                                <input class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                         class="text-primary ml-1">*</span></label>
-                                <input v-model="workhour_end" class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
+                                <input class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-12">
@@ -187,13 +181,17 @@
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="project">Project<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="project" type="text"
-                                    placeholder="Pilih project" required="" />
+                                    <select class="form-select" aria-label="Default select example">
+                                        <option selected>Pilih project</option>
+                                        <option value="1">One</option>
+                                        <option value="2">Two</option>
+                                        <option value="3">Three</option>
+                                    </select>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="tanggal" type="text" placeholder="DD/MM/YYYY"
+                                <input class="form-control" id="tanggal" type="date" placeholder="DD/MM/YYYY"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-12">
@@ -206,13 +204,13 @@
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
+                                <input class="form-control" id="jammulai" type="time" placeholder="Jam mulai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                         class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
+                                <input class="form-control" id="jamselesai" type="time" placeholder="Jam selesai"
                                     required="" />
                             </div>
                             <div class="form-group col-lg-12">
@@ -281,54 +279,49 @@
                                 <label class="font-weight-bold text-small" for="project">Project<span
                                         class="text-primary ml-1">*</span></label>
                                 <input class="form-control" id="project" type="text"
-                                    placeholder="Pilih project" required="" />
+                                    placeholder="Pilih project" required="" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                         class="text-primary ml-1">*</span></label>
                                 <input class="form-control" id="tanggal" type="text" placeholder="DD/MM/YYYY"
-                                    required="" />
+                                    required="" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
                                         class="text-primary ml-1">*</span></label>
                                 <input class="form-control" id="lokasi" type="text"
-                                    placeholder="Tambahkan lokasi" required="" />
+                                    placeholder="Tambahkan lokasi" required="" readonly disabled/>
                             </div>
                             <h4><b>Jam Kerja</b></h4>
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                         class="text-primary ml-1">*</span></label>
                                 <input class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
-                                    required="" />
+                                    required="" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-6">
                                 <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                         class="text-primary ml-1">*</span></label>
                                 <input class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
-                                    required="" />
+                                    required="" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="task">Task</label>
                                 <textarea class="form-control" id="task" type="text"
-                                    placeholder="Deskripsi task yang sedang dikerjakan" />
+                                    placeholder="Deskripsi task yang sedang dikerjakan" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
                                         class="text-primary ml-1">*</span></label>
                                 <textarea class="form-control" id="taskselesai" type="text"
-                                    placeholder="Task yang sudah selesai dikerjakan" required="" />
+                                    placeholder="Task yang sudah selesai dikerjakan" required="" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="todo">To Do Task<span
                                         class="text-primary ml-1">*</span></label>
                                 <textarea class="form-control" id="todo" type="text"
-                                    placeholder="Task yang akan dikerjakan" required="" />
-                            </div>
-                            <div class="form-group col-lg-12 text-center">
-                                <button class="btn btn-primary custom-btn my-3 font-weight-bold rounded-pill"
-                                    type="submit"
-                                    style="font-style: bold; width: 300px; height: 40px;">Simpan</button>
+                                    placeholder="Task yang akan dikerjakan" required="" readonly disabled/>
                             </div>
                         </div>
                     </form>
