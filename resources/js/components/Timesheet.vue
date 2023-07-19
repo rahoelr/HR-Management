@@ -119,18 +119,18 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
-                                    <!-- <select class="form-select" aria-label="Default select example">
-                                        <option v-for="(data, index) in this.projects" :key="index"  value="data.ms_project_id">
-                                            {{ data . project_name }}</option>
-                                    </select> -->
-                                    <input v-model="ms_employee_id" type="text" placeholder="Employee ID">
+                                    <select class="form-select" aria-label="Default select example" v-model="selectedEmployeeId">
+                                        <option v-for="(data, index) in this.employees" :key="index"  :value="data.user_id">
+                                            {{ data . full_name }}</option>
+                                    </select>
+                                    <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input class="form-control" v-model="work_date" id="tanggal" type="date" placeholder="DD/MM/YYYY"
                                     required="" /> -->
-                                    <input v-model="work_date" type="text" placeholder="Project ID">
+                                    <input v-model="work_date" type="text" placeholder="2023-07-19">
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
@@ -145,14 +145,14 @@
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input v-model="workhour_start" class="form-control" id="jammulai" type="time" placeholder="Jam mulai"
                                     required="" /> -->
-                                    <input v-model="workhour_start" type="text" placeholder="Jam Mulai">
+                                    <input v-model="workhour_start" type="text" placeholder="22:01:56">
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input v-model="workhour_end" class="form-control" id="jamselesai" type="time" placeholder="Jam selesai"
                                     required="" /> -->
-                                    <input v-model="workhour_end" type="text" placeholder="Jam END">
+                                    <input v-model="workhour_end" type="text" placeholder="22:01:56">
 
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -362,11 +362,14 @@
     export default {
         name: 'timesheet',
         projects: 'projects',
+        employees: 'employees',
         data() {
             return {
                 timesheet: [],
                 selectedProjectId: null,
+                selectedEmployeeId: null,
                 projects: [],
+                employees: [],
                 ms_employee_id: '',
                 ms_project_id: '',
                 work_date: '',
@@ -381,12 +384,13 @@
         mounted() {
             this.getTimesheet();
             this.getProject();
+            this.getEmployee();
         },
         methods: {
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
-                        ms_employee_id: this.ms_employee_id,
+                        ms_employee_id: this.selectedEmployeeId,
                         ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
@@ -426,6 +430,12 @@
                 axios.get('http://127.0.0.1:8000/api/project').then(res => {
                     this.projects = res.data.data
                     console.log(this.projects);
+                });
+            },
+            getEmployee() {
+                axios.get('http://127.0.0.1:8000/api/employee').then(res => {
+                    this.employees = res.data.data
+                    console.log(this.employees);
                 });
             },
             getTimesheet() {
