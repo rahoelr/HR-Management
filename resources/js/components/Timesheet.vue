@@ -110,11 +110,11 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <!-- <select class="form-select" aria-label="Default select example">
-                                        <option v-for="(data, index) in this.projects" :key="index"  value="data.ms_project_id">
+                                    <select class="form-select" aria-label="Default select example"  v-model="selectedProjectId">
+                                        <option v-for="(data, index) in this.projects" :key="index"  :value="data.id">
                                             {{ data . project_name }}</option>
-                                    </select> -->
-                                    <input v-model="ms_project_id" type="text" placeholder="Employee ID">
+                                    </select>
+                                    <!-- <input v-model="ms_project_id" type="text" placeholder="Employee ID"> -->
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
@@ -361,10 +361,11 @@
 <script>
     export default {
         name: 'timesheet',
-        name: 'projects',
+        projects: 'projects',
         data() {
             return {
                 timesheet: [],
+                selectedProjectId: null,
                 projects: [],
                 ms_employee_id: '',
                 ms_project_id: '',
@@ -379,7 +380,6 @@
         },
         mounted() {
             this.getTimesheet();
-            this.submitForm();
             this.getProject();
         },
         methods: {
@@ -387,7 +387,7 @@
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
                         ms_employee_id: this.ms_employee_id,
-                        ms_project_id: this.ms_project_id,
+                        ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
                         workhour_end: this.workhour_end,
