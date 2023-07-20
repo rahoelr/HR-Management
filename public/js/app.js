@@ -22618,6 +22618,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.task = '';
       this.completed_task = '';
       this.todo_task = '';
+    },
+    deleteTimesheet: function deleteTimesheet() {
+      var _this6 = this;
+      axios["delete"]('http://127.0.0.1:8000/api/timesheet/destroy{id}').then(function (res) {
+        // Handle successful response
+        console.log(response.data);
+        // Refresh the timesheet data  
+        _this6.getTimesheet();
+      });
     }
   }
 });

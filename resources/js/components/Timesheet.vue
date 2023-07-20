@@ -502,6 +502,13 @@
                 this.completed_task = '';
                 this.todo_task = '';
             },
+            deleteTimesheet() {
+                axios.delete('http://127.0.0.1:8000/api/timesheet/destroy{id}').then (res => {       
+                    // Handle successful response
+                    console.log(response.data);
+                    // Refresh the timesheet data  
+                    this.getTimesheet();
+                });
         }
-    }
+    }}
 </script>
