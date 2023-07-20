@@ -22239,45 +22239,82 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
 
     // button-stop
+    // if (box.style.backgroundColor = '#E37C77'){
+    //     const btn = document.getElementById('btn');
+    //     btn.addEventListener('click', function onClick(event) {
+    //     const box = document.getElementById('box');
+
+    //     if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg"){
+    //         //masalah
+    //         document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+
+    //     } else {
+    //         btn.style.backgroundColor = "#E37C77";
+    //         btn.style.border = "4px solid white"
+    //         document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+    //     }
+
+    //     box.style.backgroundColor = 'white';
+    //     box.style.color = 'black';
+    //     });
+
+    // } else if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg") {
+    //     document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+    //     box.style.backgroundColor = '#E37C77';
+    //     box.style.color = 'white';
+    // }
+
     if (box.style.backgroundColor = '#E37C77') {
       var btn = document.getElementById('btn');
+      var btn2 = document.getElementById('btn2');
       btn.addEventListener('click', function onClick(event) {
         var box = document.getElementById('box');
-        if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg") {
-          document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
-        } else {
-          btn.style.backgroundColor = "#E37C77";
-          btn.style.border = "4px solid white";
+        if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg") {
           document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+        } else {
+          btn.style.backgroundColor = "white";
+          btn.style.border = "4px solid #E37C77";
+          document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+          btn2.style.backgroundColor = "#64B58A";
+          document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
         }
         box.style.backgroundColor = 'white';
         box.style.color = 'black';
       });
-    } else {
-      box.style.backgroundColor = '#E37C77';
-      box.style.color = 'white';
     }
+    // else if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg") {
+    //     document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+    //     box.style.backgroundColor = '#E37C77';
+    //     box.style.color = 'white';
+    // }
 
     // button-start
     if (box.style.backgroundColor = 'white') {
-      var btn2 = document.getElementById('btn2');
-      btn2.addEventListener('click', function onClick(event) {
+      var _btn = document.getElementById('btn2');
+      var _btn2 = document.getElementById('btn');
+      _btn.addEventListener('click', function onClick(event) {
         var box = document.getElementById('box');
         if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-after.svg") {
           document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
         } else {
-          btn2.style.backgroundColor = 'white';
+          _btn.style.backgroundColor = 'white';
           document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+          _btn2.style.backgroundColor = "#E37C77";
+          _btn2.style.border = "4px solid white";
+          document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
         }
         box.style.backgroundColor = '#E37C77';
         box.style.color = 'white';
       });
-    } else {
-      box.style.backgroundColor = 'white';
-      box.style.color = 'black';
     }
+    // else if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-before.svg") {
+    //     document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+    //     box.style.backgroundColor = 'white';
+    //     box.style.color = 'black';
+    // }
   }
 });
+
 window.addEventListener("load", function () {
   clock();
   function clock() {
@@ -22330,6 +22367,9 @@ window.addEventListener("load", function () {
     setTimeout(clock, 1000);
     document.getElementById("date").innerHTML = date;
     setTimeout(clock, 1000);
+    clearInterval(timeInt); // Here
+    timeInt = setInterval(clock, 1000);
+    console.log('updated time from server');
   }
 });
 
@@ -22623,7 +22663,7 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
     "padding": "8px 8px",
     "border-radius": "24%"
   },
-  href: "#!",
+  href: "/timesheet",
   role: "button"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "timesheet-icon.svg",

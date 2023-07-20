@@ -86,7 +86,7 @@
                                     
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
-                                <a class="btn" style="background-color: #DFE5FB; padding: 8px 8px; border-radius: 24%;" href="#!" role="button">
+                                <a class="btn" style="background-color: #DFE5FB; padding: 8px 8px; border-radius: 24%;" href="/timesheet" role="button">
                                     <img src="timesheet-icon.svg" height ="48" width="48" />
                                 </a>
                             </div>
@@ -164,50 +164,92 @@
             console.log('Component mounted.')
 
             // button-stop
+            // if (box.style.backgroundColor = '#E37C77'){
+            //     const btn = document.getElementById('btn');
+            //     btn.addEventListener('click', function onClick(event) {
+            //     const box = document.getElementById('box');
+
+            //     if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg"){
+            //         //masalah
+            //         document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+
+            //     } else {
+            //         btn.style.backgroundColor = "#E37C77";
+            //         btn.style.border = "4px solid white"
+            //         document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+            //     }
+
+            //     box.style.backgroundColor = 'white';
+            //     box.style.color = 'black';
+            //     });
+                
+            // } else if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg") {
+            //     document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+            //     box.style.backgroundColor = '#E37C77';
+            //     box.style.color = 'white';
+            // }
+
             if (box.style.backgroundColor = '#E37C77'){
                 const btn = document.getElementById('btn');
+                const btn2 = document.getElementById('btn2');
+
                 btn.addEventListener('click', function onClick(event) {
                 const box = document.getElementById('box');
 
-                if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg"){
-                    document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
-                } else {
-                    btn.style.backgroundColor = "#E37C77";
-                    btn.style.border = "4px solid white"
+                if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg"){
                     document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+
+                } else {
+                    btn.style.backgroundColor = "white";
+                    btn.style.border = "4px solid #E37C77";
+                    document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+
+                    btn2.style.backgroundColor = "#64B58A";
+                    document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+                
                 }
 
                 box.style.backgroundColor = 'white';
                 box.style.color = 'black';
                 });
                 
-            } else {
-                box.style.backgroundColor = '#E37C77';
-                box.style.color = 'white';
-            }
+            } 
+            // else if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg") {
+            //     document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+            //     box.style.backgroundColor = '#E37C77';
+            //     box.style.color = 'white';
+            // }
 
             // button-start
             if (box.style.backgroundColor = 'white'){
                 const btn2 = document.getElementById('btn2');
+                const btn = document.getElementById('btn');
+
                 btn2.addEventListener('click', function onClick(event) {
                 const box = document.getElementById('box');
 
                 if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-after.svg"){
                     document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
-                } 
-                else {
+
+                } else {
                     btn2.style.backgroundColor = 'white';
                     document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+
+                    btn.style.backgroundColor = "#E37C77";
+                    btn.style.border = "4px solid white"
+                    document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
                 }
 
                 box.style.backgroundColor = '#E37C77';
                 box.style.color = 'white';
                 });
                 
-            } else {
-                box.style.backgroundColor = 'white';
-                box.style.color = 'black';
-            }
+            } 
+            // else if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-before.svg") {
+            //     document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+            //     box.style.backgroundColor = 'white';
+            //     box.style.color = 'black';
+            // }
         }
     }
 
@@ -286,6 +328,10 @@
 
         document.getElementById("date").innerHTML = date;
         setTimeout(clock, 1000);
+
+        clearInterval(timeInt); // Here
+        timeInt = setInterval(clock,1000);
+        console.log('updated time from server')
     }
     });
 

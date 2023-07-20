@@ -10274,10 +10274,10 @@ a:focus {
   max-width: 10rem;
 }
 
-.topbar .dropdown-list .dropdown-item:active {
+/* .topbar .dropdown-list .dropdown-item:active {
   background-color: #eaecf4;
   color: #3a3b45;
-}
+} */
 
 @media (min-width: 576px) {
   .topbar .dropdown {
