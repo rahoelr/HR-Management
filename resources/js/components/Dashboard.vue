@@ -79,6 +79,24 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <a class="btn btn-danger" @click="logout">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
             <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card bg-white border-left-primary shadow h-100 py-2">
@@ -145,20 +163,7 @@
 
     export default {
 
-        logout() {
-                axios.post('/logout')
-                    .then(() => {
-                        // Perform any additional actions after successful logout
-                        // For example, you can clear local storage, update component state, or redirect the user
-                        console.log('Logout successful');
-                        // Redirect the user to the login page
-                        window.location.href = '/';
-                    })
-                    .catch(error => {
-                        // Handle the error
-                        console.error(error);
-                    });
-            },
+
             
         mounted() {
             console.log('Component mounted.')
@@ -250,6 +255,23 @@
             //     box.style.backgroundColor = 'white';
             //     box.style.color = 'black';
             // }
+        },
+
+        methods: {
+            logout() {
+                axios.post('/logout')
+                    .then(() => {
+                        // Perform any additional actions after successful logout
+                        // For example, you can clear local storage, update component state, or redirect the user
+                        console.log('Logout successful');
+                        // Redirect the user to the login page
+                        window.location.href = '/';
+                    })
+                    .catch(error => {
+                        // Handle the error
+                        console.error(error);
+                    });
+            },
         }
     }
 
