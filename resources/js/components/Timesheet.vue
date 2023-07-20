@@ -277,13 +277,13 @@
                         style="color: white;"><span aria-hidden="true">×</span></button>
                 </div>
                 <div class="modal-body">
-                    <form action="#">
+                    <form action="#" v-for="(data, index) in this.projects" :key="index" >
                         <div class="row" style="color: #455A64;">
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="project">Project<span
                                         class="text-primary ml-1">*</span></label>
                                 <input class="form-control" id="project" type="text"
-                                    placeholder="Pilih project" required="" readonly disabled/>
+                                    placeholder={{data.project_name}} required="" readonly disabled/>
                             </div>
                             <div class="form-group col-lg-12">
                                 <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
@@ -382,7 +382,7 @@
             },
             getProject(){
                 axios.get('http://127.0.0.1:8000/api/project').then(res => {
-                    this.projects = res.data.data
+                    this.projects = res
                     console.log(this.projects);
                 });
             },
