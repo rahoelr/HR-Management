@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\DivisionController;
+use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\TimesheetController;
@@ -50,6 +51,9 @@ Route::post('division/store', [DivisionController::class, 'store']);
 Route::post('division/show/{id}', [DivisionController::class, 'show']);
 Route::post('division/update/{id}', [DivisionController::class, 'update']);
 Route::get('division/destroy/{id}', [DivisionController::class, 'destroy']);
+
+Route::get('employee', [EmployeeController::class, 'index']);
+
 
 
 
