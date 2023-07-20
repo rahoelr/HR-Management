@@ -110,7 +110,7 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"  v-model="selectedProjectId">
+                                    <select class="form-select" aria-label="Default select example"  v-model="ms_project_id">
                                         <option v-for="(data, index) in this.projects" :key="index"  :value="data.id">
                                             {{ data . project_name }}</option>
                                     </select>
@@ -119,8 +119,8 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example" v-model="selectedEmployeeId">
-                                        <option v-for="(data, index) in this.employees" :key="index"  :value="data.user_id">
+                                    <select class="form-select" aria-label="Default select example" v-model="ms_employee_id">
+                                        <option v-for="(data, index) in this.employees" :key="index"  :value="data.user_id" >
                                             {{ data . full_name }}</option>
                                     </select>
                                     <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
@@ -130,7 +130,8 @@
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input class="form-control" v-model="work_date" id="tanggal" type="date" placeholder="DD/MM/YYYY"
                                     required="" /> -->
-                                    <input v-model="work_date" type="text" placeholder="2023-07-20">
+                                    <input v-model="work_date" type="date" name="date" id="date" pattern="\d{4}-\d{2}-\d{2}">
+                                    <!-- <input v-model="work_date" type="text" placeholder="2023-07-20"> -->
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
@@ -145,14 +146,16 @@
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input v-model="workhour_start" class="form-control" id="jammulai" type="time" placeholder="Jam mulai"
                                     required="" /> -->
-                                    <input v-model="workhour_start" type="text" placeholder="22:01:56">
+                                    <!-- <input v-model="workhour_start" type="text" placeholder="22:01:56"> -->
+                                    <input v-model="workhour_start" id="settime" type="time" step="1" />
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input v-model="workhour_end" class="form-control" id="jamselesai" type="time" placeholder="Jam selesai"
                                     required="" /> -->
-                                    <input v-model="workhour_end" type="text" placeholder="22:01:56">
+                                    <!-- <input v-model="workhour_end" type="text" placeholder="22:01:56"> -->
+                                    <input v-model="workhour_end" id="settime" type="time" step="1" />
 
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -282,66 +285,68 @@
             </div>
         </div>
 
-    <!--GET VIEW MODAL -->
-    <div class="modal fade" id="viewForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-            <div class="modal-content p-md-3">
-                <div class="modal-header" style="background-color: #64B58A;">
-                    <h4 class="modal-title" style="color: white;"><b>Timesheet</b></h4>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"
-                        style="color: white;"><span aria-hidden="true">×</span></button>
-                </div>
-                <div class="modal-body">
-                    <form action="#">
-                        <div class="row" style="color: #455A64;">
-                            <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="project">Project<span
-                                        class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="project" type="text"
-                                    placeholder="Pilih project" required="" readonly disabled/>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
-                                        class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="tanggal" type="text" placeholder="DD/MM/YYYY"
-                                    required="" readonly disabled/>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
-                                        class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="lokasi" type="text"
-                                    placeholder="Tambahkan lokasi" required="" readonly disabled/>
-                            </div>
-                            <h4><b>Jam Kerja</b></h4>
-                            <div class="form-group col-lg-6">
-                                <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
-                                        class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="jammulai" type="text" placeholder="Jam mulai"
-                                    required="" readonly disabled/>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
-                                        class="text-primary ml-1">*</span></label>
-                                <input class="form-control" id="jamselesai" type="text" placeholder="Jam selesai"
-                                    required="" readonly disabled/>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="task">Task</label>
-                                <textarea class="form-control" id="task" type="text"
-                                    placeholder="Deskripsi task yang sedang dikerjakan" readonly disabled/>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
-                                        class="text-primary ml-1">*</span></label>
-                                <textarea class="form-control" id="taskselesai" type="text"
-                                    placeholder="Task yang sudah selesai dikerjakan" required="" readonly disabled/>
-                            </div>
-                            <div class="form-group col-lg-12">
-                                <label class="font-weight-bold text-small" for="todo">To Do Task<span
-                                        class="text-primary ml-1">*</span></label>
-                                <textarea class="form-control" id="todo" type="text"
-                                    placeholder="Task yang akan dikerjakan" required="" readonly disabled/>
+        <!--GET VIEW MODAL -->
+        <div class="modal fade" id="viewForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+                <div class="modal-content p-md-3">
+                    <div class="modal-header" style="background-color: #64B58A;">
+                        <h4 class="modal-title" style="color: white;"><b>Timesheet</b></h4>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"
+                            style="color: white;"><span aria-hidden="true">×</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="#">
+                            <div class="row" style="color: #455A64;">
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="project">Project<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <input class="form-control" id="project" type="text"
+                                        placeholder="Pilih project" required="" readonly disabled />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <input class="form-control" id="tanggal" type="text"
+                                        placeholder="DD/MM/YYYY" required="" readonly disabled />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <input class="form-control" id="lokasi" type="text"
+                                        placeholder="Tambahkan lokasi" required="" readonly disabled />
+                                </div>
+                                <h4><b>Jam Kerja</b></h4>
+                                <div class="form-group col-lg-6">
+                                    <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <input class="form-control" id="jammulai" type="text"
+                                        placeholder="Jam mulai" required="" readonly disabled />
+                                </div>
+                                <div class="form-group col-lg-6">
+                                    <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <input class="form-control" id="jamselesai" type="text"
+                                        placeholder="Jam selesai" required="" readonly disabled />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="task">Task</label>
+                                    <textarea class="form-control" id="task" type="text"
+                                        placeholder="Deskripsi task yang sedang dikerjakan" readonly disabled />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <textarea class="form-control" id="taskselesai" type="text"
+                                        placeholder="Task yang sudah selesai dikerjakan" required="" readonly
+                                        disabled />
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="todo">To Do Task<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <textarea class="form-control" id="todo" type="text"
+                                        placeholder="Task yang akan dikerjakan" required="" readonly disabled />
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -388,8 +393,8 @@
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
-                        ms_employee_id: this.selectedEmployeeId,
-                        ms_project_id: this.selectedProjectId,
+                        ms_employee_id: this.ms_employee_id,
+                        ms_project_id: this.ms_employee_id,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
                         workhour_end: this.workhour_end,
@@ -426,7 +431,7 @@
             },
             getProject() {
                 axios.get('http://127.0.0.1:8000/api/project').then(res => {
-                    this.projects = res
+                    this.projects = res.data.data
                     console.log(this.projects);
                 });
             },
