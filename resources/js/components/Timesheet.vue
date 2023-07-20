@@ -110,7 +110,8 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"  v-model="ms_project_id">
+                                    <select class="form-select" aria-label="Default select example"  v-model="ms_project_id" placeholder="Pilih Project">
+                                        <option value="" selected disabled hidden>Pilih Project</option>
                                         <option v-for="(data, index) in this.projects" :key="index"  :value="data.id">
                                             {{ data . project_name }}</option>
                                     </select>
@@ -120,6 +121,7 @@
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example" v-model="ms_employee_id">
+                                        <option value="" selected disabled hidden>Pilih Employee</option>
                                         <option v-for="(data, index) in this.employees" :key="index"  :value="data.user_id" >
                                             {{ data . full_name }}</option>
                                     </select>
@@ -130,7 +132,7 @@
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input class="form-control" v-model="work_date" id="tanggal" type="date" placeholder="DD/MM/YYYY"
                                     required="" /> -->
-                                    <input v-model="work_date" type="date" name="date" id="date" pattern="\d{4}-\d{2}-\d{2}">
+                                    <input class="form-control" v-model="work_date" type="date" name="date" id="date" pattern="\d{4}-\d{2}-\d{2}">
                                     <!-- <input v-model="work_date" type="text" placeholder="2023-07-20"> -->
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -138,7 +140,7 @@
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input v-model="work_location" class="form-control" id="work_location" type="text"
                                     placeholder="Tambahkan lokasi" required="" /> -->
-                                    <input v-model="work_location" type="text" placeholder="Work Location">
+                                    <input class="form-control" v-model="work_location" type="text" placeholder="Work Location">
                                 </div>
                                 <h4><b>Jam Kerja</b></h4>
                                 <div class="form-group col-lg-6">
@@ -147,7 +149,7 @@
                                     <!-- <input v-model="workhour_start" class="form-control" id="jammulai" type="time" placeholder="Jam mulai"
                                     required="" /> -->
                                     <!-- <input v-model="workhour_start" type="text" placeholder="22:01:56"> -->
-                                    <input v-model="workhour_start" id="settime" type="time" step="1" />
+                                    <input class="form-control" v-model="workhour_start" id="settime" type="time" step="1" />
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
@@ -155,7 +157,7 @@
                                     <!-- <input v-model="workhour_end" class="form-control" id="jamselesai" type="time" placeholder="Jam selesai"
                                     required="" /> -->
                                     <!-- <input v-model="workhour_end" type="text" placeholder="22:01:56"> -->
-                                    <input v-model="workhour_end" id="settime" type="time" step="1" />
+                                    <input class="form-control" v-model="workhour_end" id="settime" type="time" step="1" />
 
                                 </div>
                                 <div class="form-group col-lg-12">
