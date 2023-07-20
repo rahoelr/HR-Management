@@ -23574,7 +23574,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.work_date = $event;
     }),
     type: "text",
-    placeholder: "2023-07-19"
+    placeholder: "2023-07-20"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.work_date]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_39, [_hoisted_40, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <input v-model=\"work_location\" class=\"form-control\" id=\"work_location\" type=\"text\"\r\n                                    placeholder=\"Tambahkan lokasi\" required=\"\" /> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
       return $data.work_location = $event;

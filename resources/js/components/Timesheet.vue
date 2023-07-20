@@ -130,7 +130,7 @@
                                             class="text-primary ml-1">*</span></label>
                                     <!-- <input class="form-control" v-model="work_date" id="tanggal" type="date" placeholder="DD/MM/YYYY"
                                     required="" /> -->
-                                    <input v-model="work_date" type="text" placeholder="2023-07-19">
+                                    <input v-model="work_date" type="text" placeholder="2023-07-20">
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
