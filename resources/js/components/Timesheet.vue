@@ -27,7 +27,7 @@
                 <thead class="thead-green">
                     <tr>
                         <th scope="col" style="border-radius: 8px 0px 0px 0px;">
-                            <center></center>
+                            <center>ID</center>
                         </th>
                         <th scope="col">
                             <center>Project</center>
@@ -61,7 +61,7 @@
                         <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#editForm"
                                 data-toggle="modal">
                                 <img src="edit-icon.png" /></button></td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
+                        <td><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
                                 data-toggle="modal">
                                 <img src="delete-icon.png" /></button></td>
                         <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#viewForm"
@@ -110,7 +110,7 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"  v-model="ms_project_id" placeholder="Pilih Project">
+                                    <select class="form-select" aria-label="Default select example"  v-model="selectedProjectId" placeholder="Pilih Project">
                                         <option value="" selected disabled hidden>Pilih Project</option>
                                         <option v-for="(data, index) in this.projects" :key="index"  :value="data.id">
                                             {{ data . project_name }}</option>
@@ -120,7 +120,7 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example" v-model="ms_employee_id">
+                                    <select class="form-select" aria-label="Default select example" v-model="selectedEmployeeId">
                                         <option value="" selected disabled hidden>Pilih Employee</option>
                                         <option v-for="(data, index) in this.employees" :key="index"  :value="data.user_id" >
                                             {{ data . full_name }}</option>
@@ -287,7 +287,7 @@
                     <div class="modal-body">Pilih "Delete" jika anda ingin menghapus data ini</div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                        <a class="btn btn-danger">Delete</a>
+                        <button type="button" class="btn btn-danger">Delete</button>
                     </div>
                 </div>
             </div>
@@ -404,8 +404,8 @@
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
-                        ms_employee_id: this.ms_employee_id,
-                        ms_project_id: this.ms_employee_id,
+                        ms_employee_id: this.selectedEmployeeId,
+                        ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
                         workhour_end: this.workhour_end,
@@ -504,13 +504,22 @@
                 this.completed_task = '';
                 this.todo_task = '';
             },
-            deleteTimesheet() {
-                axios.delete('http://127.0.0.1:8000/api/timesheet/destroy{id}').then (res => {       
-                    // Handle successful response
-                    console.log(response.data);
-                    // Refresh the timesheet data  
+            deleteTimesheet(timesheetId) {
+
+                if(confirm('apakah anda yakin akan menghapus data?')){
+                axios.get(`http://127.0.0.1:8000/api/timesheet/destroy/${timesheetId}`).then (res => {       
+                    alert(res.data.message);
                     this.getTimesheet();
-                });
+                })
+                .catch(function (error){
+                    if(error.response){
+                        if(error.response.status == 404){
+                            alert(error.response.data.message); 
+                        }
+                    }
+                })
+            };
         }
-    }}
+    }
+    }
 </script>
