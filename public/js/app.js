@@ -22550,6 +22550,46 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[0, 9]]);
       }))();
     },
+    submitUpdate: function submitUpdate() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var _response2;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios.post('http://127.0.0.1:8000/api/timesheet/update/{id}', {
+                ms_employee_id: _this2.selectedEmployeeId,
+                ms_project_id: _this2.selectedProjectId,
+                work_date: _this2.work_date,
+                workhour_start: _this2.workhour_start,
+                workhour_end: _this2.workhour_end,
+                work_location: _this2.work_location,
+                task: _this2.task,
+                completed_task: _this2.completed_task,
+                todo_task: _this2.todo_task
+                // More data properties
+              });
+            case 3:
+              _response2 = _context2.sent;
+              console.log(_response2.data);
+              console.log('sukses');
+              window.location.href = '/timesheet';
+              _context2.next = 13;
+              break;
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
+              console.error(_context2.t0);
+              console.log('error');
+            case 13:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 9]]);
+      }))();
+    },
     logout: function logout() {
       axios.post('/logout').then(function () {
         // Perform any additional actions after successful logout
@@ -22563,35 +22603,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     getProject: function getProject() {
-      var _this2 = this;
+      var _this3 = this;
       axios.get('http://127.0.0.1:8000/api/project').then(function (res) {
-        _this2.projects = res.data.data;
-        console.log(_this2.projects);
+        _this3.projects = res.data.data;
+        console.log(_this3.projects);
       });
     },
     getEmployee: function getEmployee() {
-      var _this3 = this;
+      var _this4 = this;
       axios.get('http://127.0.0.1:8000/api/employee').then(function (res) {
-        _this3.employees = res.data.data;
-        console.log(_this3.employees);
+        _this4.employees = res.data.data;
+        console.log(_this4.employees);
       });
     },
     getTimesheet: function getTimesheet() {
-      var _this4 = this;
+      var _this5 = this;
       axios.get('http://127.0.0.1:8000/api/timesheet').then(function (res) {
-        _this4.timesheet = res.data.data;
-        console.log(_this4.timesheet);
+        _this5.timesheet = res.data.data;
+        console.log(_this5.timesheet);
       });
     },
     postTimesheet: function postTimesheet() {
-      var _this5 = this;
+      var _this6 = this;
       axios.post('http://127.0.0.1:8000/api/timesheet/store').then(function (res) {
         // Handle successful response
         console.log(response.data);
         // Refresh the timesheet data
-        _this5.getTimesheet();
+        _this6.getTimesheet();
         // Reset the form data
-        _this5.resetForm();
+        _this6.resetForm();
       });
     },
     submitForms: function submitForms() {
@@ -22627,11 +22667,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.todo_task = '';
     },
     deleteTimesheet: function deleteTimesheet(timesheetId) {
-      var _this6 = this;
+      var _this7 = this;
       if (confirm('apakah anda yakin akan menghapus data?')) {
         axios.get("http://127.0.0.1:8000/api/timesheet/destroy/".concat(timesheetId)).then(function (res) {
           alert(res.data.message);
-          _this6.getTimesheet();
+          _this7.getTimesheet();
         })["catch"](function (error) {
           if (error.response) {
             if (error.response.status == 404) {
@@ -22643,15 +22683,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       ;
     },
     viewTimesheet: function viewTimesheet(timesheetId) {
-      var _this7 = this;
+      var _this8 = this;
       axios.get("/api/timesheet/show/".concat(timesheetId)).then(function (response) {
         // Assuming the Timesheet data is returned in the 'data' property
-        _this7.timesheetData = response.data.data;
-        console.log(_this7.timesheetData);
-        _this7.error = null;
+        _this8.timesheetData = response.data.data;
+        console.log(_this8.timesheetData);
+        _this8.error = null;
       })["catch"](function (error) {
-        _this7.timesheetData = null;
-        _this7.error = 'Failed to fetch Timesheet data.';
+        _this8.timesheetData = null;
+        _this8.error = 'Failed to fetch Timesheet data.';
       });
       // console.log(timesheetId);
     }
@@ -23232,19 +23272,22 @@ var _hoisted_59 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
     "height": "40px"
   }
 }, "Tambahkan")], -1 /* HOISTED */);
-var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_60 = {
   "class": "modal fade",
   id: "editForm",
   tabindex: "-1",
   role: "dialog",
   "aria-labelledby": "quoteForm",
   "aria-hidden": "true"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_61 = {
   "class": "modal-dialog modal-xl modal-dialog-centered",
   role: "document"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_62 = {
   "class": "modal-content p-md-3"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_63 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-header",
   style: {
     "background-color": "#64B58A"
@@ -23254,7 +23297,7 @@ var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   style: {
     "color": "white"
   }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Edit Timesheet")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Timesheet")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "close",
   type: "button",
   "data-dismiss": "modal",
@@ -23264,133 +23307,94 @@ var _hoisted_60 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   }
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "aria-hidden": "true"
-}, "×")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "×")])], -1 /* HOISTED */);
+var _hoisted_64 = {
   "class": "modal-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-  action: "#"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_65 = {
   "class": "row",
   style: {
     "color": "#455A64"
   }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_66 = {
   "class": "form-group col-lg-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_67 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "project"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Project"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
-  "class": "form-select",
-  "aria-label": "Default select example"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  selected: ""
-}, "Pilih project"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "1"
-}, "One"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "2"
-}, "Two"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
-  value: "3"
-}, "Three")])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_68 = ["value"];
+var _hoisted_69 = {
   "class": "form-group col-lg-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "tanggal"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Tanggal"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  "class": "form-control",
-  id: "tanggal",
-  type: "date",
-  placeholder: "DD/MM/YYYY",
-  required: ""
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_71 = {
   "class": "form-group col-lg-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_72 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "lokasi"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Lokasi"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  "class": "form-control",
-  id: "lokasi",
-  type: "text",
-  placeholder: "Tambahkan lokasi",
-  required: ""
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Jam Kerja")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_73 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Jam Kerja")], -1 /* HOISTED */);
+var _hoisted_74 = {
   "class": "form-group col-lg-6"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_75 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "jammulai"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Jam Mulai"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  "class": "form-control",
-  id: "jammulai",
-  type: "time",
-  placeholder: "Jam mulai",
-  required: ""
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_76 = ["value"];
+var _hoisted_77 = {
   "class": "form-group col-lg-6"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_78 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "jamselesai"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Jam Selesai"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  "class": "form-control",
-  id: "jamselesai",
-  type: "time",
-  placeholder: "Jam selesai",
-  required: ""
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_79 = ["value"];
+var _hoisted_80 = {
   "class": "form-group col-lg-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_81 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "task"
-}, "Task"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-  "class": "form-control",
-  id: "task",
-  type: "text",
-  placeholder: "Deskripsi task yang sedang dikerjakan"
-}, "\r\n                                    ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "Task", -1 /* HOISTED */);
+var _hoisted_82 = ["value"];
+var _hoisted_83 = {
   "class": "form-group col-lg-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_84 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "taskselesai"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Task Selesai"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-  "class": "form-control",
-  id: "taskselesai",
-  type: "text",
-  placeholder: "Task yang sudah selesai dikerjakan",
-  required: ""
-}, "\r\n                                    ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_85 = ["value"];
+var _hoisted_86 = {
   "class": "form-group col-lg-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+};
+var _hoisted_87 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "todo"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("To Do Task"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
-}, "*")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
-  "class": "form-control",
-  id: "todo",
-  type: "text",
-  placeholder: "Task yang akan dikerjakan",
-  required: ""
-}, "\r\n                                    ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "form-group col-lg-12 text-center"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "btn btn-primary custom-btn my-3 font-weight-bold rounded-pill",
-  type: "submit",
-  style: {
-    "font-style": "bold",
-    "width": "300px",
-    "height": "40px"
-  }
-}, "Simpan")])])])])])])], -1 /* HOISTED */);
-var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+}, "*")], -1 /* HOISTED */);
+var _hoisted_88 = ["value"];
+var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal fade",
   id: "deleteModal",
   tabindex: "-1",
@@ -23426,7 +23430,7 @@ var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   type: "button",
   "class": "btn btn-danger"
 }, "Delete")])])])], -1 /* HOISTED */);
-var _hoisted_62 = {
+var _hoisted_90 = {
   "class": "modal fade",
   id: "viewForm",
   tabindex: "-1",
@@ -23434,14 +23438,14 @@ var _hoisted_62 = {
   "aria-labelledby": "quoteForm",
   "aria-hidden": "true"
 };
-var _hoisted_63 = {
+var _hoisted_91 = {
   "class": "modal-dialog modal-xl modal-dialog-centered",
   role: "document"
 };
-var _hoisted_64 = {
+var _hoisted_92 = {
   "class": "modal-content p-md-3"
 };
-var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_93 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "modal-header",
   style: {
     "background-color": "#64B58A"
@@ -23462,97 +23466,94 @@ var _hoisted_65 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "aria-hidden": "true"
 }, "×")])], -1 /* HOISTED */);
-var _hoisted_66 = {
+var _hoisted_94 = {
   "class": "modal-body"
 };
-var _hoisted_67 = {
-  action: "#"
-};
-var _hoisted_68 = {
+var _hoisted_95 = {
   "class": "row",
   style: {
     "color": "#455A64"
   }
 };
-var _hoisted_69 = {
+var _hoisted_96 = {
   "class": "form-group col-lg-12"
 };
-var _hoisted_70 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_97 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "project"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Project"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_71 = ["value"];
-var _hoisted_72 = {
+var _hoisted_98 = ["value"];
+var _hoisted_99 = {
   "class": "form-group col-lg-12"
 };
-var _hoisted_73 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_100 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "tanggal"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Tanggal"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_74 = ["value"];
-var _hoisted_75 = {
+var _hoisted_101 = ["value"];
+var _hoisted_102 = {
   "class": "form-group col-lg-12"
 };
-var _hoisted_76 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_103 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "lokasi"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Lokasi"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_77 = ["value"];
-var _hoisted_78 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Jam Kerja")], -1 /* HOISTED */);
-var _hoisted_79 = {
+var _hoisted_104 = ["value"];
+var _hoisted_105 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h4", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Jam Kerja")], -1 /* HOISTED */);
+var _hoisted_106 = {
   "class": "form-group col-lg-6"
 };
-var _hoisted_80 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_107 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "jammulai"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Jam Mulai"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_81 = ["value"];
-var _hoisted_82 = {
+var _hoisted_108 = ["value"];
+var _hoisted_109 = {
   "class": "form-group col-lg-6"
 };
-var _hoisted_83 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_110 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "jamselesai"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Jam Selesai"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_84 = ["value"];
-var _hoisted_85 = {
+var _hoisted_111 = ["value"];
+var _hoisted_112 = {
   "class": "form-group col-lg-12"
 };
-var _hoisted_86 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_113 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "task"
 }, "Task", -1 /* HOISTED */);
-var _hoisted_87 = ["value"];
-var _hoisted_88 = {
+var _hoisted_114 = ["value"];
+var _hoisted_115 = {
   "class": "form-group col-lg-12"
 };
-var _hoisted_89 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_116 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "taskselesai"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Task Selesai"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_90 = ["value"];
-var _hoisted_91 = {
+var _hoisted_117 = ["value"];
+var _hoisted_118 = {
   "class": "form-group col-lg-12"
 };
-var _hoisted_92 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_119 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "font-weight-bold text-small",
   "for": "todo"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("To Do Task"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
   "class": "text-primary ml-1"
 }, "*")], -1 /* HOISTED */);
-var _hoisted_93 = ["value"];
+var _hoisted_120 = ["value"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _this = this;
   var _component_center = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("center");
@@ -23725,52 +23726,114 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     placeholder: "Task yang akan dikerjakan",
     required: ""
-  }, "\r\n                                    ", 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.todo_task]])]), _hoisted_59])], 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("GET EDIT MODAL "), _hoisted_60, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" DELETE MODAL"), _hoisted_61, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("GET VIEW MODAL "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_63, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [_hoisted_65, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_67, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_68, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.timesheetData, function (timesheet) {
+  }, "\r\n                                    ", 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.todo_task]])]), _hoisted_59])], 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("GET EDIT MODAL "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_60, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_61, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_62, [_hoisted_63, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_64, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
+    onSubmit: _cache[13] || (_cache[13] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+      return $options.submitUpdate && $options.submitUpdate.apply($options, arguments);
+    }, ["prevent"]))
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_65, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.timesheetData, function (timesheet) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: $data.timesheetData.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [_hoisted_70, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_66, [_hoisted_67, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
       id: "tanggal",
       type: "text",
       required: "",
       readonly: "",
+      disabled: "",
       value: timesheet.project_name
-    }, null, 8 /* PROPS */, _hoisted_71)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_72, [_hoisted_73, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, null, 8 /* PROPS */, _hoisted_68)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_69, [_hoisted_70, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[11] || (_cache[11] = function ($event) {
+        return $data.work_date = $event;
+      }),
       "class": "form-control",
       id: "tanggal",
-      type: "text",
-      required: "",
-      readonly: "",
-      value: timesheet.work_date
-    }, null, 8 /* PROPS */, _hoisted_74)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_75, [_hoisted_76, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      type: "date"
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.work_date]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_71, [_hoisted_72, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "onUpdate:modelValue": _cache[12] || (_cache[12] = function ($event) {
+        return $data.work_location = $event;
+      }),
       "class": "form-control",
       id: "tanggal",
-      type: "text",
-      required: "",
-      readonly: "",
-      value: timesheet.work_location
-    }, null, 8 /* PROPS */, _hoisted_77)]), _hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_79, [_hoisted_80, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      type: "text"
+    }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.work_location]])]), _hoisted_73, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_74, [_hoisted_75, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
       id: "tanggal",
-      type: "text",
-      required: "",
-      readonly: "",
+      type: "time",
       value: timesheet.workhour_start
-    }, null, 8 /* PROPS */, _hoisted_81)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_82, [_hoisted_83, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    }, null, 8 /* PROPS */, _hoisted_76)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_77, [_hoisted_78, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      id: "tanggal",
+      type: "time",
+      value: timesheet.workhour_end
+    }, null, 8 /* PROPS */, _hoisted_79)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_80, [_hoisted_81, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      "class": "form-control",
+      id: "task",
+      type: "text",
+      value: timesheet.task
+    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_82)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_83, [_hoisted_84, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      "class": "form-control",
+      id: "taskselesai",
+      type: "text",
+      value: timesheet.completed_task,
+      required: ""
+    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_85)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_86, [_hoisted_87, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      "class": "form-control",
+      id: "todo",
+      type: "text",
+      value: timesheet.todo_task,
+      required: ""
+    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_88)])]);
+  }), 128 /* KEYED_FRAGMENT */))])], 32 /* HYDRATE_EVENTS */)])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" DELETE MODAL"), _hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("GET VIEW MODAL "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_90, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_91, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_92, [_hoisted_93, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_94, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_95, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.timesheetData, function (timesheet) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+      key: $data.timesheetData.id
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_96, [_hoisted_97, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
       "class": "form-control",
       id: "tanggal",
       type: "text",
       required: "",
       readonly: "",
+      disabled: "",
+      value: timesheet.project_name
+    }, null, 8 /* PROPS */, _hoisted_98)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_99, [_hoisted_100, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      id: "tanggal",
+      type: "date",
+      required: "",
+      readonly: "",
+      disabled: "",
+      value: timesheet.work_date
+    }, null, 8 /* PROPS */, _hoisted_101)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_102, [_hoisted_103, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      id: "tanggal",
+      type: "text",
+      required: "",
+      readonly: "",
+      disabled: "",
+      value: timesheet.work_location
+    }, null, 8 /* PROPS */, _hoisted_104)]), _hoisted_105, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_106, [_hoisted_107, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      id: "tanggal",
+      type: "time",
+      required: "",
+      readonly: "",
+      disabled: "",
+      value: timesheet.workhour_start
+    }, null, 8 /* PROPS */, _hoisted_108)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_109, [_hoisted_110, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+      "class": "form-control",
+      id: "tanggal",
+      type: "text",
+      required: "",
+      readonly: "",
+      disabled: "",
       value: timesheet.workhour_end
-    }, null, 8 /* PROPS */, _hoisted_84)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_85, [_hoisted_86, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    }, null, 8 /* PROPS */, _hoisted_111)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_112, [_hoisted_113, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
       "class": "form-control",
       id: "task",
       type: "text",
       value: timesheet.task,
       readonly: "",
       disabled: ""
-    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_87)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_88, [_hoisted_89, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_114)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_115, [_hoisted_116, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
       "class": "form-control",
       id: "taskselesai",
       type: "text",
@@ -23778,7 +23841,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       required: "",
       readonly: "",
       disabled: ""
-    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_90)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_91, [_hoisted_92, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_117)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_118, [_hoisted_119, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
       "class": "form-control",
       id: "todo",
       type: "text",
@@ -23786,7 +23849,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       required: "",
       readonly: "",
       disabled: ""
-    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_93)])]);
+    }, "\r\n                                    ", 8 /* PROPS */, _hoisted_120)])]);
   }), 128 /* KEYED_FRAGMENT */))])])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Logout Modal")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
@@ -46190,13 +46253,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=template&id=040e2ab9 */ "./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9");
 /* harmony import */ var _Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=script&lang=js */ "./resources/js/components/Dashboard.vue?vue&type=script&lang=js");
-/* harmony import */ var D_Praktik_Industri_2023_REV_19_7_23_V4_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,D_Praktik_Industri_2023_REV_19_7_23_V4_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
+const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -46219,7 +46282,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=6bdc8b8e */ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e");
 /* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/components/Login.vue?vue&type=script&lang=js");
 /* harmony import */ var _Login_vue_vue_type_style_index_0_id_6bdc8b8e_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.vue?vue&type=style&index=0&id=6bdc8b8e&lang=css */ "./resources/js/components/Login.vue?vue&type=style&index=0&id=6bdc8b8e&lang=css");
-/* harmony import */ var D_Praktik_Industri_2023_REV_19_7_23_V4_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -46227,7 +46290,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,D_Praktik_Industri_2023_REV_19_7_23_V4_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
+const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -46249,13 +46312,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Timesheet.vue?vue&type=template&id=e17c7852 */ "./resources/js/components/Timesheet.vue?vue&type=template&id=e17c7852");
 /* harmony import */ var _Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Timesheet.vue?vue&type=script&lang=js */ "./resources/js/components/Timesheet.vue?vue&type=script&lang=js");
-/* harmony import */ var D_Praktik_Industri_2023_REV_19_7_23_V4_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,D_Praktik_Industri_2023_REV_19_7_23_V4_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
+const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
 /* hot reload */
 if (false) {}
 
