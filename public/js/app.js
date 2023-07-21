@@ -23629,7 +23629,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }),
 
           _: 2 /* DYNAMIC */
-        }, 1024 /* DYNAMIC_SLOTS */)]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+        }, 1024 /* DYNAMIC_SLOTS */)]), _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td><button class=\"btn mx-1\" style=\"padding: 0px;\" role=\"button\" data-target=\"#deleteModal\"\r\n                                data-toggle=\"modal\">\r\n                                <img src=\"delete-icon.png\" /></button></td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
           onClick: function onClick($event) {
             return $options.deleteTimesheet(data.id);
           },
@@ -23637,9 +23637,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           style: {
             "padding": "0px"
           },
-          role: "button",
-          "data-target": "#deleteModal",
-          "data-toggle": "modal"
+          role: "button"
         }, _hoisted_19, 8 /* PROPS */, _hoisted_17)]), _hoisted_20]);
       }), 128 /* KEYED_FRAGMENT */))])])];
     }),
