@@ -110,8 +110,8 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"  v-model="ms_project_id" placeholder="Pilih Project">
-                                        <option value="" selected disabled hidden>Pilih Project</option>
+                                    <select class="form-select" aria-label="Default select example"  v-model="selectedProjectId" placeholder="Pilih Project">
+                                        <!-- <option value="" selected disabled hidden>Pilih Project</option> -->
                                         <option v-for="(data, index) in this.projects" :key="index"  :value="data.id">
                                             {{ data . project_name }}</option>
                                     </select>
@@ -120,8 +120,8 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example" v-model="ms_employee_id">
-                                        <option value="" selected disabled hidden>Pilih Employee</option>
+                                    <select class="form-select" aria-label="Default select example" v-model="selectedEmployeeId">
+                                        <!-- <option value="" selected disabled hidden>Pilih Employee</option> -->
                                         <option v-for="(data, index) in this.employees" :key="index"  :value="data.user_id" >
                                             {{ data . full_name }}</option>
                                     </select>
@@ -404,8 +404,8 @@
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
-                        ms_employee_id: this.ms_employee_id,
-                        ms_project_id: this.ms_employee_id,
+                        ms_employee_id: this.selectedEmployeeId,
+                        ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
                         workhour_end: this.workhour_end,
@@ -471,8 +471,8 @@
             },
             submitForms() {
                 const formData = {
-                    ms_employee_id: this.ms_employee_id,
-                    ms_project_id: this.ms_project_id,
+                    ms_employee_id: this.selectedEmployeeId,
+                    ms_project_id: this.selectedProjectId,
                     work_date: this.work_date,
                     workhour_start: this.workhour_start,
                     workhour_end: this.workhour_end,
