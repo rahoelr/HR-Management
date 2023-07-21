@@ -95,7 +95,13 @@ class TimesheetController extends Controller
     public function show($id)
     {
         //Ambil Data 1 aja
-        $data = Timesheet::where('id', '=', $id)->get();
+        $data = Timesheet::when($id, function ($query) use ($id) {
+            // If $id is provided, join with the projects table
+            $query->join('projects', 'tr_timesheet.ms_project_id', '=', 'projects.id')
+                  ->where('tr_timesheet.id', '=', $id)
+                  ->select('tr_timesheet.*', 'projects.project_name');
+        })
+        ->get();
 
         if ($data) {
             return ApiFormatter::createApi(200, 'Success', $data);
