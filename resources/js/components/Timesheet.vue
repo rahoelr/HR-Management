@@ -67,7 +67,7 @@
                                 <td><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;" role="button"
                                 >
                                 <img src="delete-icon.png" /></button></td>
-                        <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#viewForm"
+                        <td><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;" role="button" data-target="#viewForm"
                                 data-toggle="modal">
                                 <img src="eye-icon.png" /></button></td>
 
@@ -309,48 +309,48 @@
                     <div class="modal-body">
                         <form action="#">
                             <div class="row" style="color: #455A64;">
+                                <div v-for="timesheet in timesheetData" :key="timesheetData.id">
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <input class="form-control" id="project" type="text"
-                                        placeholder="Pilih project" required="" readonly disabled />
+                                            <input class="form-control" id="tanggal" type="text" required readonly :value="timesheet.project_name" />
+
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
-                                    <input class="form-control" id="tanggal" type="text"
-                                        placeholder="DD/MM/YYYY" required="" readonly disabled />
+                                            <input class="form-control" id="tanggal" type="text" required readonly :value="timesheet.work_date" />
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
                                             class="text-primary ml-1">*</span></label>
-                                    <input class="form-control" id="lokasi" type="text"
-                                        placeholder="Tambahkan lokasi" required="" readonly disabled />
+                                            <input class="form-control" id="tanggal" type="text" required readonly :value="timesheet.work_location" />
+
                                 </div>
                                 <h4><b>Jam Kerja</b></h4>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                             class="text-primary ml-1">*</span></label>
-                                    <input class="form-control" id="jammulai" type="text"
-                                        placeholder="Jam mulai" required="" readonly disabled />
+                                            <input class="form-control" id="tanggal" type="text" required readonly :value="timesheet.workhour_start" />
+
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                             class="text-primary ml-1">*</span></label>
-                                    <input class="form-control" id="jamselesai" type="text"
-                                        placeholder="Jam selesai" required="" readonly disabled />
+                                            <input class="form-control" id="tanggal" type="text" required readonly :value="timesheet.workhour_end" />
+                                    
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="task">Task</label>
                                     <textarea class="form-control" id="task" type="text"
-                                        placeholder="Deskripsi task yang sedang dikerjakan" readonly disabled>
+                                    :value= 'timesheet.task' readonly disabled>
                                     </textarea>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
                                             class="text-primary ml-1">*</span></label>
                                     <textarea class="form-control" id="taskselesai" type="text"
-                                        placeholder="Task yang sudah selesai dikerjakan" required="" readonly
+                                    :value= 'timesheet.completed_task' required="" readonly
                                         disabled>
                                     </textarea>
                                 </div>
@@ -358,9 +358,10 @@
                                     <label class="font-weight-bold text-small" for="todo">To Do Task<span
                                             class="text-primary ml-1">*</span></label>
                                     <textarea class="form-control" id="todo" type="text"
-                                        placeholder="Task yang akan dikerjakan" required="" readonly disabled>
+                                    :value= 'timesheet.todo_task' required="" readonly disabled>
                                     </textarea>
                                 </div>
+                            </div>
                             </div>
                         </form>
                     </div>
@@ -387,6 +388,9 @@
                 selectedEmployeeId: null,
                 projects: [],
                 employees: [],
+                timesheetData: {
+        work_date: '', // Initialize with an empty string
+                },
                 ms_employee_id: '',
                 ms_project_id: '',
                 work_date: '',
@@ -402,6 +406,9 @@
             this.getTimesheet();
             this.getProject();
             this.getEmployee();
+        },
+        created(){
+            this.viewTimesheet();
         },
         methods: {
             async submitData() {
@@ -522,6 +529,21 @@
                     }
                 })
             };
+        },
+
+        viewTimesheet(timesheetId){
+            axios.get(`/api/timesheet/show/${timesheetId}`)
+        .then((response) => {
+          // Assuming the Timesheet data is returned in the 'data' property
+          this.timesheetData = response.data.data;
+          console.log(this.timesheetData)
+          this.error = null;
+        })
+        .catch((error) => {
+          this.timesheetData = null;
+          this.error = 'Failed to fetch Timesheet data.';
+        });
+            // console.log(timesheetId);
         }
     }
     }
