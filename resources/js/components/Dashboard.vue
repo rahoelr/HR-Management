@@ -27,7 +27,7 @@
 
                                     <h6 class="col-md-9 card-text my-auto" id="date">
                                     </h6>
-                                                                                               
+                                                                                   
                                 </div>                                   
                             </div>
                             <div class="col-md-2 my-auto">
@@ -45,7 +45,8 @@
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2"/>
                                 </button>
                                 <!-- tes date demo -->
-                                <!-- <p id="demo"></p> -->
+                                <p id="demo"></p>
+
                             </div>
                         </div>                                    
                     </div>
@@ -163,32 +164,6 @@
         mounted() {
             console.log('Component mounted.')
 
-            // button-stop
-            // if (box.style.backgroundColor = '#E37C77'){
-            //     const btn = document.getElementById('btn');
-            //     btn.addEventListener('click', function onClick(event) {
-            //     const box = document.getElementById('box');
-
-            //     if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg"){
-            //         //masalah
-            //         document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
-
-            //     } else {
-            //         btn.style.backgroundColor = "#E37C77";
-            //         btn.style.border = "4px solid white"
-            //         document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
-            //     }
-
-            //     box.style.backgroundColor = 'white';
-            //     box.style.color = 'black';
-            //     });
-                
-            // } else if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg") {
-            //     document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
-            //     box.style.backgroundColor = '#E37C77';
-            //     box.style.color = 'white';
-            // }
-
             if (box.style.backgroundColor = '#E37C77'){
                 const btn = document.getElementById('btn');
                 const btn2 = document.getElementById('btn2');
@@ -214,11 +189,6 @@
                 });
                 
             } 
-            // else if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg") {
-            //     document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
-            //     box.style.backgroundColor = '#E37C77';
-            //     box.style.color = 'white';
-            // }
 
             // button-start
             if (box.style.backgroundColor = 'white'){
@@ -245,13 +215,9 @@
                 });
                 
             } 
-            // else if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-before.svg") {
-            //     document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
-            //     box.style.backgroundColor = 'white';
-            //     box.style.color = 'black';
-            // }
         }
     }
+
 
     window.addEventListener("load", () => {
     clock();

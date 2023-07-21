@@ -22237,33 +22237,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
-
-    // button-stop
-    // if (box.style.backgroundColor = '#E37C77'){
-    //     const btn = document.getElementById('btn');
-    //     btn.addEventListener('click', function onClick(event) {
-    //     const box = document.getElementById('box');
-
-    //     if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg"){
-    //         //masalah
-    //         document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
-
-    //     } else {
-    //         btn.style.backgroundColor = "#E37C77";
-    //         btn.style.border = "4px solid white"
-    //         document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
-    //     }
-
-    //     box.style.backgroundColor = 'white';
-    //     box.style.color = 'black';
-    //     });
-
-    // } else if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg") {
-    //     document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
-    //     box.style.backgroundColor = '#E37C77';
-    //     box.style.color = 'white';
-    // }
-
     if (box.style.backgroundColor = '#E37C77') {
       var btn = document.getElementById('btn');
       var btn2 = document.getElementById('btn2');
@@ -22282,11 +22255,6 @@ __webpack_require__.r(__webpack_exports__);
         box.style.color = 'black';
       });
     }
-    // else if (document.getElementById("imgClickAndChange").src == "presensi-icon-after.svg") {
-    //     document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
-    //     box.style.backgroundColor = '#E37C77';
-    //     box.style.color = 'white';
-    // }
 
     // button-start
     if (box.style.backgroundColor = 'white') {
@@ -22307,14 +22275,8 @@ __webpack_require__.r(__webpack_exports__);
         box.style.color = 'white';
       });
     }
-    // else if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-before.svg") {
-    //     document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
-    //     box.style.backgroundColor = 'white';
-    //     box.style.color = 'black';
-    // }
   }
 });
-
 window.addEventListener("load", function () {
   clock();
   function clock() {
@@ -22696,7 +22658,9 @@ var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   height: "32",
   width: "32",
   id: "imgClickAndChange2"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"demo\"></p> ")])])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  id: "demo"
+})])])])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
