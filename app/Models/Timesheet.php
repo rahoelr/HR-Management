@@ -26,4 +26,9 @@ class Timesheet extends Model
 
 
     protected $hidden = [];
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class, 'ms_employee_id');
+    }
 }
