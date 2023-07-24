@@ -46,6 +46,7 @@
                                 </button>
                                 <!-- tes date demo -->
                                 <p id="getTime"></p>
+                                <!-- <p id="letGet"></p> -->
 
                             </div>
                         </div>                                    
@@ -191,6 +192,8 @@
 
                 box.style.backgroundColor = 'white';
                 box.style.color = 'black';
+
+
                 });
                 
             } 
@@ -310,8 +313,11 @@
     function getClock() {
         const now = new Date();
         const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-        console.log(hoursAndMinutes); // 👉️ 13:28
+        console.log(hoursAndMinutes);
+        // var tes = document.getElementById('letget').innerHTML;
+        // alert(tes);
     }
+    
     
 
     </script>

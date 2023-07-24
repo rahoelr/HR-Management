@@ -22326,7 +22326,9 @@ getClock();
 function getClock() {
   var now = new Date();
   var hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-  console.log(hoursAndMinutes); // 👉️ 13:28
+  console.log(hoursAndMinutes);
+  // var tes = document.getElementById('letget').innerHTML;
+  // alert(tes);
 }
 
 /***/ }),
@@ -22754,7 +22756,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   id: "imgClickAndChange2"
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   id: "getTime"
-})])])])])])], -1 /* HOISTED */);
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"letGet\"></p> ")])])])])])], -1 /* HOISTED */);
 var _hoisted_4 = {
   "class": "row"
 };
