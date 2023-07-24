@@ -231,7 +231,7 @@
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input class="form-control" id="tanggal" type="time"  :value="timesheet.workhour_start" />
+                                            <input class="form-control"  id="settime" type="time" step="1" :value="timesheet.workhour_start"/>
 
                                 </div>
                                 <div class="form-group col-lg-6">
