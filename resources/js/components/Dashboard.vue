@@ -38,14 +38,14 @@
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange" onclick="changeImage()"/>
                                 </button> -->
 
-                                <button id="btn" onclick="getElementById('demo').innerHTML=Date()" class="btn mx-1 non-active" href="#!" role="button" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
+                                <button id="btn" onclick="getElementById('getTime').innerHTML=Date()" class="btn mx-1 non-active" href="#!" role="button" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
                                         <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange"/>
                                 </button>
-                                <button id="btn2" onclick="" class="btn mx-1" href="#!" role="button" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
+                                <button id="btn2" onclick="getElementById('getTime').innerHTML=Date()" class="btn mx-1" href="#!" role="button" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2"/>
                                 </button>
                                 <!-- tes date demo -->
-                                <p id="demo"></p>
+                                <p id="getTime"></p>
 
                             </div>
                         </div>                                    
@@ -306,6 +306,12 @@
     }
     });
 
-
+    getClock();
+    function getClock() {
+        const now = new Date();
+        const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+        console.log(hoursAndMinutes); // 👉️ 13:28
+    }
+    
 
     </script>
