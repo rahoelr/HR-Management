@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-
+<!-- TIMESHEET -->
         <center>
             <table class="table table-hover">
                 <thead class="thead-green">
@@ -46,7 +46,7 @@
                 <tbody>
                     <tr v-for="(data, index) in this.timesheet" :key="index">
                         <th scope="row">
-                            <center>{{ data . ms_project_id }}</center>
+                            <center>{{ data . id }}</center>
                         </th>
                         <td>
                             <center> {{ data . project_name }} </center>
@@ -76,8 +76,7 @@
                 </tbody>
             </table>
         </center>
-
-
+<!-- LOGOUT MODAL -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -97,7 +96,7 @@
             </div>
         </div>
 
-        <!--GET a QUOTE MODAL -->
+        <!--ADD TIMESHEET -->
         <div class="modal fade" id="quoteForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
             aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -210,64 +209,78 @@
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content p-md-3">
                     <div class="modal-header" style="background-color: #64B58A;">
-                        <h4 class="modal-title" style="color: white;"><b>Timesheet</b></h4>
+                        <h4 class="modal-title" style="color: white;"><b>Update Timesheet</b></h4>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close"
                             style="color: white;"><span aria-hidden="true">×</span></button>
                     </div>
-                    <div class="modal-body">
-                        <form @submit.prevent="updateTimesheet">
+                    <div v-for="timesheet in timesheetData"  :key="timesheetData.id" class="modal-body">
+                        <form @submit.prevent="submitUpdate(timesheet.id)">
                             <div class="row" style="color: #455A64;">
                                 <div v-for="timesheet in timesheetData"  :key="timesheetData.id">
-                                <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input class="form-control" id="tanggal" type="text" required readonly disabled :value="timesheet.project_name" />
-
-                                </div>
+                                    <select class="form-select" aria-label="Default select example"
+                                        v-model="selectedProjectId" placeholder="Pilih Project">
+                                        <option value="" selected disabled hidden>Pilih Project</option>
+                                        <option  selected="selected" v-for="(timesheet, index) in this.projects" :key="index"
+                                            :value="timesheet.id">
+                                            {{ timesheet . project_name }}</option>
+                                    </select>
+                                <!-- <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="project">Project<span
+                                            class="text-primary ml-1">*</span></label>
+                                            <input  v-model="selectedProjectId" class="form-control" id="tanggal" type="text" placeholder  />
+                                            <input  v-model="selectedEmployeeId"  class="form-control" id="tanggal" type="text"   />
+                                </div> -->
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="work_date" class="form-control" id="tanggal" type="date"  />
+                                            <input v-model="work_date" class="form-control" id="tanggal" type="date" placeholder="{{timesheet.work_date}}" />
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="work_location" class="form-control" id="tanggal" type="text" />
+                                            <input v-model="work_location" class="form-control" id="tanggal" type="text"  />
 
                                 </div>
                                 <h4><b>Jam Kerja</b></h4>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input class="form-control" id="tanggal" type="time"  :value="timesheet.workhour_start" />
+                                            <input v-model="workhour_start" class="form-control" id="tanggal" type="time" step="1"  />
 
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input class="form-control" id="tanggal" type="time"  :value="timesheet.workhour_end" />
+                                            <input v-model="workhour_end" class="form-control" id="tanggal" type="time"  step="1"    />
                                     
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="task">Task</label>
-                                    <textarea class="form-control" id="task" type="text"
-                                    :value= 'timesheet.task'>
+                                    <textarea v-model="task" class="form-control" id="task" type="text"
+                                    >
                                     </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
                                                 class="text-primary ml-1">*</span></label>
-                                        <textarea class="form-control" id="taskselesai" type="text" placeholder="Task yang sudah selesai dikerjakan"
-                                            required="" :value="timesheet.completed_task">
+                                        <textarea  v-model="completed_task" class="form-control" id="taskselesai" type="text" placeholder="Task yang sudah selesai dikerjakan"
+                                            required="" >
                                     </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="todo">To Do Task<span
                                                 class="text-primary ml-1">*</span></label>
-                                        <textarea class="form-control" id="todo" type="text" placeholder="Task yang akan dikerjakan" required=""
-                                            :value="timesheet.todo_task">
+                                        <textarea v-model="todo_task" class="form-control" id="todo" type="text" placeholder="Task yang akan dikerjakan" required=""
+                                            >
                                     </textarea>
                                     </div>
+                                    <div class="form-group col-lg-12 text-center">
+                                    <button class="btn btn-primary custom-btn my-3 font-weight-bold rounded-pill"
+                                        type="submit"
+                                        style="font-style: bold; width: 300px; height: 40px;">Update</button>
+                                </div>
                                 </div>
                             </div>
                         </form>
@@ -336,13 +349,14 @@
                                                 class="text-primary ml-1">*</span></label>
                                         <input class="form-control" id="tanggal" type="time" required readonly
                                             disabled :value="timesheet.workhour_start" />
-
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
+                                            <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                                 class="text-primary ml-1">*</span></label>
                                         <input class="form-control" id="tanggal" type="text" required readonly
                                             disabled :value="timesheet.workhour_end" />
+
+                                    </div>
+                                    <div class="form-group col-lg-6">
+
 
                                     </div>
                                     <div class="form-group col-lg-12">
@@ -450,9 +464,9 @@
                     // Handle error, e.g., show an error message
                 }
             },
-            async submitUpdate() {
+            async submitUpdate(timesheetId) {
                 try {
-                    const response = await axios.post('http://127.0.0.1:8000/api/timesheet/update/{id}', {
+                    const response = await axios.post(`http://127.0.0.1:8000/api/timesheet/update/${timesheetId}`, {
                         ms_employee_id: this.selectedEmployeeId,
                         ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
@@ -465,6 +479,7 @@
                         // More data properties
                     });
                     console.log(response.data);
+                    console.log('update bisaaaaaaaaa')
                     console.log('sukses');
                     window.location.href = '/timesheet';
                 } catch (error) {
