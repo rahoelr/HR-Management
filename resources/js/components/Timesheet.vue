@@ -197,6 +197,7 @@
         </div>
 
         <!--GET EDIT MODAL -->
+        <!-- //Edit Timesheet -->
         <div class="modal fade" id="editForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
             aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
@@ -227,6 +228,7 @@
                                     <input class="form-control" id="lokasi" type="text"
                                         placeholder="Tambahkan lokasi" required="" />
                                 </div>
+                                
                                 <h4><b>Jam Kerja</b></h4>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
