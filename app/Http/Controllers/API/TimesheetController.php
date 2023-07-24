@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Helpers\ApiFormatter;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TimesheetController extends Controller
 {
