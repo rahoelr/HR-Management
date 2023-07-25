@@ -23589,38 +23589,53 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           }),
 
           _: 2 /* DYNAMIC */
-        }, 1024 /* DYNAMIC_SLOTS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-          onClick: function onClick($event) {
-            return $options.viewTimesheet(data.id);
-          },
-          "class": "btn mx-1",
-          style: {
-            "padding": "0px"
-          },
-          role: "button",
-          "data-target": "#editForm",
-          "data-toggle": "modal"
-        }, _hoisted_18, 8 /* PROPS */, _hoisted_16)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td><button class=\"btn mx-1\" style=\"padding: 0px;\" role=\"button\" data-target=\"#deleteModal\"\r\n                                data-toggle=\"modal\">\r\n                                <img src=\"delete-icon.png\" /></button></td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-          onClick: function onClick($event) {
-            return $options.deleteTimesheet(data.id);
-          },
-          "class": "btn mx-1",
-          style: {
-            "padding": "0px"
-          },
-          role: "button"
-        }, _hoisted_21, 8 /* PROPS */, _hoisted_19)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-          onClick: function onClick($event) {
-            return $options.viewTimesheet(data.id);
-          },
-          "class": "btn mx-1",
-          style: {
-            "padding": "0px"
-          },
-          role: "button",
-          "data-target": "#viewForm",
-          "data-toggle": "modal"
-        }, _hoisted_24, 8 /* PROPS */, _hoisted_22)])]);
+        }, 1024 /* DYNAMIC_SLOTS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_center, null, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+              onClick: function onClick($event) {
+                return $options.viewTimesheet(data.id);
+              },
+              "class": "btn mx-1",
+              style: {
+                "padding": "0px"
+              },
+              role: "button",
+              "data-target": "#editForm",
+              "data-toggle": "modal"
+            }, _hoisted_18, 8 /* PROPS */, _hoisted_16)];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1024 /* DYNAMIC_SLOTS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <td><button class=\"btn mx-1\" style=\"padding: 0px;\" role=\"button\" data-target=\"#deleteModal\"\r\n                                data-toggle=\"modal\">\r\n                                <img src=\"delete-icon.png\" /></button></td> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_center, null, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+              onClick: function onClick($event) {
+                return $options.deleteTimesheet(data.id);
+              },
+              "class": "btn mx-1",
+              style: {
+                "padding": "0px"
+              },
+              role: "button"
+            }, _hoisted_21, 8 /* PROPS */, _hoisted_19)];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1024 /* DYNAMIC_SLOTS */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_center, null, {
+          "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+              onClick: function onClick($event) {
+                return $options.viewTimesheet(data.id);
+              },
+              "class": "btn mx-1",
+              style: {
+                "padding": "0px"
+              },
+              role: "button",
+              "data-target": "#viewForm",
+              "data-toggle": "modal"
+            }, _hoisted_24, 8 /* PROPS */, _hoisted_22)];
+          }),
+          _: 2 /* DYNAMIC */
+        }, 1024 /* DYNAMIC_SLOTS */)])]);
       }), 128 /* KEYED_FRAGMENT */))])])];
     }),
 

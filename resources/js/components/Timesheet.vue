@@ -58,18 +58,18 @@
                         <td>
                             <center>{{ data . workhour_start }} - {{ data . workhour_end }}</center>
                         </td>
-                        <td><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
+                        <td><center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
                                 role="button" data-target="#editForm" data-toggle="modal">
-                                <img src="edit-icon.png" /></button></td>
+                                <img src="edit-icon.png" /></button></center></td>
                         <!-- <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
                                 data-toggle="modal">
                                 <img src="delete-icon.png" /></button></td> -->
-                        <td><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
+                        <td><center><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
                                 role="button">
-                                <img src="delete-icon.png" /></button></td>
-                        <td><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
+                                <img src="delete-icon.png" /></button></center></td>
+                        <td><center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
                                 role="button" data-target="#viewForm" data-toggle="modal">
-                                <img src="eye-icon.png" /></button></td>
+                                <img src="eye-icon.png" /></button></center></td>
 
                     </tr>
 
