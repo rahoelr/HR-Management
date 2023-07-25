@@ -229,8 +229,8 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input  class="form-control" id="tanggal" type="text" placeholder :value="timesheet.ms_project_id"/>
-                                            <input    class="form-control" id="tanggal" type="text" :value="timesheet.ms_employee_id"  />
+                                            <input  v-model="selectedProjectId" class="form-control" id="projectId" type="text" placeholder/>
+                                            <input v-model="selectedEmployeeId" class="form-control" id="employeeId" type="text" >
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
