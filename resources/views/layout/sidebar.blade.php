@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
     <!-- Custom styles for this template-->
@@ -30,6 +30,9 @@
         html {
             line-height: 1.15;
             -webkit-text-size-adjust: 100%
+            
+            /* webkit agar tidak error */
+            text-size-adjust: 100%;
         }
 
         body {
@@ -432,7 +435,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="https://floo.co.id/">
                 <!-- <div class="sidebar-brand-text mx-3">Floo Id</div> -->
                 <div class="sidebar-brand-icon">
-                    <img src="logo_floo.png" width="90" height ="67"/>
+                    <img src="logo_floo.png" width="90" height ="67" alt="logo"/>
                 </div>
             </a>
 
@@ -446,7 +449,7 @@
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0 bg-success" id="sidebarToggle"></button>
+                <button class="rounded-circle border-0 bg-success" id="sidebarToggle" title="sidebar"></button>
             </div>
 
             <!-- <div class="float-right d-none d-md-inline">
@@ -466,7 +469,7 @@
                 <nav class="navbar navbar-expand navbar-light bg-content topbar mb-4 static-top">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3" title="topbar">
                         <i class="fa fa-bars"></i>
                     </button>
 
@@ -480,7 +483,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
-                                <img class="img-profile rounded-circle mx-2" src="Foto PP.png">
+                                <img class="img-profile rounded-circle mx-2" src="Foto PP.png" alt="profile-photo">
                                 
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                 Feby Eka Pradiyanto

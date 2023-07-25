@@ -7,7 +7,6 @@
 @section('css')
     <!-- <link href="main.css" /> -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <link href="css/stopwatch.css" rel="stylesheet">
 @stop
 
 @section('menu')
@@ -49,6 +48,5 @@
     <script src="{{ asset('js/Chart.js') }}" type="text/javascript"></script>
 
     <script type="text/javascript" src="{{ URL::asset('js/chart-bar.js') }}"></script>
-    <script type="text/javascript" src="{{ URL::asset('js/stopwatch.js') }}"></script>
     <!-- <script type="text/javascript" src="{{ URL::asset('js/Chart.js') }}"></script> -->
 @endpush

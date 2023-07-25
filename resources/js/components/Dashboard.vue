@@ -38,15 +38,15 @@
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange" onclick="changeImage()"/>
                                 </button> -->
 
-                                <button id="btn" onclick="getElementById('getTime').innerHTML=Date()" class="btn mx-1 non-active" href="#!" role="button" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
-                                        <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange"/>
+                                <button id="btn" onclick="getElementById('getTime').innerHTML=Date()" class="btn mx-1" href="#!" title="stop-btn" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
+                                        <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange" alt="img-btn-stop"/>
                                 </button>
-                                <button id="btn2" onclick="getElementById('getTime').innerHTML=Date()" class="btn mx-1" href="#!" role="button" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
-                                        <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2"/>
+                                <button id="btn2" onclick="getElementById('letGet').innerHTML=getClock()" class="btn mx-1" href="#!" title="start-btn" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
+                                        <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2" alt="img-btn-start"/>
                                 </button>
                                 <!-- tes date demo -->
-                                <p id="getTime"></p>
-                                <!-- <p id="letGet"></p> -->
+                                <p id="letGet"></p>
+                                <!-- <p id="getTime"></p> -->
 
                             </div>
                         </div>                                    
@@ -69,7 +69,7 @@
                                         <button type="button"> <img src="Foto PP.png" height ="64" width="64" /></button>
                                     </a> -->
                                 <a class="btn" style="background-color: #D9EEE9; padding: 8px 8px; border-radius: 24%;" href="#!" role="button">
-                                    <img src="profil-icon.svg" height ="48" width="48" />
+                                    <img src="profil-icon.svg" height ="48" width="48" alt="profil-icon"/>
                                 </a>
                             </div>
                                 <div class="col-md-9">
@@ -107,7 +107,7 @@
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
                                 <a class="btn" style="background-color: #DFE5FB; padding: 8px 8px; border-radius: 24%;" href="/timesheet" role="button">
-                                    <img src="timesheet-icon.svg" height ="48" width="48" />
+                                    <img src="timesheet-icon.svg" height ="48" width="48" alt="timesheet-icon" />
                                 </a>
                             </div>
                             <div class="col-md-9">
@@ -126,7 +126,7 @@
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
                                 <a class="btn" style="background-color: #FBE8EA; padding: 8px 8px; border-radius: 24%;" href="#!" role="button">
-                                    <img src="cuti-icon.svg" height ="48" width="48" />
+                                    <img src="cuti-icon.svg" height ="48" width="48" alt="cuti-icon"/>
                                 </a>
                             </div>
                             <div class="col-md-9">
@@ -302,7 +302,8 @@
 
         document.getElementById("date").innerHTML = date;
         setTimeout(clock, 1000);
-
+        
+        clock();
         clearInterval(timeInt); // Here
         timeInt = setInterval(clock,1000);
         console.log('updated time from server')
@@ -314,8 +315,8 @@
         const now = new Date();
         const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
         console.log(hoursAndMinutes);
-        // var tes = document.getElementById('letget').innerHTML;
-        // alert(tes);
+
+        document.write(hoursAndMinutes);
     }
     
     
