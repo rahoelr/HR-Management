@@ -22371,6 +22371,17 @@ function getClock() {
   console.log(hoursAndMinutes);
   document.write(hoursAndMinutes);
 }
+getDate();
+function getDate() {
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  var currentDate = "".concat(day, "-").concat(month, "-").concat(year);
+  console.log(currentDate);
+}
 
 /***/ }),
 
@@ -22769,7 +22780,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   "class": "col-md-2 my-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   id: "btn",
-  onclick: "getElementById('getTime').innerHTML=Date()",
+  onclick: "",
   "class": "btn mx-1",
   href: "#!",
   title: "stop-btn",
@@ -22786,7 +22797,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
   alt: "img-btn-stop"
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   id: "btn2",
-  onclick: "getElementById('letGet').innerHTML=getClock()",
+  onclick: "",
   "class": "btn mx-1",
   href: "#!",
   title: "start-btn",
