@@ -22215,9 +22215,175 @@ module.exports = {
 /*!***************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/Dashboard.vue?vue&type=script&lang=js ***!
   \***************************************************************************************************************************************************************************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: E:\\intern_floo\\HR-Management\\resources\\js\\components\\Dashboard.vue: Unexpected token (204:4)\n\n\u001b[0m \u001b[90m 202 |\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 203 |\u001b[39m         document\u001b[33m.\u001b[39mwrite(hoursAndMinutes)\u001b[33m;\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 204 |\u001b[39m     }\u001b[0m\n\u001b[0m \u001b[90m     |\u001b[39m     \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 205 |\u001b[39m     \u001b[0m\n\u001b[0m \u001b[90m 206 |\u001b[39m     \u001b[0m\n\u001b[0m \u001b[90m 207 |\u001b[39m\u001b[0m\n    at instantiate (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:63:32)\n    at constructor (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:358:12)\n    at Parser.raise (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:3255:19)\n    at Parser.unexpected (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:3285:16)\n    at Parser.parseExprAtom (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:11284:16)\n    at Parser.parseExprSubscripts (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10890:23)\n    at Parser.parseUpdate (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10873:21)\n    at Parser.parseMaybeUnary (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10849:23)\n    at Parser.parseMaybeUnaryOrPrivate (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10687:61)\n    at Parser.parseExprOps (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10692:23)\n    at Parser.parseMaybeConditional (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10669:23)\n    at Parser.parseMaybeAssign (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10630:21)\n    at Parser.parseExpressionBase (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10584:23)\n    at E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10580:39\n    at Parser.allowInAnd (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:12275:16)\n    at Parser.parseExpression (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:10580:17)\n    at Parser.parseStatementContent (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:12733:23)\n    at Parser.parseStatementLike (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:12584:17)\n    at Parser.parseModuleItem (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:12561:17)\n    at Parser.parseBlockOrModuleBlockBody (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:13185:36)\n    at Parser.parseBlockBody (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:13178:10)\n    at Parser.parseProgram (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:12460:10)\n    at Parser.parseTopLevel (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:12450:25)\n    at Parser.parse (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:14347:10)\n    at parse (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\parser\\lib\\index.js:14388:38)\n    at parser (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\core\\lib\\parser\\index.js:41:34)\n    at parser.next (<anonymous>)\n    at normalizeFile (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\core\\lib\\transformation\\normalize-file.js:64:38)\n    at normalizeFile.next (<anonymous>)\n    at run (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\core\\lib\\transformation\\index.js:21:50)\n    at run.next (<anonymous>)\n    at transform (E:\\intern_floo\\HR-Management\\node_modules\\@babel\\core\\lib\\transform.js:22:41)\n    at transform.next (<anonymous>)\n    at step (E:\\intern_floo\\HR-Management\\node_modules\\gensync\\index.js:261:32)\n    at E:\\intern_floo\\HR-Management\\node_modules\\gensync\\index.js:273:13\n    at async.call.result.err.err (E:\\intern_floo\\HR-Management\\node_modules\\gensync\\index.js:223:11)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  mounted: function mounted() {
+    console.log('Component mounted.');
+    if (box.style.backgroundColor = '#E37C77') {
+      var btn = document.getElementById('btn');
+      var btn2 = document.getElementById('btn2');
+      btn.addEventListener('click', function onClick(event) {
+        var box = document.getElementById('box');
+        if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg") {
+          document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+        } else {
+          btn.style.backgroundColor = "white";
+          btn.style.border = "4px solid #E37C77";
+          document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+          btn2.style.backgroundColor = "#64B58A";
+          document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+        }
+        box.style.backgroundColor = 'white';
+        box.style.color = 'black';
+      });
+    }
+
+    // button-start
+    if (box.style.backgroundColor = 'white') {
+      var _btn = document.getElementById('btn2');
+      var _btn2 = document.getElementById('btn');
+      _btn.addEventListener('click', function onClick(event) {
+        var box = document.getElementById('box');
+        if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-after.svg") {
+          document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+        } else {
+          _btn.style.backgroundColor = 'white';
+          document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+          _btn2.style.backgroundColor = "#E37C77";
+          _btn2.style.border = "4px solid white";
+          document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+        }
+        box.style.backgroundColor = '#E37C77';
+        box.style.color = 'white';
+      });
+    }
+  },
+  methods: {
+    logout: function logout() {
+      axios.post('/logout').then(function () {
+        // Perform any additional actions after successful logout
+        // For example, you can clear local storage, update component state, or redirect the user
+        console.log('Logout successful');
+        // Redirect the user to the login page
+        window.location.href = '/';
+      })["catch"](function (error) {
+        // Handle the error
+        console.error(error);
+      });
+    }
+  }
+});
+
+// window.addEventListener("load", () => {
+// clock();
+// function clock() {
+//     const today = new Date();
+
+//     // get time components
+//     const hours = today.getHours();
+//     const minutes = today.getMinutes();
+//     const seconds = today.getSeconds();
+
+//     //add '0' to hour, minute & second when they are less 10
+//     const hour = hours < 10 ? "0" + hours : hours;
+//     const minute = minutes < 10 ? "0" + minutes : minutes;
+//     const second = seconds < 10 ? "0" + seconds : seconds;
+
+//     //make clock a 12-hour time clock
+//     const hourTime = hour > 12 ? hour - 12 : hour;
+
+//     // if (hour === 0) {
+//     //   hour = 12;
+//     // }
+//     //assigning 'am' or 'pm' to indicate time of the day
+//     // const ampm = hour < 12 ? "AM" : "PM";
+
+//     // get date components
+//     const month = today.getMonth();
+//     const year = today.getFullYear();
+//     const day = today.getDate();
+//     const days = today.getDay();
+
+//     //declaring a list of all months in  a year
+//     const monthList = [
+//     "Januari",
+//     "Februari",
+//     "Maret",
+//     "April",
+//     "Mei",
+//     "Juni",
+//     "Juli",
+//     "Agustus",
+//     "September",
+//     "Oktober",
+//     "November",
+//     "Desember"
+//     ];
+
+//     const dayList = [
+//     "Minggu",
+//     "Senin",
+//     "Selasa",
+//     "Rabu",
+//     "Kamis",
+//     "Jumat",
+//     "Sabtu"
+//     ];
+
+//     //get current date and time
+//     const date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
+//     const time = hourTime + ":" + minute + ":" + second;
+
+//     //combine current date and time
+//     // const dateTime = date + time;
+
+//     //print current date and time to the DOM
+//     // document.getElementById("date-time").innerHTML = dateTime;
+//     // setTimeout(clock, 1000);
+
+//     // document.getElementById("date").innerHTML = date;
+//     // setTimeout(clock, 1000);
+
+//     document.getElementById("time").innerHTML = time;
+//     setTimeout(clock, 1000);
+
+//     document.getElementById("date").innerHTML = date;
+//     setTimeout(clock, 1000);
+
+//     setInterval(clock, 1000);
+//     // clock();
+//     // clearInterval(timeInt); // Here
+//     // timeInt = setInterval(clock,1000);
+//     // console.log('updated time from server')
+// }
+// });
+
+getClock();
+function getClock() {
+  var now = new Date();
+  var hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+  console.log(hoursAndMinutes);
+
+  // document.write(hoursAndMinutes);
+}
+
+getDate();
+function getDate() {
+  var date = new Date();
+  var day = date.getDate();
+  var month = date.getMonth() + 1;
+  var year = date.getFullYear();
+
+  // This arrangement can be altered based on how we want the date's format to appear.
+  var currentDate = "".concat(day, "-").concat(month, "-").concat(year);
+  console.log(currentDate);
+}
 
 /***/ }),
 
@@ -22774,11 +22940,11 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   "class": "card-text"
 }, "Cuti anda tersisa 12 Hari")])])])])], -1 /* HOISTED */);
 var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
-function render(_ctx, _cache) {
+function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [_hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "btn btn-danger",
     onClick: _cache[0] || (_cache[0] = function () {
-      return _ctx.logout && _ctx.logout.apply(_ctx, arguments);
+      return $options.logout && $options.logout.apply($options, arguments);
     })
   }, "Logout")])])])]), _hoisted_13, _hoisted_14]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
@@ -46190,13 +46356,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=template&id=040e2ab9 */ "./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9");
 /* harmony import */ var _Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=script&lang=js */ "./resources/js/components/Dashboard.vue?vue&type=script&lang=js");
-/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_PI_HR_Management_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_PI_HR_Management_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -46219,7 +46385,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=6bdc8b8e */ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e");
 /* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/components/Login.vue?vue&type=script&lang=js");
 /* harmony import */ var _Login_vue_vue_type_style_index_0_id_6bdc8b8e_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.vue?vue&type=style&index=0&id=6bdc8b8e&lang=css */ "./resources/js/components/Login.vue?vue&type=style&index=0&id=6bdc8b8e&lang=css");
-/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_PI_HR_Management_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -46227,7 +46393,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_PI_HR_Management_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -46249,13 +46415,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Timesheet.vue?vue&type=template&id=e17c7852 */ "./resources/js/components/Timesheet.vue?vue&type=template&id=e17c7852");
 /* harmony import */ var _Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Timesheet.vue?vue&type=script&lang=js */ "./resources/js/components/Timesheet.vue?vue&type=script&lang=js");
-/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+/* harmony import */ var D_PI_HR_Management_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
+const __exports__ = /*#__PURE__*/(0,D_PI_HR_Management_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
 /* hot reload */
 if (false) {}
 

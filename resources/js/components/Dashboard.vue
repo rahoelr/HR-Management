@@ -166,12 +166,9 @@
     export default {
 
 
-
-
             
         mounted() {
             console.log('Component mounted.')
-            this.getClock();
 
             if (box.style.backgroundColor = '#E37C77'){
                 const btn = document.getElementById('btn');
@@ -242,33 +239,6 @@
                         console.error(error);
                     });
             },
-            getClock(){
-                const now = new Date();
-                const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-                console.log(hoursAndMinutes);
-            },
-            async submitCheckLog(){
-                try {
-                    const response = await axios.post('http://127.0.0.1:8000/api/attendance/store', {
-                        ms_employee_id: this.selectedEmployeeId,
-                        attendance_date: this.selectedAttendanceDate,
-                        check_in: this.check_in,
-                        check_out: this.check_out,
-                        // More data properties
-                    });
-
-                    console.log(response.data);
-                    console.log('sukses')
-                    window.location.href = '/dashboard';
-                    // this.getTimesheet();
-                    // Handle success, e.g., show a success message or redirect
-                } catch (error) {
-                    console.error(error);
-                    console.log('error')
-                    // Handle error, e.g., show an error message
-                }
-
-            }
         }
     }
 
@@ -359,13 +329,26 @@
 
    
 
-
+    getClock();
+    function getClock() {
+        const now = new Date();
+        const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+        console.log(hoursAndMinutes);
 
         // document.write(hoursAndMinutes);
-
-        document.write(hoursAndMinutes);
     }
-    
-    
+
+    getDate();
+    function getDate() {
+        const date = new Date();
+
+        let day = date.getDate();
+        let month = date.getMonth() + 1;
+        let year = date.getFullYear();
+
+        // This arrangement can be altered based on how we want the date's format to appear.
+        let currentDate = `${day}-${month}-${year}`;
+        console.log(currentDate);
+    }
 
     </script>
