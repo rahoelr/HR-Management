@@ -22,8 +22,8 @@
                                 <h5 class="card-title">Check Log</h5>
                                 <div class="row" id="clock">
                                                 
-                                    <!-- <h1 class="col-md-3 card-text" id="time">
-                                    </h1> -->
+                                    <h1 class="col-md-3 card-text" id="time">
+                                    </h1>
 
                                     <h6 class="col-md-9 card-text my-auto" id="date">
                                     </h6>
@@ -227,88 +227,91 @@
     }
 
 
-    window.addEventListener("load", () => {
-    clock();
-    function clock() {
-        const today = new Date();
+    // window.addEventListener("load", () => {
+    // clock();
+    // function clock() {
+    //     const today = new Date();
 
-        // get time components
-        const hours = today.getHours();
-        const minutes = today.getMinutes();
-        const seconds = today.getSeconds();
+    //     // get time components
+    //     const hours = today.getHours();
+    //     const minutes = today.getMinutes();
+    //     const seconds = today.getSeconds();
 
-        //add '0' to hour, minute & second when they are less 10
-        const hour = hours < 10 ? "0" + hours : hours;
-        const minute = minutes < 10 ? "0" + minutes : minutes;
-        const second = seconds < 10 ? "0" + seconds : seconds;
+    //     //add '0' to hour, minute & second when they are less 10
+    //     const hour = hours < 10 ? "0" + hours : hours;
+    //     const minute = minutes < 10 ? "0" + minutes : minutes;
+    //     const second = seconds < 10 ? "0" + seconds : seconds;
 
-        //make clock a 12-hour time clock
-        const hourTime = hour > 12 ? hour - 12 : hour;
+    //     //make clock a 12-hour time clock
+    //     const hourTime = hour > 12 ? hour - 12 : hour;
 
-        // if (hour === 0) {
-        //   hour = 12;
-        // }
-        //assigning 'am' or 'pm' to indicate time of the day
-        const ampm = hour < 12 ? "AM" : "PM";
+    //     // if (hour === 0) {
+    //     //   hour = 12;
+    //     // }
+    //     //assigning 'am' or 'pm' to indicate time of the day
+    //     // const ampm = hour < 12 ? "AM" : "PM";
 
-        // get date components
-        const month = today.getMonth();
-        const year = today.getFullYear();
-        const day = today.getDate();
-        const days = today.getDay();
+    //     // get date components
+    //     const month = today.getMonth();
+    //     const year = today.getFullYear();
+    //     const day = today.getDate();
+    //     const days = today.getDay();
 
-        //declaring a list of all months in  a year
-        const monthList = [
-        "Januari",
-        "Februari",
-        "Maret",
-        "April",
-        "Mei",
-        "Juni",
-        "Juli",
-        "Agustus",
-        "September",
-        "Oktober",
-        "November",
-        "Desember"
-        ];
+    //     //declaring a list of all months in  a year
+    //     const monthList = [
+    //     "Januari",
+    //     "Februari",
+    //     "Maret",
+    //     "April",
+    //     "Mei",
+    //     "Juni",
+    //     "Juli",
+    //     "Agustus",
+    //     "September",
+    //     "Oktober",
+    //     "November",
+    //     "Desember"
+    //     ];
 
-        const dayList = [
-        "Minggu",
-        "Senin",
-        "Selasa",
-        "Rabu",
-        "Kamis",
-        "Jumat",
-        "Sabtu"
-        ];
+    //     const dayList = [
+    //     "Minggu",
+    //     "Senin",
+    //     "Selasa",
+    //     "Rabu",
+    //     "Kamis",
+    //     "Jumat",
+    //     "Sabtu"
+    //     ];
 
-        //get current date and time
-        const date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
-        const time = hourTime + ":" + minute + ":" + second;
+    //     //get current date and time
+    //     const date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
+    //     const time = hourTime + ":" + minute + ":" + second;
 
-        //combine current date and time
-        const dateTime = date + time;
+    //     //combine current date and time
+    //     // const dateTime = date + time;
 
-        //print current date and time to the DOM
-        // document.getElementById("date-time").innerHTML = dateTime;
-        // setTimeout(clock, 1000);
+    //     //print current date and time to the DOM
+    //     // document.getElementById("date-time").innerHTML = dateTime;
+    //     // setTimeout(clock, 1000);
 
-        // document.getElementById("date").innerHTML = date;
-        // setTimeout(clock, 1000);
+    //     // document.getElementById("date").innerHTML = date;
+    //     // setTimeout(clock, 1000);
 
-        document.getElementById("time").innerHTML = time;
-        setTimeout(clock, 1000);
+    //     document.getElementById("time").innerHTML = time;
+    //     setTimeout(clock, 1000);
 
-        document.getElementById("date").innerHTML = date;
-        setTimeout(clock, 1000);
-        
-        clock();
-        clearInterval(timeInt); // Here
-        timeInt = setInterval(clock,1000);
-        console.log('updated time from server')
-    }
-    });
+    //     document.getElementById("date").innerHTML = date;
+    //     setTimeout(clock, 1000);
+
+    //     setInterval(clock, 1000);
+    //     // clock();
+    //     // clearInterval(timeInt); // Here
+    //     // timeInt = setInterval(clock,1000);
+    //     // console.log('updated time from server')
+    // }
+    // });
+
+   
 
     getClock();
     function getClock() {
@@ -318,7 +321,5 @@
 
         document.write(hoursAndMinutes);
     }
-    
-    
 
     </script>

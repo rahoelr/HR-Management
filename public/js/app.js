@@ -22265,64 +22265,91 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
-window.addEventListener("load", function () {
-  clock();
-  function clock() {
-    var today = new Date();
 
-    // get time components
-    var hours = today.getHours();
-    var minutes = today.getMinutes();
-    var seconds = today.getSeconds();
+// window.addEventListener("load", () => {
+// clock();
+// function clock() {
+//     const today = new Date();
 
-    //add '0' to hour, minute & second when they are less 10
-    var hour = hours < 10 ? "0" + hours : hours;
-    var minute = minutes < 10 ? "0" + minutes : minutes;
-    var second = seconds < 10 ? "0" + seconds : seconds;
+//     // get time components
+//     const hours = today.getHours();
+//     const minutes = today.getMinutes();
+//     const seconds = today.getSeconds();
 
-    //make clock a 12-hour time clock
-    var hourTime = hour > 12 ? hour - 12 : hour;
+//     //add '0' to hour, minute & second when they are less 10
+//     const hour = hours < 10 ? "0" + hours : hours;
+//     const minute = minutes < 10 ? "0" + minutes : minutes;
+//     const second = seconds < 10 ? "0" + seconds : seconds;
 
-    // if (hour === 0) {
-    //   hour = 12;
-    // }
-    //assigning 'am' or 'pm' to indicate time of the day
-    var ampm = hour < 12 ? "AM" : "PM";
+//     //make clock a 12-hour time clock
+//     const hourTime = hour > 12 ? hour - 12 : hour;
 
-    // get date components
-    var month = today.getMonth();
-    var year = today.getFullYear();
-    var day = today.getDate();
-    var days = today.getDay();
+//     // if (hour === 0) {
+//     //   hour = 12;
+//     // }
+//     //assigning 'am' or 'pm' to indicate time of the day
+//     // const ampm = hour < 12 ? "AM" : "PM";
 
-    //declaring a list of all months in  a year
-    var monthList = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
-    var dayList = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+//     // get date components
+//     const month = today.getMonth();
+//     const year = today.getFullYear();
+//     const day = today.getDate();
+//     const days = today.getDay();
 
-    //get current date and time
-    var date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
-    var time = hourTime + ":" + minute + ":" + second;
+//     //declaring a list of all months in  a year
+//     const monthList = [
+//     "Januari",
+//     "Februari",
+//     "Maret",
+//     "April",
+//     "Mei",
+//     "Juni",
+//     "Juli",
+//     "Agustus",
+//     "September",
+//     "Oktober",
+//     "November",
+//     "Desember"
+//     ];
 
-    //combine current date and time
-    var dateTime = date + time;
+//     const dayList = [
+//     "Minggu",
+//     "Senin",
+//     "Selasa",
+//     "Rabu",
+//     "Kamis",
+//     "Jumat",
+//     "Sabtu"
+//     ];
 
-    //print current date and time to the DOM
-    // document.getElementById("date-time").innerHTML = dateTime;
-    // setTimeout(clock, 1000);
+//     //get current date and time
+//     const date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
+//     const time = hourTime + ":" + minute + ":" + second;
 
-    // document.getElementById("date").innerHTML = date;
-    // setTimeout(clock, 1000);
+//     //combine current date and time
+//     // const dateTime = date + time;
 
-    document.getElementById("time").innerHTML = time;
-    setTimeout(clock, 1000);
-    document.getElementById("date").innerHTML = date;
-    setTimeout(clock, 1000);
-    clock();
-    clearInterval(timeInt); // Here
-    timeInt = setInterval(clock, 1000);
-    console.log('updated time from server');
-  }
-});
+//     //print current date and time to the DOM
+//     // document.getElementById("date-time").innerHTML = dateTime;
+//     // setTimeout(clock, 1000);
+
+//     // document.getElementById("date").innerHTML = date;
+//     // setTimeout(clock, 1000);
+
+//     document.getElementById("time").innerHTML = time;
+//     setTimeout(clock, 1000);
+
+//     document.getElementById("date").innerHTML = date;
+//     setTimeout(clock, 1000);
+
+//     setInterval(clock, 1000);
+//     // clock();
+//     // clearInterval(timeInt); // Here
+//     // timeInt = setInterval(clock,1000);
+//     // console.log('updated time from server')
+// }
+// });
+
 getClock();
 function getClock() {
   var now = new Date();
@@ -22718,7 +22745,10 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }, "Check Log"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "row",
   id: "clock"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <h1 class=\"col-md-3 card-text\" id=\"time\">\r\n                                    </h1> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "col-md-3 card-text",
+  id: "time"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
   "class": "col-md-9 card-text my-auto",
   id: "date"
 })])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
