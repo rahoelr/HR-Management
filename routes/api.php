@@ -5,6 +5,7 @@ use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\TimesheetController;
+use App\Http\Controllers\API\AttendanceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,7 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('user', [LoginController::class, 'index']);
-// Route::post('login', [LoginController::class, 'login']);
+Route::post('login', [LoginController::class, 'login']);
 Route::post('user/store', [LoginController::class, 'store']);
 Route::get('user/show/{id}', [LoginController::class, 'show']);
 Route::post('user/update/{id}', [LoginController::class, 'update']);
@@ -53,6 +54,13 @@ Route::post('division/update/{id}', [DivisionController::class, 'update']);
 Route::get('division/destroy/{id}', [DivisionController::class, 'destroy']);
 
 Route::get('employee', [EmployeeController::class, 'index']);
+
+Route::get('attendance', [AttendanceController::class, 'index']);
+Route::post('attendance/store', [AttendanceController::class, 'store']);
+Route::get('attendance/show/{id}', [AttendanceController::class, 'show']);
+
+
+
 
 
 

@@ -22,6 +22,10 @@ class CreateTrattendanceTable extends Migration
 			$table-> text('late_checkin_notes')->nullable();
 			$table-> text('early_checkout_notes')->nullable();
 			$table->foreign('ms_employee_id')->references('id')->on('employees');
+
+            
+            $table->softDeletes();
+            $table->timestamps();
 		
         });
     }
