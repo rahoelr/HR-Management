@@ -215,8 +215,8 @@
                     </div>
                     <div v-for="timesheet in timesheetData"  :key="timesheetData.id" class="modal-body">
                         <form @submit.prevent="submitUpdate(timesheet.id)">
-                            <div class="row" style="color: #455A64;">
-                                <div v-for="timesheet in timesheetData"  :key="timesheetData.id">
+                            <div v-for="timesheet in timesheetData"  :key="timesheetData.id">
+                                <div class="row" style="color: #455A64;">
                                     <!-- <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
@@ -230,6 +230,10 @@
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
                                             <input  v-model="selectedProjectId" class="form-control" id="projectId" type="text" placeholder/>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="project">Employee ID<span
+                                            class="text-primary ml-1">*</span></label>
                                             <input v-model="selectedEmployeeId" class="form-control" id="employeeId" type="text" >
                                 </div>
                                 <div class="form-group col-lg-12">
@@ -240,7 +244,7 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="work_location" class="form-control" id="tanggal" type="text"  />
+                                            <input v-model="work_location" class="form-control" id="tanggal" type="text" />
 
                                 </div>
                                 <h4><b>Jam Kerja</b></h4>
@@ -259,20 +263,22 @@
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="task">Task</label>
                                     <textarea v-model="task" class="form-control" id="task" type="text"
-                                    >
+                                    placeholder="Deskripsi task yang sedang dikerjakan">
                                     </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
                                                 class="text-primary ml-1">*</span></label>
-                                        <textarea  v-model="completed_task" class="form-control" id="taskselesai" type="text" placeholder="Task yang sudah selesai dikerjakan"
+                                        <textarea  v-model="completed_task" class="form-control" id="taskselesai" type="text"
+                                        placeholder="Task yang sudah selesai dikerjakan"
                                             required="" >
                                     </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="todo">To Do Task<span
                                                 class="text-primary ml-1">*</span></label>
-                                        <textarea v-model="todo_task" class="form-control" id="todo" type="text" placeholder="Task yang akan dikerjakan" required=""
+                                        <textarea v-model="todo_task" class="form-control" id="todo" type="text"
+                                        placeholder="Task yang akan dikerjakan" required=""
                                             >
                                     </textarea>
                                     </div>
@@ -321,8 +327,8 @@
                     </div>
                     <div class="modal-body">
                         <form>
-                            <div class="row" style="color: #455A64;">
-                                <div v-for="timesheet in timesheetData" :key="timesheetData.id">
+                            <div v-for="timesheet in timesheetData" :key="timesheetData.id">
+                                <div class="row" style="color: #455A64;">
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="project">Project<span
                                                 class="text-primary ml-1">*</span></label>
@@ -349,15 +355,13 @@
                                                 class="text-primary ml-1">*</span></label>
                                         <input class="form-control" id="tanggal" type="time" required readonly
                                             disabled :value="timesheet.workhour_start" />
-                                            <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <input class="form-control" id="tanggal" type="text" required readonly
-                                            disabled :value="timesheet.workhour_end" />
 
                                     </div>
                                     <div class="form-group col-lg-6">
-
-
+                                        <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <input class="form-control" id="tanggal" type="text" required readonly
+                                            disabled :value="timesheet.workhour_end" />
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="task">Task</label>

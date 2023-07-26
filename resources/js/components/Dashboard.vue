@@ -223,6 +223,22 @@
                 });
                 
             } 
+        },
+        methods: {
+            logout() {
+                axios.post('/logout')
+                    .then(() => {
+                        // Perform any additional actions after successful logout
+                        // For example, you can clear local storage, update component state, or redirect the user
+                        console.log('Logout successful');
+                        // Redirect the user to the login page
+                        window.location.href = '/';
+                    })
+                    .catch(error => {
+                        // Handle the error
+                        console.error(error);
+                    });
+            },
         }
     }
 

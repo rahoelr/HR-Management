@@ -169,16 +169,16 @@ class LoginController extends Controller
         }
     }
 
-    // public function login(Request $request)
-    // {
-    //     $credentials = $request->only('email', 'password');
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
     
-    //     if (Auth::attempt($credentials)) {
-    //         // Autentikasi berhasil
-    //         return response()->json(['message' => 'Login success'], 200);
-    //     } else {
-    //         // Autentikasi gagal
-    //         return response()->json(['message' => 'Invalid credentials'], 401);
-    //     }
-    // }
+        if (Auth::attempt($credentials)) {
+            // Autentikasi berhasil
+            return response()->json(['message' => 'Login success'], 200);
+        } else {
+            // Autentikasi gagal
+            return response()->json(['message' => 'Invalid credentials'], 401);
+        }
+    }
 }
