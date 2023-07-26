@@ -38,10 +38,10 @@
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange" onclick="changeImage()"/>
                                 </button> -->
 
-                                <button id="btn" onclick="getElementById('getTime').innerHTML=Date()" class="btn mx-1" href="#!" title="stop-btn" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
+                                <button id="btn" @onclick="getClock" class="btn mx-1" href="#!" title="stop-btn" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
                                         <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange" alt="img-btn-stop"/>
                                 </button>
-                                <button id="btn2" onclick="getElementById('letGet').innerHTML=getClock()" class="btn mx-1" href="#!" title="start-btn" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
+                                <button id="btn2" @onclick="getClock" class="btn mx-1" href="#!" title="start-btn" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2" alt="img-btn-start"/>
                                 </button>
                                 <!-- tes date demo -->
@@ -166,9 +166,12 @@
     export default {
 
 
+
+
             
         mounted() {
             console.log('Component mounted.')
+            this.getClock();
 
             if (box.style.backgroundColor = '#E37C77'){
                 const btn = document.getElementById('btn');
@@ -239,6 +242,33 @@
                         console.error(error);
                     });
             },
+            getClock(){
+                const now = new Date();
+                const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
+                console.log(hoursAndMinutes);
+            },
+            async submitCheckLog(){
+                try {
+                    const response = await axios.post('http://127.0.0.1:8000/api/attendance/store', {
+                        ms_employee_id: this.selectedEmployeeId,
+                        attendance_date: this.selectedAttendanceDate,
+                        check_in: this.check_in,
+                        check_out: this.check_out,
+                        // More data properties
+                    });
+
+                    console.log(response.data);
+                    console.log('sukses')
+                    window.location.href = '/dashboard';
+                    // this.getTimesheet();
+                    // Handle success, e.g., show a success message or redirect
+                } catch (error) {
+                    console.error(error);
+                    console.log('error')
+                    // Handle error, e.g., show an error message
+                }
+
+            }
         }
     }
 
@@ -326,14 +356,10 @@
     }
     });
 
-    getClock();
-    function getClock() {
-        const now = new Date();
-        const hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-        console.log(hoursAndMinutes);
 
-        document.write(hoursAndMinutes);
-    }
+
+        // document.write(hoursAndMinutes);
+
     
     
 
