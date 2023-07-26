@@ -22369,8 +22369,10 @@ function getClock() {
   var now = new Date();
   var hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
   console.log(hoursAndMinutes);
-  document.write(hoursAndMinutes);
+
+  // document.write(hoursAndMinutes);
 }
+
 getDate();
 function getDate() {
   var date = new Date();
