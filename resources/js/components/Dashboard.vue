@@ -270,6 +270,7 @@
                         .getClock(); // Menunggu janji diselesaikan dan mendapatkan hasil waktu
                     this.checkIn = dateTime;
                     localStorage.setItem('checkInTime', dateTime);
+                    console.log("data check-in sementara: ", localStorage.getItem('checkInTime'))
                 } catch (error) {
                     console.error(error); // Tangani jika terjadi kesalahan dalam Promise
                 }
