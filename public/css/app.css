@@ -11951,3 +11951,8 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+/* layouting */
+.fa-bars{
+  color: #64B58A;
+}
