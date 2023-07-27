@@ -41,12 +41,13 @@
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange" onclick="changeImage()"/>
                                 </button> -->
 
-                                <button id="btn" class="btn mx-1" href="#!" title="stop-btn"
+                                <button id="btn" @click="submitAttendance" class="btn mx-1" href="#!"
+                                    title="stop-btn"
                                     style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
                                     <img src="img/dashboard/presensi-icon-before.svg" height="32" width="32"
                                         id="imgClickAndChange" alt="img-btn-stop" />
                                 </button>
-                                <button id="btn2" @click="submitAttendance" class="btn mx-1" href="#!"
+                                <button id="btn2" @click="saveCheckInTime" class="btn mx-1" href="#!"
                                     title="start-btn"
                                     style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
                                     <img src="img/dashboard/shutdown-icon-before.svg" height="32" width="32"
@@ -55,6 +56,7 @@
                                 <!-- tes date demo -->
                                 <p id="letGet"></p>
                                 <!-- <p id="getTime"></p> -->
+
 
                             </div>
                         </div>
@@ -192,6 +194,8 @@
             };
         },
         mounted() {
+            const savedCheckInTime = localStorage.getItem('checkInTime');
+            console.log(savedCheckInTime)
             this.updateCheckIn();
 
             setInterval(() => {
@@ -260,6 +264,16 @@
             }
         },
         methods: {
+            async saveCheckInTime() {
+                try {
+                    const dateTime = await this.getDate() + ' ' + this
+                        .getClock(); // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+                    this.checkIn = dateTime;
+                    localStorage.setItem('checkInTime', dateTime);
+                } catch (error) {
+                    console.error(error); // Tangani jika terjadi kesalahan dalam Promise
+                }
+            },
             getClock() {
                 const now = new Date();
                 const hours = String(now.getHours()).padStart(2, '0');
@@ -271,7 +285,7 @@
             async updateCheckIn() {
                 try {
                     const result = await this.getDate() + ' ' + this
-                .getClock(); // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+                        .getClock(); // Menunggu janji diselesaikan dan mendapatkan hasil waktu
                     this.checkIn = result;
                     this.checkOut = result; // Mengupdate nilai checkIn dengan hasil waktu
                 } catch (error) {
@@ -298,21 +312,34 @@
                 }
             },
             async submitAttendance() {
+                // Ambil data checkIn dari LocalStorage
+                const savedCheckInTime = localStorage.getItem('checkInTime');
+
+                // Pastikan data checkIn sudah ada sebelum melakukan posting data
+                if (!savedCheckInTime) {
+                    console.log('Data check-in belum ada, lakukan check-in terlebih dahulu');
+                    alert('Data check-in belum ada, lakukan check-in terlebih dahulu')
+                    return;
+                }
+
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/attendance/store', {
                         ms_employee_id: this.employeeId,
                         attendance_date: this.attendanceDate,
-                        check_in: this.checkIn,
+                        check_in: savedCheckInTime, // Gunakan data checkIn dari LocalStorage
                         check_out: this.checkOut,
                         late_checkin_notes: this.lateCheckinNotes,
                         early_checkout_notes: this.earlyCheckoutNotes,
                     });
 
                     console.log(response.data);
-                    console.log('sukses')
+                    console.log('sukses input data');
+                    localStorage.removeItem('checkInTime');
+                    this.checkIn = '';
+                    console.log('reset data checkIn')
                 } catch (error) {
                     console.error(error);
-                    console.log('error')
+                    console.log('error');
                     // Handle error, e.g., show an error message
                 }
             },
@@ -336,8 +363,12 @@
                 this.updateCheckIn();
             }, 1000);
             this.updateDateAttendance();
+            const savedCheckInTime = localStorage.getItem('checkInTime');
+            if (savedCheckInTime) {
+                this.checkIn = savedCheckInTime;
+            }
         },
-        }
+    }
 
 
     window.addEventListener("load", () => {
