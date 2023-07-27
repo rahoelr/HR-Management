@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="row justify-content-end" style="padding-right: 20px;">
+                <div class="row justify-content-end" style="padding-right: 3%;">
                     <!-- Page Heading -->
                     <button type="button" class="btn custom-btn2 rounded-pill font-weight-bold"
                         data-target="#quoteForm" data-toggle="modal"
@@ -217,6 +217,7 @@
                         <form @submit.prevent="submitUpdate(timesheet.id)">
                             <div v-for="timesheet in timesheetData"  :key="timesheetData.id">
                                 <div class="row" style="color: #455A64;">
+                                    <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
@@ -226,6 +227,7 @@
                                             :value="data.id">
                                             {{ data . project_name }}</option>
                                     </select>
+                                </div>
                                     <!-- <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
@@ -555,29 +557,6 @@
                     this.resetForm();
                 });
 
-            },
-            submitForms() {
-                const formData = {
-                    ms_employee_id: this.ms_employee_id,
-                    ms_project_id: this.ms_project_id,
-                    work_date: this.work_date,
-                    workhour_start: this.workhour_start,
-                    workhour_end: this.workhour_end,
-                    work_location: this.work_location,
-                    task: this.task,
-                    completed_task: this.completed_task,
-                    todo_task: this.todo_task,
-                };
-
-                axios.post('http://127.0.0.1:8000/api/timesheet/store', formData)
-                    .then(response => {
-                        // Handle successful response
-                        console.log(response.data);
-                    })
-                    .catch(error => {
-                        // Handle error
-                        console.error(error);
-                    });
             },
             resetForm() {
                 // Reset the form data properties

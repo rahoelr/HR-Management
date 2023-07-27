@@ -486,9 +486,9 @@
                                 <img class="img-profile rounded-circle mx-2" src="Foto PP.png" alt="profile-photo">
                                 
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                Feby Eka Pradiyanto
+                                    {{ Auth::user()->name }}
                                 <br>
-                                UI/UX Desainer
+                                
                                 </span>
                             </a>
                             <!-- Dropdown - User Information -->
