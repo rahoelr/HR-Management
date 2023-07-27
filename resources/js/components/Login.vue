@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="img-logo">
-                    <img src="logo_floo.png" alt="logo" id="floo-logo">
+                    <img src="img/login&sidebar/logo_floo.png" alt="logo" id="floo-logo">
                 </div>
             </div>
             <div class="col-md-6">
