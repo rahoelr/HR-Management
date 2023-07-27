@@ -435,7 +435,7 @@
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="https://floo.co.id/">
                 <!-- <div class="sidebar-brand-text mx-3">Floo Id</div> -->
                 <div class="sidebar-brand-icon">
-                    <img src="logo_floo.png" width="90" height ="67" alt="logo"/>
+                    <img src="img/login&sidebar/logo_floo.png" width="90" height ="67" alt="logo"/>
                 </div>
             </a>
 
@@ -483,7 +483,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 
-                                <img class="img-profile rounded-circle mx-2" src="Foto PP.png" alt="profile-photo">
+                                <img class="img-profile rounded-circle mx-2" src="img/login&sidebar/Foto PP.png" alt="profile-photo">
                                 
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                     {{ Auth::user()->name }}

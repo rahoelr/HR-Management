@@ -60,16 +60,16 @@
                         </td>
                         <td><center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
                                 role="button" data-target="#editForm" data-toggle="modal">
-                                <img src="edit-icon.png" /></button></center></td>
+                                <img src="img/timesheet/edit-icon.png" /></button></center></td>
                         <!-- <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
                                 data-toggle="modal">
                                 <img src="delete-icon.png" /></button></td> -->
                         <td><center><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
                                 role="button">
-                                <img src="delete-icon.png" /></button></center></td>
+                                <img src="img/timesheet/delete-icon.png" /></button></center></td>
                         <td><center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
                                 role="button" data-target="#viewForm" data-toggle="modal">
-                                <img src="eye-icon.png" /></button></center></td>
+                                <img src="img/timesheet/eye-icon.png" /></button></center></td>
 
                     </tr>
 

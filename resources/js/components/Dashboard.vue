@@ -42,10 +42,10 @@
                                 </button> -->
 
                                 <button id="btn" @onclick="getClock" class="btn mx-1" href="#!" title="stop-btn" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
-                                        <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange" alt="img-btn-stop"/>
+                                        <img src="img/dashboard/presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange" alt="img-btn-stop"/>
                                 </button>
                                 <button id="btn2" @onclick="getClock" class="btn mx-1" href="#!" title="start-btn" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
-                                        <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2" alt="img-btn-start"/>
+                                        <img src="img/dashboard/shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2" alt="img-btn-start"/>
                                 </button>
                                 <!-- tes date demo -->
                                 <p id="letGet"></p>
@@ -72,7 +72,7 @@
                                         <button type="button"> <img src="Foto PP.png" height ="64" width="64" /></button>
                                     </a> -->
                                 <a class="btn" style="background-color: #D9EEE9; padding: 8px 8px; border-radius: 24%;" href="#!" role="button">
-                                    <img src="profil-icon.svg" height ="48" width="48" alt="profil-icon"/>
+                                    <img src="img/dashboard/profil-icon.svg" height ="48" width="48" alt="profil-icon"/>
                                 </a>
                             </div>
                                 <div class="col-md-9">
@@ -110,7 +110,7 @@
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
                                 <a class="btn" style="background-color: #DFE5FB; padding: 8px 8px; border-radius: 24%;" href="/timesheet" role="button">
-                                    <img src="timesheet-icon.svg" height ="48" width="48" alt="timesheet-icon" />
+                                    <img src="img/dashboard/timesheet-icon.svg" height ="48" width="48" alt="timesheet-icon" />
                                 </a>
                             </div>
                             <div class="col-md-9">
@@ -129,7 +129,7 @@
                         <div class="row">
                             <div class="col-md-3 my-auto mx-auto">
                                 <a class="btn" style="background-color: #FBE8EA; padding: 8px 8px; border-radius: 24%;" href="#!" role="button">
-                                    <img src="cuti-icon.svg" height ="48" width="48" alt="cuti-icon"/>
+                                    <img src="img/dashboard/cuti-icon.svg" height ="48" width="48" alt="cuti-icon"/>
                                 </a>
                             </div>
                             <div class="col-md-9">
@@ -178,16 +178,16 @@
                 btn.addEventListener('click', function onClick(event) {
                 const box = document.getElementById('box');
 
-                if (document.getElementById("imgClickAndChange").src == "presensi-icon-before.svg"){
-                    document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+                if (document.getElementById("imgClickAndChange").src == "img/dashboard/presensi-icon-before.svg"){
+                    document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-after.svg";
 
                 } else {
                     btn.style.backgroundColor = "white";
                     btn.style.border = "4px solid #E37C77";
-                    document.getElementById("imgClickAndChange").src = "presensi-icon-before.svg";
+                    document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-before.svg";
 
                     btn2.style.backgroundColor = "#64B58A";
-                    document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+                    document.getElementById("imgClickAndChange2").src = "img/dashboard/shutdown-icon-before.svg";
                 
                 }
 
@@ -206,16 +206,16 @@
                 btn2.addEventListener('click', function onClick(event) {
                 const box = document.getElementById('box');
 
-                if (document.getElementById("imgClickAndChange2").src == "shutdown-icon-after.svg"){
-                    document.getElementById("imgClickAndChange2").src = "shutdown-icon-before.svg";
+                if (document.getElementById("imgClickAndChange2").src == "img/dashboard/shutdown-icon-after.svg"){
+                    document.getElementById("imgClickAndChange2").src = "img/dashboard/shutdown-icon-before.svg";
 
                 } else {
                     btn2.style.backgroundColor = 'white';
-                    document.getElementById("imgClickAndChange2").src = "shutdown-icon-after.svg";
+                    document.getElementById("imgClickAndChange2").src = "img/dashboard/shutdown-icon-after.svg";
 
                     btn.style.backgroundColor = "#E37C77";
                     btn.style.border = "4px solid white"
-                    document.getElementById("imgClickAndChange").src = "presensi-icon-after.svg";
+                    document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-after.svg";
                 }
 
                 box.style.backgroundColor = '#E37C77';
