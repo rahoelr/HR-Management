@@ -22279,91 +22279,74 @@ __webpack_require__.r(__webpack_exports__);
     }
   }
 });
+window.addEventListener("load", function () {
+  clock();
+  function clock() {
+    var today = new Date();
 
-// window.addEventListener("load", () => {
-// clock();
-// function clock() {
-//     const today = new Date();
+    // get time components
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
+    var seconds = today.getSeconds();
 
-//     // get time components
-//     const hours = today.getHours();
-//     const minutes = today.getMinutes();
-//     const seconds = today.getSeconds();
+    //add '0' to hour, minute & second when they are less 10
+    // const hour = hours < 10 ? "0" + hours : hours;
+    // const minute = minutes < 10 ? "0" + minutes : minutes;
+    // const second = seconds < 10 ? "0" + seconds : seconds;
 
-//     //add '0' to hour, minute & second when they are less 10
-//     const hour = hours < 10 ? "0" + hours : hours;
-//     const minute = minutes < 10 ? "0" + minutes : minutes;
-//     const second = seconds < 10 ? "0" + seconds : seconds;
+    hours = hours < 10 ? "0" + hours : hours;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-//     //make clock a 12-hour time clock
-//     const hourTime = hour > 12 ? hour - 12 : hour;
+    //make clock a 12-hour time clock
+    // let hourTime = hour > 12 ? hour - 12 : hour;
 
-//     // if (hour === 0) {
-//     //   hour = 12;
-//     // }
-//     //assigning 'am' or 'pm' to indicate time of the day
-//     // const ampm = hour < 12 ? "AM" : "PM";
+    // let currentTime =
+    //     hour +
+    //     ":" +
+    //     minute +
+    //     ":" +
+    //     second;
 
-//     // get date components
-//     const month = today.getMonth();
-//     const year = today.getFullYear();
-//     const day = today.getDate();
-//     const days = today.getDay();
+    // if (hour === 0) {
+    //   hour = 12;
+    // }
+    //assigning 'am' or 'pm' to indicate time of the day
+    // const ampm = hour < 12 ? "AM" : "PM";
 
-//     //declaring a list of all months in  a year
-//     const monthList = [
-//     "Januari",
-//     "Februari",
-//     "Maret",
-//     "April",
-//     "Mei",
-//     "Juni",
-//     "Juli",
-//     "Agustus",
-//     "September",
-//     "Oktober",
-//     "November",
-//     "Desember"
-//     ];
+    // get date components
+    var month = today.getMonth();
+    var year = today.getFullYear();
+    var day = today.getDate();
+    var days = today.getDay();
 
-//     const dayList = [
-//     "Minggu",
-//     "Senin",
-//     "Selasa",
-//     "Rabu",
-//     "Kamis",
-//     "Jumat",
-//     "Sabtu"
-//     ];
+    //declaring a list of all months in  a year
+    var monthList = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    var dayList = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
 
-//     //get current date and time
-//     const date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
-//     const time = hourTime + ":" + minute + ":" + second;
+    //get current date and time
+    var date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
+    // let time = hourTime + ":" + minute + ":" + second;
+    var time = hours + ":" + minutes + ":" + seconds;
 
-//     //combine current date and time
-//     // const dateTime = date + time;
+    //combine current date and time
+    // const dateTime = date + time;
 
-//     //print current date and time to the DOM
-//     // document.getElementById("date-time").innerHTML = dateTime;
-//     // setTimeout(clock, 1000);
+    //print current date and time to the DOM
+    // document.getElementById("date-time").innerHTML = dateTime;
+    // setTimeout(clock, 1000);
 
-//     // document.getElementById("date").innerHTML = date;
-//     // setTimeout(clock, 1000);
+    // document.getElementById("date").innerHTML = date;
+    // setTimeout(clock, 1000);
 
-//     document.getElementById("time").innerHTML = time;
-//     setTimeout(clock, 1000);
-
-//     document.getElementById("date").innerHTML = date;
-//     setTimeout(clock, 1000);
-
-//     setInterval(clock, 1000);
-//     // clock();
-//     // clearInterval(timeInt); // Here
-//     // timeInt = setInterval(clock,1000);
-//     // console.log('updated time from server')
-// }
-// });
-
+    document.getElementById("time").innerHTML = time;
+    document.getElementById("date").innerHTML = date;
+    time.toLocaleString('en-US', {
+      hour12: false
+    });
+  }
+  setInterval(clock, 1000);
+});
 getClock();
 function getClock() {
   var now = new Date();
@@ -22778,7 +22761,7 @@ var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", {
   "class": "col-md-9 card-text my-auto",
   id: "date"
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div id=\"clock\">8:10:45</div> ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-md-2 my-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   id: "btn",

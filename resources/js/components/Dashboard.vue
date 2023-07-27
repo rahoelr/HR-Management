@@ -28,7 +28,10 @@
                                     <h6 class="col-md-9 card-text my-auto" id="date">
                                     </h6>
                                                                                    
-                                </div>                                   
+                                </div>
+                                
+                                <!-- <div id="clock">8:10:45</div> -->
+
                             </div>
                             <div class="col-md-2 my-auto">
                                 <!-- <button id="btn" onclick="getElementById('demo').innerHTML=Date()" class="btn mx-1 non-active" style="border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;" href="#!" role="button">
@@ -165,8 +168,6 @@
 
     export default {
 
-
-            
         mounted() {
             console.log('Component mounted.')
 
@@ -192,7 +193,6 @@
 
                 box.style.backgroundColor = 'white';
                 box.style.color = 'black';
-
 
                 });
                 
@@ -243,91 +243,97 @@
     }
 
 
-    // window.addEventListener("load", () => {
-    // clock();
-    // function clock() {
-    //     const today = new Date();
+    window.addEventListener("load", () => {
+    clock();
+    function clock() {
+        let today = new Date();
 
-    //     // get time components
-    //     const hours = today.getHours();
-    //     const minutes = today.getMinutes();
-    //     const seconds = today.getSeconds();
+        // get time components
+        let hours = today.getHours();
+        let minutes = today.getMinutes();
+        let seconds = today.getSeconds();
 
-    //     //add '0' to hour, minute & second when they are less 10
-    //     const hour = hours < 10 ? "0" + hours : hours;
-    //     const minute = minutes < 10 ? "0" + minutes : minutes;
-    //     const second = seconds < 10 ? "0" + seconds : seconds;
+        //add '0' to hour, minute & second when they are less 10
+        // const hour = hours < 10 ? "0" + hours : hours;
+        // const minute = minutes < 10 ? "0" + minutes : minutes;
+        // const second = seconds < 10 ? "0" + seconds : seconds;
 
-    //     //make clock a 12-hour time clock
-    //     const hourTime = hour > 12 ? hour - 12 : hour;
+        hours = hours < 10 ? "0" + hours : hours;
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
 
-    //     // if (hour === 0) {
-    //     //   hour = 12;
-    //     // }
-    //     //assigning 'am' or 'pm' to indicate time of the day
-    //     // const ampm = hour < 12 ? "AM" : "PM";
+        //make clock a 12-hour time clock
+        // let hourTime = hour > 12 ? hour - 12 : hour;
 
-    //     // get date components
-    //     const month = today.getMonth();
-    //     const year = today.getFullYear();
-    //     const day = today.getDate();
-    //     const days = today.getDay();
+        // let currentTime =
+        //     hour +
+        //     ":" +
+        //     minute +
+        //     ":" +
+        //     second;
 
-    //     //declaring a list of all months in  a year
-    //     const monthList = [
-    //     "Januari",
-    //     "Februari",
-    //     "Maret",
-    //     "April",
-    //     "Mei",
-    //     "Juni",
-    //     "Juli",
-    //     "Agustus",
-    //     "September",
-    //     "Oktober",
-    //     "November",
-    //     "Desember"
-    //     ];
+        // if (hour === 0) {
+        //   hour = 12;
+        // }
+        //assigning 'am' or 'pm' to indicate time of the day
+        // const ampm = hour < 12 ? "AM" : "PM";
 
-    //     const dayList = [
-    //     "Minggu",
-    //     "Senin",
-    //     "Selasa",
-    //     "Rabu",
-    //     "Kamis",
-    //     "Jumat",
-    //     "Sabtu"
-    //     ];
+        // get date components
+        let month = today.getMonth();
+        let year = today.getFullYear();
+        let day = today.getDate();
+        let days = today.getDay();
 
-    //     //get current date and time
-    //     const date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
-    //     const time = hourTime + ":" + minute + ":" + second;
+        //declaring a list of all months in  a year
+        let monthList = [
+        "Januari",
+        "Februari",
+        "Maret",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Agustus",
+        "September",
+        "Oktober",
+        "November",
+        "Desember"
+        ];
 
-    //     //combine current date and time
-    //     // const dateTime = date + time;
+        let dayList = [
+        "Minggu",
+        "Senin",
+        "Selasa",
+        "Rabu",
+        "Kamis",
+        "Jumat",
+        "Sabtu"
+        ];
 
-    //     //print current date and time to the DOM
-    //     // document.getElementById("date-time").innerHTML = dateTime;
-    //     // setTimeout(clock, 1000);
+        //get current date and time
+        let date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
+        // let time = hourTime + ":" + minute + ":" + second;
+        let time = hours + ":" + minutes + ":" + seconds;
 
-    //     // document.getElementById("date").innerHTML = date;
-    //     // setTimeout(clock, 1000);
+        //combine current date and time
+        // const dateTime = date + time;
 
-    //     document.getElementById("time").innerHTML = time;
-    //     setTimeout(clock, 1000);
+        //print current date and time to the DOM
+        // document.getElementById("date-time").innerHTML = dateTime;
+        // setTimeout(clock, 1000);
 
-    //     document.getElementById("date").innerHTML = date;
-    //     setTimeout(clock, 1000);
+        // document.getElementById("date").innerHTML = date;
+        // setTimeout(clock, 1000);
 
-    //     setInterval(clock, 1000);
-    //     // clock();
-    //     // clearInterval(timeInt); // Here
-    //     // timeInt = setInterval(clock,1000);
-    //     // console.log('updated time from server')
-    // }
-    // });
+        document.getElementById("time").innerHTML = time;
+        document.getElementById("date").innerHTML = date;
+        time.toLocaleString('en-US', {hour12: false,});
+        
+    }
+    setInterval(clock, 1000);
+    });
 
-   
+    
 
     getClock();
     function getClock() {
