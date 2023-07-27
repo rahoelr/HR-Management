@@ -337,7 +337,7 @@
             }, 1000);
             this.updateDateAttendance();
         },
-    }
+        }
 
 
     window.addEventListener("load", () => {
