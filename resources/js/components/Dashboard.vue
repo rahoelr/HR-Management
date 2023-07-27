@@ -363,8 +363,8 @@
 
         // document.write(hoursAndMinutes);
 
-        document.write(hoursAndMinutes);
-    }
+        
+    
     
     
 

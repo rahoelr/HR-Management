@@ -217,6 +217,15 @@
                         <form @submit.prevent="submitUpdate(timesheet.id)">
                             <div v-for="timesheet in timesheetData"  :key="timesheetData.id">
                                 <div class="row" style="color: #455A64;">
+                                    <label class="font-weight-bold text-small" for="project">Project<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <select class="form-select" aria-label="Default select example"
+                                        v-model="selectedProjectId" placeholder="Pilih Project">
+                                        <option value="" selected disabled hidden>Pilih Project</option>
+                                        <option v-for="(data, index) in this.projects" :key="index"
+                                            :value="data.id">
+                                            {{ data . project_name }}</option>
+                                    </select>
                                     <!-- <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
@@ -226,16 +235,28 @@
                                             :value="timesheet.id">
                                             {{ timesheet . project_name }}</option>
                                     </select> -->
-                                <div class="form-group col-lg-12">
+                                <!-- <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
                                             <input  v-model="selectedProjectId" class="form-control" id="projectId" type="text" placeholder/>
-                                </div>
+                                </div> -->
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="selectedEmployeeId" class="form-control" id="employeeId" type="text" >
+                                    <select class="form-select" aria-label="Default select example"
+                                        v-model="selectedEmployeeId">
+                                        <option value="" selected disabled hidden>Pilih Employee</option>
+                                        <option v-for="(data, index) in this.employees" :key="index"
+                                            :value="data.user_id">
+                                            {{ data . full_name }}</option>
+                                    </select>
+                                    <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
                                 </div>
+                                <!-- <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="project">Employee ID<span
+                                            class="text-primary ml-1">*</span></label>
+                                            <input v-model="selectedEmployeeId" class="form-control" id="employeeId" type="text" >
+                                </div> -->
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
