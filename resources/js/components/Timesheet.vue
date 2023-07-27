@@ -241,7 +241,7 @@
                                             <input  v-model="selectedProjectId" class="form-control" id="projectId" type="text" placeholder/>
                                 </div> -->
                                 <div class="form-group col-lg-12">
-                                    <label class="font-weight-bold text-small" for="project">Employee ID<span
+                                    <label class="font-weight-bold text-small" for="project">Employee <span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
                                         v-model="selectedEmployeeId">

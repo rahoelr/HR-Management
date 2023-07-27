@@ -41,10 +41,10 @@
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange" onclick="changeImage()"/>
                                 </button> -->
 
-                                <button id="btn" onclick="" class="btn mx-1" href="#!" title="stop-btn" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
+                                <button id="btn" @onclick="getClock" class="btn mx-1" href="#!" title="stop-btn" style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
                                         <img src="presensi-icon-before.svg" height ="32" width="32" id="imgClickAndChange" alt="img-btn-stop"/>
                                 </button>
-                                <button id="btn2" onclick="" class="btn mx-1" href="#!" title="start-btn" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
+                                <button id="btn2" @onclick="getClock" class="btn mx-1" href="#!" title="start-btn" style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
                                         <img src="shutdown-icon-before.svg" height ="32" width="32" id="imgClickAndChange2" alt="img-btn-start"/>
                                 </button>
                                 <!-- tes date demo -->
