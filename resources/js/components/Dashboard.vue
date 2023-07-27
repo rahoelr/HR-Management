@@ -260,7 +260,7 @@
                     // Handle error, e.g., show an error message
                 }
 
-            }
+            },
         }
     }
 
