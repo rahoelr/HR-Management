@@ -10,13 +10,40 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+ 
 .custom-btn2 {
   background-color: #64B58A !important;
   /* Custom background color with !important */
   color: white !important;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 .table .thead-green th {
   color: #fff;
   background-color: #64B58A;
 }
+
+/* @media (min-width: 576px) {
+  .col-md-6 {
+    max-width: 540px;
+  }
+}
+
+@media (min-width: 768px) {
+  .col-md-6 {
+    max-width: 720px;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-6 {
+    max-width: 960px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-md-6 {
+    max-width: 1140px;
+  }
+} */
