@@ -22227,20 +22227,25 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['user'],
   data: function data() {
     return {
       employeeId: '1',
-      attendanceDate: this.getDate(),
-      checkIn: this.getClock(),
-      checkOut: this.getDate(),
+      attendanceDate: '',
+      checkIn: '',
+      checkOut: '',
       lateCheckinNotes: '',
       earlyCheckoutNotes: ''
     };
   },
   mounted: function mounted() {
-    this.getDate();
-    this.getClock();
-    console.log('Component mounted.');
+    var _this = this;
+    var savedCheckInTime = localStorage.getItem('checkInTime');
+    console.log(savedCheckInTime);
+    this.updateCheckIn();
+    setInterval(function () {
+      _this.updateCheckIn();
+    }, 1000);
     if (box.style.backgroundColor = '#E37C77') {
       var btn = document.getElementById('btn');
       var btn2 = document.getElementById('btn2');
@@ -22279,49 +22284,170 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         box.style.color = 'white';
       });
     }
+    ;
+    try {
+      this.user = JSON.parse(localStorage.getItem('note'));
+    } catch (e) {
+      this.user = [];
+    }
   },
   methods: {
-    updateClockAndDate: function updateClockAndDate() {
-      // Update the attendanceDate using the getDate() function
-      this.attendanceDate = this.getDate();
-
-      // Update the checkIn using the getClock() function
-      this.checkIn = this.getClock();
-    },
-    submitAttendance: function submitAttendance() {
-      var _this = this;
+    saveCheckInTime: function saveCheckInTime() {
+      var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response;
+        var dateTime;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
               _context.prev = 0;
               _context.next = 3;
-              return axios.post('http://127.0.0.1:8000/api/attendance/store', {
-                ms_employee_id: _this.employeeId,
-                attendance_date: _this.attendanceDate,
-                check_in: _this.checkIn,
-                check_out: _this.checkOut,
-                late_checkin_notes: _this.lateCheckinNotes,
-                early_checkout_notes: _this.earlyCheckoutNotes
-              });
+              return _this2.getDate();
             case 3:
-              response = _context.sent;
-              console.log(response.data);
-              console.log('sukses');
-              _context.next = 12;
+              _context.t0 = _context.sent;
+              _context.t1 = _context.t0 + ' ';
+              _context.t2 = _this2.getClock();
+              dateTime = _context.t1 + _context.t2;
+              // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+              _this2.checkIn = dateTime;
+              localStorage.setItem('checkInTime', dateTime);
+              console.log("data check-in sementara: ", localStorage.getItem('checkInTime'));
+              _context.next = 15;
               break;
-            case 8:
-              _context.prev = 8;
-              _context.t0 = _context["catch"](0);
-              console.error(_context.t0);
-              console.log('error');
-              // Handle error, e.g., show an error message
             case 12:
+              _context.prev = 12;
+              _context.t3 = _context["catch"](0);
+              console.error(_context.t3); // Tangani jika terjadi kesalahan dalam Promise
+            case 15:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 8]]);
+        }, _callee, null, [[0, 12]]);
+      }))();
+    },
+    getClock: function getClock() {
+      var now = new Date();
+      var hours = String(now.getHours()).padStart(2, '0');
+      var minutes = String(now.getMinutes()).padStart(2, '0');
+      var seconds = String(now.getSeconds()).padStart(2, '0');
+      var jam = "".concat(hours, ":").concat(minutes, ":").concat(seconds);
+      return jam;
+    },
+    updateCheckIn: function updateCheckIn() {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var result;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return _this3.getDate();
+            case 3:
+              _context2.t0 = _context2.sent;
+              _context2.t1 = _context2.t0 + ' ';
+              _context2.t2 = _this3.getClock();
+              result = _context2.t1 + _context2.t2;
+              // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+              _this3.checkIn = result;
+              _this3.checkOut = result; // Mengupdate nilai checkIn dengan hasil waktu
+              _context2.next = 14;
+              break;
+            case 11:
+              _context2.prev = 11;
+              _context2.t3 = _context2["catch"](0);
+              console.error(_context2.t3); // Tangani jika terjadi kesalahan dalam Promise
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 11]]);
+      }))();
+    },
+    getDate: function getDate() {
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+
+      // This arrangement can be altered based on how we want the date's format to appear.
+      var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
+      return currentDate;
+    },
+    updateDateAttendance: function updateDateAttendance() {
+      var _this4 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var result;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return _this4.getDate();
+            case 3:
+              result = _context3.sent;
+              // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+              _this4.attendanceDate = result; // Mengupdate nilai checkIn dengan hasil waktu
+              _context3.next = 10;
+              break;
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3["catch"](0);
+              console.error(_context3.t0); // Tangani jika terjadi kesalahan dalam Promise
+            case 10:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3, null, [[0, 7]]);
+      }))();
+    },
+    submitAttendance: function submitAttendance() {
+      var _this5 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var savedCheckInTime, response;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              // Ambil data checkIn dari LocalStorage
+              savedCheckInTime = localStorage.getItem('checkInTime'); // Pastikan data checkIn sudah ada sebelum melakukan posting data
+              if (savedCheckInTime) {
+                _context4.next = 5;
+                break;
+              }
+              console.log('Data check-in belum ada, lakukan check-in terlebih dahulu');
+              alert('Data check-in belum ada, lakukan check-in terlebih dahulu');
+              return _context4.abrupt("return");
+            case 5:
+              _context4.prev = 5;
+              _context4.next = 8;
+              return axios.post('http://127.0.0.1:8000/api/attendance/store', {
+                ms_employee_id: _this5.employeeId,
+                attendance_date: _this5.attendanceDate,
+                check_in: savedCheckInTime,
+                // Gunakan data checkIn dari LocalStorage
+                check_out: _this5.checkOut,
+                late_checkin_notes: _this5.lateCheckinNotes,
+                early_checkout_notes: _this5.earlyCheckoutNotes
+              });
+            case 8:
+              response = _context4.sent;
+              console.log(response.data);
+              console.log('sukses input data');
+              localStorage.removeItem('checkInTime');
+              _this5.checkIn = '';
+              console.log('reset data checkIn');
+              _context4.next = 20;
+              break;
+            case 16:
+              _context4.prev = 16;
+              _context4.t0 = _context4["catch"](5);
+              console.error(_context4.t0);
+              console.log('error');
+              // Handle error, e.g., show an error message
+            case 20:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4, null, [[5, 16]]);
       }))();
     },
     logout: function logout() {
@@ -22335,84 +22461,20 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // Handle the error
         console.error(error);
       });
-    },
-    submitCheckLog: function submitCheckLog() {
-      var _this2 = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var response;
-        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-          while (1) switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              _context2.next = 3;
-              return axios.post('http://127.0.0.1:8000/api/attendance/store', {
-                ms_employee_id: _this2.selectedEmployeeId,
-                attendance_date: _this2.selectedAttendanceDate,
-                check_in: _this2.check_in,
-                check_out: _this2.check_out
-                // More data properties
-              });
-            case 3:
-              response = _context2.sent;
-              console.log(response.data);
-              console.log('sukses');
-              window.location.href = '/dashboard';
-              // this.getTimesheet();
-              // Handle success, e.g., show a success message or redirect
-              _context2.next = 13;
-              break;
-            case 9:
-              _context2.prev = 9;
-              _context2.t0 = _context2["catch"](0);
-              console.error(_context2.t0);
-              console.log('error');
-              // Handle error, e.g., show an error message
-            case 13:
-            case "end":
-              return _context2.stop();
-          }
-        }, _callee2, null, [[0, 9]]);
-      }))();
-    },
-    getClock: function getClock() {
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-        var now, hoursAndMinutes;
-        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-          while (1) switch (_context3.prev = _context3.next) {
-            case 0:
-              now = new Date();
-              hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-              console.log(hoursAndMinutes);
-              return _context3.abrupt("return", hoursAndMinutes);
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }, _callee3);
-      }))();
-    },
-    getDate: function getDate() {
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
-        var date, day, month, year, currentDate;
-        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
-          while (1) switch (_context4.prev = _context4.next) {
-            case 0:
-              date = new Date();
-              day = date.getDate();
-              month = date.getMonth() + 1;
-              year = date.getFullYear(); // This arrangement can be altered based on how we want the date's format to appear.
-              currentDate = "".concat(year, "-").concat(month, "-").concat(day); // console.log(currentDate) ; 
-              return _context4.abrupt("return", currentDate);
-            case 6:
-            case "end":
-              return _context4.stop();
-          }
-        }, _callee4);
-      }))();
-    } // document.write(hoursAndMinutes);
+    }
   },
   created: function created() {
-    setInterval(this.updateClockAndDate, 1000);
+    var _this6 = this;
+    this.interval = setInterval(function () {
+      _this6.updateCheckIn();
+    }, 1000);
+    this.updateDateAttendance();
+    var savedCheckInTime = localStorage.getItem('checkInTime');
+    if (savedCheckInTime) {
+      this.checkIn = savedCheckInTime;
+    }
+    console.log("data user");
+    console.log(this.user);
   }
 });
 window.addEventListener("load", function () {
@@ -22853,38 +22915,29 @@ var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVN
 var _hoisted_9 = {
   "class": "col-md-2 my-auto"
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  id: "btn",
-  "class": "btn mx-1",
-  href: "#!",
-  title: "stop-btn",
-  style: {
-    "border": "4px solid #E37C77",
-    "border-radius": "24%",
-    "padding": "5px 5px"
-  }
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "img/dashboard/presensi-icon-before.svg",
   height: "32",
   width: "32",
   id: "imgClickAndChange",
   alt: "img-btn-stop"
-})], -1 /* HOISTED */);
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+}, null, -1 /* HOISTED */);
+var _hoisted_11 = [_hoisted_10];
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
   src: "img/dashboard/shutdown-icon-before.svg",
   height: "32",
   width: "32",
   id: "imgClickAndChange2",
   alt: "img-btn-start"
 }, null, -1 /* HOISTED */);
-var _hoisted_12 = [_hoisted_11];
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_13 = [_hoisted_12];
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   id: "letGet"
 }, null, -1 /* HOISTED */);
-var _hoisted_14 = {
+var _hoisted_15 = {
   "class": "row"
 };
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-success shadow h-100 py-2"
@@ -22917,7 +22970,7 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Feby Eka Pradiyanto"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text my-0"
 }, "UI/UX Designer")])])])])], -1 /* HOISTED */);
-var _hoisted_16 = {
+var _hoisted_17 = {
   "class": "modal fade",
   id: "logoutModal",
   tabindex: "-1",
@@ -22925,23 +22978,23 @@ var _hoisted_16 = {
   "aria-labelledby": "exampleModalLabel",
   "aria-hidden": "true"
 };
-var _hoisted_17 = {
+var _hoisted_18 = {
   "class": "modal-dialog",
   role: "document"
 };
-var _hoisted_18 = {
+var _hoisted_19 = {
   "class": "modal-content"
 };
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
-var _hoisted_21 = {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
+var _hoisted_22 = {
   "class": "modal-footer"
 };
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-secondary",
   type: "button",
   "data-dismiss": "modal"
 }, "Cancel", -1 /* HOISTED */);
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-primary shadow h-100 py-2"
@@ -22972,7 +23025,7 @@ var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Timesheet"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text"
 }, "Lorem ipsum dolor sit amet, consectur")])])])])], -1 /* HOISTED */);
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-danger shadow h-100 py-2"
@@ -23003,12 +23056,25 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Pengajuan Cuti"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text"
 }, "Cuti anda tersisa 12 Hari")])])])])], -1 /* HOISTED */);
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    id: "btn2",
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    id: "btn",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.submitAttendance && $options.submitAttendance.apply($options, arguments);
+    }),
+    "class": "btn mx-1",
+    href: "#!",
+    title: "stop-btn",
+    style: {
+      "border": "4px solid #E37C77",
+      "border-radius": "24%",
+      "padding": "5px 5px"
+    }
+  }, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    id: "btn2",
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.saveCheckInTime && $options.saveCheckInTime.apply($options, arguments);
     }),
     "class": "btn mx-1",
     href: "#!",
@@ -23018,12 +23084,12 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "border-radius": "24%",
       "padding": "8px 8px"
     }
-  }, _hoisted_12), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [_hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "btn btn-danger",
-    onClick: _cache[1] || (_cache[1] = function () {
+    onClick: _cache[2] || (_cache[2] = function () {
       return $options.logout && $options.logout.apply($options, arguments);
     })
-  }, "Logout")])])])]), _hoisted_23, _hoisted_24]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_25, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+  }, "Logout")])])])]), _hoisted_24, _hoisted_25]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
 /***/ }),
@@ -46455,21 +46521,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=template&id=040e2ab9 */ "./resources/js/components/Dashboard.vue?vue&type=template&id=040e2ab9");
 /* harmony import */ var _Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Dashboard.vue?vue&type=script&lang=js */ "./resources/js/components/Dashboard.vue?vue&type=script&lang=js");
-<<<<<<< HEAD
-/* harmony import */ var D_Praktik_Industri_2023_REV_19_7_23_v11_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-=======
-/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
->>>>>>> 8a59e998df36c440e270ff592978298e86d763b3
+/* harmony import */ var E_Floo_intern_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-<<<<<<< HEAD
-const __exports__ = /*#__PURE__*/(0,D_Praktik_Industri_2023_REV_19_7_23_v11_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
-=======
-const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
->>>>>>> 8a59e998df36c440e270ff592978298e86d763b3
+const __exports__ = /*#__PURE__*/(0,E_Floo_intern_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Dashboard_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Dashboard_vue_vue_type_template_id_040e2ab9__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Dashboard.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -46492,11 +46550,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Login.vue?vue&type=template&id=6bdc8b8e */ "./resources/js/components/Login.vue?vue&type=template&id=6bdc8b8e");
 /* harmony import */ var _Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Login.vue?vue&type=script&lang=js */ "./resources/js/components/Login.vue?vue&type=script&lang=js");
 /* harmony import */ var _Login_vue_vue_type_style_index_0_id_6bdc8b8e_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.vue?vue&type=style&index=0&id=6bdc8b8e&lang=css */ "./resources/js/components/Login.vue?vue&type=style&index=0&id=6bdc8b8e&lang=css");
-<<<<<<< HEAD
-/* harmony import */ var D_Praktik_Industri_2023_REV_19_7_23_v11_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-=======
-/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
->>>>>>> 8a59e998df36c440e270ff592978298e86d763b3
+/* harmony import */ var E_Floo_intern_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
@@ -46504,11 +46558,7 @@ __webpack_require__.r(__webpack_exports__);
 ;
 
 
-<<<<<<< HEAD
-const __exports__ = /*#__PURE__*/(0,D_Praktik_Industri_2023_REV_19_7_23_v11_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
-=======
-const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
->>>>>>> 8a59e998df36c440e270ff592978298e86d763b3
+const __exports__ = /*#__PURE__*/(0,E_Floo_intern_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__["default"])(_Login_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Login_vue_vue_type_template_id_6bdc8b8e__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Login.vue"]])
 /* hot reload */
 if (false) {}
 
@@ -46530,21 +46580,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Timesheet.vue?vue&type=template&id=e17c7852 */ "./resources/js/components/Timesheet.vue?vue&type=template&id=e17c7852");
 /* harmony import */ var _Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Timesheet.vue?vue&type=script&lang=js */ "./resources/js/components/Timesheet.vue?vue&type=script&lang=js");
-<<<<<<< HEAD
-/* harmony import */ var D_Praktik_Industri_2023_REV_19_7_23_v11_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
-=======
-/* harmony import */ var E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
->>>>>>> 8a59e998df36c440e270ff592978298e86d763b3
+/* harmony import */ var E_Floo_intern_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
 
 
 
 
 ;
-<<<<<<< HEAD
-const __exports__ = /*#__PURE__*/(0,D_Praktik_Industri_2023_REV_19_7_23_v11_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
-=======
-const __exports__ = /*#__PURE__*/(0,E_intern_floo_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
->>>>>>> 8a59e998df36c440e270ff592978298e86d763b3
+const __exports__ = /*#__PURE__*/(0,E_Floo_intern_HR_Management_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_Timesheet_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_Timesheet_vue_vue_type_template_id_e17c7852__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/Timesheet.vue"]])
 /* hot reload */
 if (false) {}
 

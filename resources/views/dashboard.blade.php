@@ -38,7 +38,11 @@
 @section('content')
     <div id="app">
         <div>
-            <dashboard />
+        @if (Auth::check())
+            <dashboard :user="{{Auth::user()}}" ></dashboard>
+        @else
+            <dashboard :user="false" ></dashboard>
+        @endif 
             <?php
             use Illuminate\Support\Facades\Auth;
             $UserId = Auth::id();

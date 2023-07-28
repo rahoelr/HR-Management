@@ -183,6 +183,7 @@
 
 <script>
     export default {
+        props:['user'],
         data() {
             return {
                 employeeId: '1',
@@ -261,6 +262,11 @@
                     box.style.color = 'white';
                 });
 
+            };
+            try {
+                this.user = JSON.parse(localStorage.getItem('note'))}
+            catch(e) {
+                this.user = []
             }
         },
         methods: {
@@ -368,6 +374,9 @@
             if (savedCheckInTime) {
                 this.checkIn = savedCheckInTime;
             }
+            console.log ("data user");
+            console.log( this.user);
+
         },
     }
 
