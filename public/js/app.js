@@ -22227,8 +22227,24 @@ function _regeneratorRuntime() { "use strict"; /*! regenerator-runtime -- Copyri
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      employeeId: '1',
+      attendanceDate: '',
+      checkIn: '',
+      checkOut: '',
+      lateCheckinNotes: '',
+      earlyCheckoutNotes: ''
+    };
+  },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+    var savedCheckInTime = localStorage.getItem('checkInTime');
+    console.log(savedCheckInTime);
+    this.updateCheckIn();
+    setInterval(function () {
+      _this.updateCheckIn();
+    }, 1000);
     if (box.style.backgroundColor = '#E37C77') {
       var btn = document.getElementById('btn');
       var btn2 = document.getElementById('btn2');
@@ -22269,6 +22285,164 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    saveCheckInTime: function saveCheckInTime() {
+      var _this2 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
+        var dateTime;
+        return _regeneratorRuntime().wrap(function _callee$(_context) {
+          while (1) switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return _this2.getDate();
+            case 3:
+              _context.t0 = _context.sent;
+              _context.t1 = _context.t0 + ' ';
+              _context.t2 = _this2.getClock();
+              dateTime = _context.t1 + _context.t2;
+              // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+              _this2.checkIn = dateTime;
+              localStorage.setItem('checkInTime', dateTime);
+              console.log("data check-in sementara: ", localStorage.getItem('checkInTime'));
+              _context.next = 15;
+              break;
+            case 12:
+              _context.prev = 12;
+              _context.t3 = _context["catch"](0);
+              console.error(_context.t3); // Tangani jika terjadi kesalahan dalam Promise
+            case 15:
+            case "end":
+              return _context.stop();
+          }
+        }, _callee, null, [[0, 12]]);
+      }))();
+    },
+    getClock: function getClock() {
+      var now = new Date();
+      var hours = String(now.getHours()).padStart(2, '0');
+      var minutes = String(now.getMinutes()).padStart(2, '0');
+      var seconds = String(now.getSeconds()).padStart(2, '0');
+      var jam = "".concat(hours, ":").concat(minutes, ":").concat(seconds);
+      return jam;
+    },
+    updateCheckIn: function updateCheckIn() {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
+        var result;
+        return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+          while (1) switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return _this3.getDate();
+            case 3:
+              _context2.t0 = _context2.sent;
+              _context2.t1 = _context2.t0 + ' ';
+              _context2.t2 = _this3.getClock();
+              result = _context2.t1 + _context2.t2;
+              // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+              _this3.checkIn = result;
+              _this3.checkOut = result; // Mengupdate nilai checkIn dengan hasil waktu
+              _context2.next = 14;
+              break;
+            case 11:
+              _context2.prev = 11;
+              _context2.t3 = _context2["catch"](0);
+              console.error(_context2.t3); // Tangani jika terjadi kesalahan dalam Promise
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2, null, [[0, 11]]);
+      }))();
+    },
+    getDate: function getDate() {
+      var date = new Date();
+      var day = date.getDate();
+      var month = date.getMonth() + 1;
+      var year = date.getFullYear();
+
+      // This arrangement can be altered based on how we want the date's format to appear.
+      var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
+      return currentDate;
+    },
+    updateDateAttendance: function updateDateAttendance() {
+      var _this4 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var result;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return _this4.getDate();
+            case 3:
+              result = _context3.sent;
+              // Menunggu janji diselesaikan dan mendapatkan hasil waktu
+              _this4.attendanceDate = result; // Mengupdate nilai checkIn dengan hasil waktu
+              _context3.next = 10;
+              break;
+            case 7:
+              _context3.prev = 7;
+              _context3.t0 = _context3["catch"](0);
+              console.error(_context3.t0); // Tangani jika terjadi kesalahan dalam Promise
+            case 10:
+            case "end":
+              return _context3.stop();
+          }
+        }, _callee3, null, [[0, 7]]);
+      }))();
+    },
+    submitAttendance: function submitAttendance() {
+      var _this5 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+        var savedCheckInTime, response;
+        return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+          while (1) switch (_context4.prev = _context4.next) {
+            case 0:
+              // Ambil data checkIn dari LocalStorage
+              savedCheckInTime = localStorage.getItem('checkInTime'); // Pastikan data checkIn sudah ada sebelum melakukan posting data
+              if (savedCheckInTime) {
+                _context4.next = 5;
+                break;
+              }
+              console.log('Data check-in belum ada, lakukan check-in terlebih dahulu');
+              alert('Data check-in belum ada, lakukan check-in terlebih dahulu');
+              return _context4.abrupt("return");
+            case 5:
+              _context4.prev = 5;
+              _context4.next = 8;
+              return axios.post('http://127.0.0.1:8000/api/attendance/store', {
+                ms_employee_id: _this5.employeeId,
+                attendance_date: _this5.attendanceDate,
+                check_in: savedCheckInTime,
+                // Gunakan data checkIn dari LocalStorage
+                check_out: _this5.checkOut,
+                late_checkin_notes: _this5.lateCheckinNotes,
+                early_checkout_notes: _this5.earlyCheckoutNotes
+              });
+            case 8:
+              response = _context4.sent;
+              console.log(response.data);
+              console.log('sukses input data');
+              localStorage.removeItem('checkInTime');
+              _this5.checkIn = '';
+              console.log('reset data checkIn');
+              _context4.next = 20;
+              break;
+            case 16:
+              _context4.prev = 16;
+              _context4.t0 = _context4["catch"](5);
+              console.error(_context4.t0);
+              console.log('error');
+              // Handle error, e.g., show an error message
+            case 20:
+            case "end":
+              return _context4.stop();
+          }
+        }, _callee4, null, [[5, 16]]);
+      }))();
+    },
     logout: function logout() {
       axios.post('/logout').then(function () {
         // Perform any additional actions after successful logout
@@ -22280,44 +22454,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         // Handle the error
         console.error(error);
       });
-    },
-    submitCheckLog: function submitCheckLog() {
-      var _this = this;
-      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var response;
-        return _regeneratorRuntime().wrap(function _callee$(_context) {
-          while (1) switch (_context.prev = _context.next) {
-            case 0:
-              _context.prev = 0;
-              _context.next = 3;
-              return axios.post('http://127.0.0.1:8000/api/attendance/store', {
-                ms_employee_id: _this.selectedEmployeeId,
-                attendance_date: _this.selectedAttendanceDate,
-                check_in: _this.check_in,
-                check_out: _this.check_out
-                // More data properties
-              });
-            case 3:
-              response = _context.sent;
-              console.log(response.data);
-              console.log('sukses');
-              window.location.href = '/dashboard';
-              // this.getTimesheet();
-              // Handle success, e.g., show a success message or redirect
-              _context.next = 13;
-              break;
-            case 9:
-              _context.prev = 9;
-              _context.t0 = _context["catch"](0);
-              console.error(_context.t0);
-              console.log('error');
-              // Handle error, e.g., show an error message
-            case 13:
-            case "end":
-              return _context.stop();
-          }
-        }, _callee, null, [[0, 9]]);
-      }))();
+    }
+  },
+  created: function created() {
+    var _this6 = this;
+    this.interval = setInterval(function () {
+      _this6.updateCheckIn();
+    }, 1000);
+    this.updateDateAttendance();
+    var savedCheckInTime = localStorage.getItem('checkInTime');
+    if (savedCheckInTime) {
+      this.checkIn = savedCheckInTime;
     }
   }
 });
@@ -22389,26 +22536,6 @@ window.addEventListener("load", function () {
   }
   setInterval(clock, 1000);
 });
-getClock();
-function getClock() {
-  var now = new Date();
-  var hoursAndMinutes = now.getHours() + ':' + now.getMinutes() + ':' + now.getSeconds();
-  console.log(hoursAndMinutes);
-
-  // document.write(hoursAndMinutes);
-}
-
-getDate();
-function getDate() {
-  var date = new Date();
-  var day = date.getDate();
-  var month = date.getMonth() + 1;
-  var year = date.getFullYear();
-
-  // This arrangement can be altered based on how we want the date's format to appear.
-  var currentDate = "".concat(day, "-").concat(month, "-").concat(year);
-  console.log(currentDate);
-}
 
 /***/ }),
 
@@ -22849,7 +22976,7 @@ var _hoisted_18 = {
 var _hoisted_19 = {
   "class": "modal-content"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session.</div>", 2);
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
 var _hoisted_22 = {
   "class": "modal-footer"
 };
@@ -22924,8 +23051,8 @@ var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticV
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     id: "btn",
-    onOnclick: _cache[0] || (_cache[0] = function () {
-      return _ctx.getClock && _ctx.getClock.apply(_ctx, arguments);
+    onClick: _cache[0] || (_cache[0] = function () {
+      return $options.submitAttendance && $options.submitAttendance.apply($options, arguments);
     }),
     "class": "btn mx-1",
     href: "#!",
@@ -22935,10 +23062,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "border-radius": "24%",
       "padding": "5px 5px"
     }
-  }, _hoisted_11, 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     id: "btn2",
-    onOnclick: _cache[1] || (_cache[1] = function () {
-      return _ctx.getClock && _ctx.getClock.apply(_ctx, arguments);
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.saveCheckInTime && $options.saveCheckInTime.apply($options, arguments);
     }),
     "class": "btn mx-1",
     href: "#!",
@@ -22948,7 +23075,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "border-radius": "24%",
       "padding": "8px 8px"
     }
-  }, _hoisted_13, 32 /* HYDRATE_EVENTS */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "btn btn-danger",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.logout && $options.logout.apply($options, arguments);
