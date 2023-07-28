@@ -22,10 +22,10 @@
                                 <h5 class="card-title">Check Log</h5>
                                 <div class="row" id="clock">
 
-                                    <h1 class="col-md-3 card-text" id="time">
+                                    <h1 class="col-md-3 card-text" id="time">{{ time }}
                                     </h1>
 
-                                    <h6 class="col-md-9 card-text my-auto" id="date">
+                                    <h6 class="col-md-9 card-text my-auto" id="date">{{ date }}
                                     </h6>
 
                                 </div>
@@ -191,9 +191,13 @@
                 checkOut: '',
                 lateCheckinNotes: '',
                 earlyCheckoutNotes: '',
+                time: '',
+                date: ''
             };
         },
         mounted() {
+            this.updateClock();
+            setInterval(this.updateClock, 1000);
             const savedCheckInTime = localStorage.getItem('checkInTime');
             console.log(savedCheckInTime)
             this.updateCheckIn();
@@ -357,6 +361,44 @@
                         // Handle the error
                         console.error(error);
                     });
+            },
+            updateClock() {
+                let today = new Date();
+                let hours = today.getHours();
+                let minutes = today.getMinutes();
+                let seconds = today.getSeconds();
+
+                hours = hours < 10 ? '0' + hours : hours;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                let monthList = [
+                    'Januari',
+                    'Februari',
+                    'Maret',
+                    'April',
+                    'Mei',
+                    'Juni',
+                    'Juli',
+                    'Agustus',
+                    'September',
+                    'Oktober',
+                    'November',
+                    'Desember'
+                ];
+
+                let dayList = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+
+                let month = today.getMonth();
+                let year = today.getFullYear();
+                let day = today.getDate();
+                let days = today.getDay();
+
+                let date = dayList[days] + ', ' + day + ' ' + monthList[month] + ' ' + year;
+                let time = hours + ':' + minutes + ':' + seconds;
+
+                this.time = time;
+                this.date = date;
             }
         },
         created() {
@@ -370,98 +412,4 @@
             }
         },
     }
-
-
-    window.addEventListener("load", () => {
-        clock();
-
-        function clock() {
-            let today = new Date();
-
-            // get time components
-            let hours = today.getHours();
-            let minutes = today.getMinutes();
-            let seconds = today.getSeconds();
-
-            //add '0' to hour, minute & second when they are less 10
-            // const hour = hours < 10 ? "0" + hours : hours;
-            // const minute = minutes < 10 ? "0" + minutes : minutes;
-            // const second = seconds < 10 ? "0" + seconds : seconds;
-
-            hours = hours < 10 ? "0" + hours : hours;
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            //make clock a 12-hour time clock
-            // let hourTime = hour > 12 ? hour - 12 : hour;
-
-            // let currentTime =
-            //     hour +
-            //     ":" +
-            //     minute +
-            //     ":" +
-            //     second;
-
-            // if (hour === 0) {
-            //   hour = 12;
-            // }
-            //assigning 'am' or 'pm' to indicate time of the day
-            // const ampm = hour < 12 ? "AM" : "PM";
-
-            // get date components
-            let month = today.getMonth();
-            let year = today.getFullYear();
-            let day = today.getDate();
-            let days = today.getDay();
-
-            //declaring a list of all months in  a year
-            let monthList = [
-                "Januari",
-                "Februari",
-                "Maret",
-                "April",
-                "Mei",
-                "Juni",
-                "Juli",
-                "Agustus",
-                "September",
-                "Oktober",
-                "November",
-                "Desember"
-            ];
-
-            let dayList = [
-                "Minggu",
-                "Senin",
-                "Selasa",
-                "Rabu",
-                "Kamis",
-                "Jumat",
-                "Sabtu"
-            ];
-
-            //get current date and time
-            let date = dayList[days] + ", " + day + " " + monthList[month] + " " + year;
-            // let time = hourTime + ":" + minute + ":" + second;
-            let time = hours + ":" + minutes + ":" + seconds;
-
-            //combine current date and time
-            // const dateTime = date + time;
-
-            //print current date and time to the DOM
-            // document.getElementById("date-time").innerHTML = dateTime;
-            // setTimeout(clock, 1000);
-
-            // document.getElementById("date").innerHTML = date;
-            // setTimeout(clock, 1000);
-
-            document.getElementById("time").innerHTML = time;
-            document.getElementById("date").innerHTML = date;
-            time.toLocaleString('en-US', {
-                hour12: false,
-            });
-
-        }
-        setInterval(clock, 1000);
-    });
 </script>
