@@ -7,6 +7,8 @@ import Timesheet from './components/Timesheet.vue'
 // import AddTimesheet from './components/AddTimesheet.vue'
 
 const app = createApp({})
+// Vue.prototype.$userId = document.querySelector("meta[name='user_id']").getAttribute('content');
+// Vue.prototype.$user = window.User;
 
 app.component('dashboard', Dashboard)
 app.component('login', Login)

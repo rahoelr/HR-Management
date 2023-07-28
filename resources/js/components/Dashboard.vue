@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-9">
                                 <h5 class="card-title my-1">Profil</h5>
-                                <p class="card-text my-0">Feby Eka Pradiyanto</p>
+                                <p  class="card-text my-0"></p>
                                 <p class="card-text my-0">UI/UX Designer</p>
                             </div>
                         </div>
@@ -183,9 +183,11 @@
 
 <script>
     export default {
+        props: ['user'],
         data() {
             return {
-                employeeId: '1',
+                employees: [],
+                employeeId: this.user.user_id,
                 attendanceDate: '',
                 checkIn: '',
                 checkOut: '',
@@ -197,6 +199,12 @@
             const savedCheckInTime = localStorage.getItem('checkInTime');
             console.log(savedCheckInTime)
             this.updateCheckIn();
+            this.getEmployee();
+            try {
+                this.user = JSON.parse(localStorage.getItem('note'))}
+            catch(e) {
+                this.user = []
+            }
 
             setInterval(() => {
                 this.updateCheckIn();
@@ -344,6 +352,12 @@
                     // Handle error, e.g., show an error message
                 }
             },
+            getEmployee() {
+                axios.get('http://127.0.0.1:8000/api/employee').then(res => {
+                    this.employees = res.data.data
+                    console.log(this.employees);
+                });
+            },
             logout() {
                 axios.post('/logout')
                     .then(() => {
@@ -367,8 +381,13 @@
             const savedCheckInTime = localStorage.getItem('checkInTime');
             if (savedCheckInTime) {
                 this.checkIn = savedCheckInTime;
-            }
+            };
+            console.log ("data user");
+            console.log( this.user);
+
+           
         },
+
     }
 
 
