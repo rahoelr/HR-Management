@@ -16,7 +16,7 @@
                 <div class="row justify-content-end" style="padding-right: 3%;">
                     <!-- Page Heading -->
                     <button type="button" class="btn custom-btn2 rounded-pill font-weight-bold"
-                        data-target="#quoteForm" data-toggle="modal"
+                        data-target="#addForm" data-toggle="modal"
                         style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
                 </div>
             </div>
@@ -97,7 +97,7 @@
         </div>
 
         <!--ADD TIMESHEET -->
-        <div class="modal fade" id="quoteForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
+        <div class="modal fade" id="addForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
             aria-hidden="true">
             <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
                 <div class="modal-content p-md-3">
@@ -388,20 +388,20 @@
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="task">Task</label>
-                                        <textarea class="form-control" id="task" type="text" :value='timesheet.task' readonly disabled>
+                                        <textarea rows="5" class="form-control" id="task" type="text" :value='timesheet.task' readonly disabled>
                                     </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
                                                 class="text-primary ml-1">*</span></label>
-                                        <textarea class="form-control" id="taskselesai" type="text" :value='timesheet.completed_task' required=""
+                                        <textarea rows="5" class="form-control" id="taskselesai" type="text" :value='timesheet.completed_task' required=""
                                             readonly disabled>
                                     </textarea>
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="todo">To Do Task<span
                                                 class="text-primary ml-1">*</span></label>
-                                        <textarea class="form-control" id="todo" type="text" :value='timesheet.todo_task' required="" readonly
+                                        <textarea rows="5" class="form-control" id="todo" type="text" :value='timesheet.todo_task' required="" readonly
                                             disabled>
                                     </textarea>
                                     </div>
@@ -425,6 +425,7 @@
         name: 'timesheet',
         projects: 'projects',
         employees: 'employees',
+        
         data() {
             return {
                 timesheet: [],
@@ -460,11 +461,25 @@
             this.getTimesheet();
             this.getProject();
             this.getEmployee();
+            
         },
         created() {
             this.viewTimesheet();
         },
         methods: {
+            clearData(){
+                this.selectedEmployeeId = "";
+                this.selectedProjectId = "";
+                this.work_date = "";
+                this.work_location = "";
+                this.workhour_start = "";
+                this.workhour_end = "";
+                this.task = "";
+                this.todo_task = "";
+                this.completed_task = "";
+
+
+            },
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
@@ -482,8 +497,16 @@
 
                     console.log(response.data);
                     console.log('sukses')
-                    window.location.href = '/timesheet';
-                    // this.getTimesheet();
+                    
+                    
+                    // window.location.href = '/timesheet';
+                    this.getTimesheet();
+                    this.$refs.autoClickButton.click
+                    this.clearData();
+                    // this.resetForm();   
+                   
+
+
                     // Handle success, e.g., show a success message or redirect
                 } catch (error) {
                     console.error(error);

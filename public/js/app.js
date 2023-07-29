@@ -22230,7 +22230,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   props: ['user'],
   data: function data() {
     return {
-      employeeId: '1',
+      employeeId: this.user.id,
       attendanceDate: '',
       checkIn: '',
       checkOut: '',
@@ -22475,6 +22475,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
     console.log("data user");
     console.log(this.user);
+    console.log(this.user.id);
   }
 });
 window.addEventListener("load", function () {
@@ -22688,6 +22689,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     this.viewTimesheet();
   },
   methods: {
+    clearData: function clearData() {
+      this.selectedEmployeeId = "";
+      this.selectedProjectId = "";
+      this.work_date = "";
+      this.work_location = "";
+      this.workhour_start = "";
+      this.workhour_end = "";
+      this.task = "";
+      this.todo_task = "";
+      this.completed_task = "";
+    },
     submitData: function submitData() {
       var _this = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -22713,22 +22725,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _response = _context.sent;
               console.log(_response.data);
               console.log('sukses');
-              window.location.href = '/timesheet';
-              // this.getTimesheet();
+
+              // window.location.href = '/timesheet';
+              _this.getTimesheet();
+              _this.$refs.autoClickButton.click;
+              _this.clearData();
+              // this.resetForm();   
+
               // Handle success, e.g., show a success message or redirect
-              _context.next = 13;
+              _context.next = 15;
               break;
-            case 9:
-              _context.prev = 9;
+            case 11:
+              _context.prev = 11;
               _context.t0 = _context["catch"](0);
               console.error(_context.t0);
               console.log('error');
               // Handle error, e.g., show an error message
-            case 13:
+            case 15:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 9]]);
+        }, _callee, null, [[0, 11]]);
       }))();
     },
     submitUpdate: function submitUpdate(timesheetId) {
@@ -23226,7 +23243,7 @@ __webpack_require__.r(__webpack_exports__);
 var _hoisted_1 = {
   "class": "container-fluid"
 };
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-md-6\"><!-- Page Heading --><div class=\"d-sm-flex align-items-center justify-content-between mb-4\"><h1 class=\"h3 mb-0 text-gray-800\">Timesheet</h1><!-- &lt;a href=&quot;#&quot; class=&quot;d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm&quot;&gt;&lt;i\r\n                                        class=&quot;fas fa-download fa-sm text-white-50&quot;&gt;&lt;/i&gt; Generate Report&lt;/a&gt; --></div></div><div class=\"col-md-6\"><div class=\"row justify-content-end\" style=\"padding-right:3%;\"><!-- Page Heading --><button type=\"button\" class=\"btn custom-btn2 rounded-pill font-weight-bold\" data-target=\"#quoteForm\" data-toggle=\"modal\" style=\"font-style:bold;width:200px;height:40px;\">Add Timesheet</button></div></div></div>", 1);
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"row\"><div class=\"col-md-6\"><!-- Page Heading --><div class=\"d-sm-flex align-items-center justify-content-between mb-4\"><h1 class=\"h3 mb-0 text-gray-800\">Timesheet</h1><!-- &lt;a href=&quot;#&quot; class=&quot;d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm&quot;&gt;&lt;i\r\n                                        class=&quot;fas fa-download fa-sm text-white-50&quot;&gt;&lt;/i&gt; Generate Report&lt;/a&gt; --></div></div><div class=\"col-md-6\"><div class=\"row justify-content-end\" style=\"padding-right:3%;\"><!-- Page Heading --><button type=\"button\" class=\"btn custom-btn2 rounded-pill font-weight-bold\" data-target=\"#addForm\" data-toggle=\"modal\" style=\"font-style:bold;width:200px;height:40px;\">Add Timesheet</button></div></div></div>", 1);
 var _hoisted_3 = {
   "class": "table table-hover"
 };
@@ -23304,7 +23321,7 @@ var _hoisted_31 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Cancel", -1 /* HOISTED */);
 var _hoisted_32 = {
   "class": "modal fade",
-  id: "quoteForm",
+  id: "addForm",
   tabindex: "-1",
   role: "dialog",
   "aria-labelledby": "quoteForm",
@@ -24095,6 +24112,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       disabled: "",
       value: timesheet.workhour_end
     }, null, 8 /* PROPS */, _hoisted_114)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_115, [_hoisted_116, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      rows: "5",
       "class": "form-control",
       id: "task",
       type: "text",
@@ -24102,6 +24120,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       readonly: "",
       disabled: ""
     }, "\r\n                                    ", 8 /* PROPS */, _hoisted_117)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_118, [_hoisted_119, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      rows: "5",
       "class": "form-control",
       id: "taskselesai",
       type: "text",
@@ -24110,6 +24129,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       readonly: "",
       disabled: ""
     }, "\r\n                                    ", 8 /* PROPS */, _hoisted_120)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_121, [_hoisted_122, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+      rows: "5",
       "class": "form-control",
       id: "todo",
       type: "text",

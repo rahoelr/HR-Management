@@ -186,7 +186,7 @@
         props:['user'],
         data() {
             return {
-                employeeId: '1',
+                employeeId: this.user.id,
                 attendanceDate: '',
                 checkIn: '',
                 checkOut: '',
@@ -376,6 +376,7 @@
             }
             console.log ("data user");
             console.log( this.user);
+            console.log(this.user.id);
 
         },
     }
