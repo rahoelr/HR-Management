@@ -103,7 +103,7 @@
                 <div class="modal-content p-md-3">
                     <div class="modal-header" style="background-color: #64B58A;">
                         <h4 class="modal-title" style="color: white;"><b>Add Timesheet</b></h4>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"
+                        <button class="close" type="button" @click="handleButtonClick" ref="autoClickButton" data-dismiss="modal" aria-label="Close"
                             style="color: white;"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
@@ -461,6 +461,7 @@
             this.getTimesheet();
             this.getProject();
             this.getEmployee();
+            this.$refs.autoClickButton.click();
             
         },
         created() {
@@ -471,14 +472,12 @@
                 this.selectedEmployeeId = "";
                 this.selectedProjectId = "";
                 this.work_date = "";
-                this.work_location = "";
                 this.workhour_start = "";
                 this.workhour_end = "";
+                this.work_location = "";
                 this.task = "";
-                this.todo_task = "";
                 this.completed_task = "";
-
-
+                this.todo_task = "";
             },
             async submitData() {
                 try {
@@ -501,7 +500,7 @@
                     
                     // window.location.href = '/timesheet';
                     this.getTimesheet();
-                    this.$refs.autoClickButton.click
+                    this.$refs.autoClickButton.click();
                     this.clearData();
                     // this.resetForm();   
                    
