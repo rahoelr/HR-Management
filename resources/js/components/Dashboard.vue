@@ -87,7 +87,7 @@
                             </div>
                             <div class="col-md-9">
                                 <h5 class="card-title my-1">Profil</h5>
-                                <p class="card-text my-0">Feby Eka Pradiyanto</p>
+                                <p class="card-text my-0">{{user.username}}</p>
                                 <p class="card-text my-0">UI/UX Designer</p>
                             </div>
                         </div>
