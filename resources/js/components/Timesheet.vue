@@ -210,7 +210,7 @@
                 <div class="modal-content p-md-3">
                     <div class="modal-header" style="background-color: #64B58A;">
                         <h4 class="modal-title" style="color: white;"><b>Update Timesheet</b></h4>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" ref="autoClickButton"
                             style="color: white;"><span aria-hidden="true">×</span></button>
                     </div>
                     <div v-for="timesheet in timesheetData"  :key="timesheetData.id" class="modal-body">
@@ -530,7 +530,10 @@
                     console.log(response.data);
                     console.log('update bisaaaaaaaaa')
                     console.log('sukses');
-                    window.location.href = '/timesheet';
+                    this.getTimesheet();
+                    this.$refs.autoClickButton.click();
+                    this.clearData();
+                    // window.location.href = '/timesheet';
                 } catch (error) {
                     console.error(error);
                     console.log('error');
