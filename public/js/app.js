@@ -22235,56 +22235,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       checkIn: '',
       checkOut: '',
       lateCheckinNotes: '',
-      earlyCheckoutNotes: ''
+      earlyCheckoutNotes: '',
+      buttonImg: "img/dashboard/presensi-icon-before.svg",
+      button2Img: "img/dashboard/shutdown-icon-before.svg",
+      boxStyle: {
+        backgroundColor: "white",
+        color: "black"
+      }
     };
   },
   mounted: function mounted() {
     var _this = this;
+    this.checkButtonStatus();
+    var btn = document.getElementById('btn');
+    var btn2 = document.getElementById('btn2');
+    btn.addEventListener('click', function () {
+      return _this.setBoxStyle();
+    });
+    btn2.addEventListener('click', function () {
+      return _this.resetBoxStyle();
+    });
     var savedCheckInTime = localStorage.getItem('checkInTime');
     console.log(savedCheckInTime);
+    var btnStatus = localStorage.getItem('btnStatus');
+    console.log('Status Button : ', btnStatus);
     this.updateCheckIn();
     setInterval(function () {
       _this.updateCheckIn();
     }, 1000);
-    if (box.style.backgroundColor = '#E37C77') {
-      var btn = document.getElementById('btn');
-      var btn2 = document.getElementById('btn2');
-      btn.addEventListener('click', function onClick(event) {
-        var box = document.getElementById('box');
-        if (document.getElementById("imgClickAndChange").src == "img/dashboard/presensi-icon-before.svg") {
-          document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-after.svg";
-        } else {
-          btn.style.backgroundColor = "white";
-          btn.style.border = "4px solid #E37C77";
-          document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-before.svg";
-          btn2.style.backgroundColor = "#64B58A";
-          document.getElementById("imgClickAndChange2").src = "img/dashboard/shutdown-icon-before.svg";
-        }
-        box.style.backgroundColor = 'white';
-        box.style.color = 'black';
-      });
-    }
-
-    // button-start
-    if (box.style.backgroundColor = 'white') {
-      var _btn = document.getElementById('btn2');
-      var _btn2 = document.getElementById('btn');
-      _btn.addEventListener('click', function onClick(event) {
-        var box = document.getElementById('box');
-        if (document.getElementById("imgClickAndChange2").src == "img/dashboard/shutdown-icon-after.svg") {
-          document.getElementById("imgClickAndChange2").src = "img/dashboard/shutdown-icon-before.svg";
-        } else {
-          _btn.style.backgroundColor = 'white';
-          document.getElementById("imgClickAndChange2").src = "img/dashboard/shutdown-icon-after.svg";
-          _btn2.style.backgroundColor = "#E37C77";
-          _btn2.style.border = "4px solid white";
-          document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-after.svg";
-        }
-        box.style.backgroundColor = '#E37C77';
-        box.style.color = 'white';
-      });
-    }
-    ;
     try {
       this.user = JSON.parse(localStorage.getItem('note'));
     } catch (e) {
@@ -22292,6 +22270,40 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   methods: {
+    checkButtonStatus: function checkButtonStatus() {
+      if (localStorage.getItem("btnStatus") === "started") {
+        console.log("button login belum diklik");
+        this.setBoxStyle();
+      } else {
+        console.log("button login sudah diklik");
+        this.resetBoxStyle();
+      }
+    },
+    setBoxStyle: function setBoxStyle() {
+      btn.style.backgroundColor = '#E37C77';
+      box.style.backgroundColor = 'white';
+      box.style.color = 'black';
+      document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-after.svg";
+    },
+    resetBoxStyle: function resetBoxStyle() {
+      btn.style.backgroundColor = 'white';
+      box.style.backgroundColor = '#E37C77';
+      box.style.color = 'white';
+      document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-before.svg";
+    },
+    toggleButtonStatus: function toggleButtonStatus() {
+      if (localStorage.getItem("btnStatus") === "started") {
+        localStorage.removeItem("btnStatus");
+        this.resetBoxStyle();
+      } else {
+        localStorage.setItem("btnStatus", "started");
+        this.setBoxStyle();
+      }
+    },
+    resetButtonStatus: function resetButtonStatus() {
+      localStorage.removeItem("btnStatus");
+      this.resetBoxStyle();
+    },
     saveCheckInTime: function saveCheckInTime() {
       var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
@@ -22311,17 +22323,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _this2.checkIn = dateTime;
               localStorage.setItem('checkInTime', dateTime);
               console.log("data check-in sementara: ", localStorage.getItem('checkInTime'));
-              _context.next = 15;
+              _this2.resetButtonStatus();
+              _context.next = 16;
               break;
-            case 12:
-              _context.prev = 12;
+            case 13:
+              _context.prev = 13;
               _context.t3 = _context["catch"](0);
               console.error(_context.t3); // Tangani jika terjadi kesalahan dalam Promise
-            case 15:
+            case 16:
             case "end":
               return _context.stop();
           }
-        }, _callee, null, [[0, 12]]);
+        }, _callee, null, [[0, 13]]);
       }))();
     },
     getClock: function getClock() {
@@ -22409,16 +22422,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               // Ambil data checkIn dari LocalStorage
               savedCheckInTime = localStorage.getItem('checkInTime'); // Pastikan data checkIn sudah ada sebelum melakukan posting data
-              if (savedCheckInTime) {
-                _context4.next = 5;
-                break;
+              if (!savedCheckInTime) {
+                console.log('Data check-in belum ada, lakukan check-in terlebih dahulu');
+                alert('Data check-in belum ada, lakukan check-in terlebih dahulu');
               }
-              console.log('Data check-in belum ada, lakukan check-in terlebih dahulu');
-              alert('Data check-in belum ada, lakukan check-in terlebih dahulu');
-              return _context4.abrupt("return");
-            case 5:
-              _context4.prev = 5;
-              _context4.next = 8;
+              _context4.prev = 2;
+              _context4.next = 5;
               return axios.post('http://127.0.0.1:8000/api/attendance/store', {
                 ms_employee_id: _this5.employeeId,
                 attendance_date: _this5.attendanceDate,
@@ -22428,26 +22437,28 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 late_checkin_notes: _this5.lateCheckinNotes,
                 early_checkout_notes: _this5.earlyCheckoutNotes
               });
-            case 8:
+            case 5:
               response = _context4.sent;
               console.log(response.data);
               console.log('sukses input data');
+              alert('Data check-in sukses terkirim');
               localStorage.removeItem('checkInTime');
               _this5.checkIn = '';
               console.log('reset data checkIn');
-              _context4.next = 20;
+              _this5.toggleButtonStatus();
+              _context4.next = 19;
               break;
-            case 16:
-              _context4.prev = 16;
-              _context4.t0 = _context4["catch"](5);
+            case 15:
+              _context4.prev = 15;
+              _context4.t0 = _context4["catch"](2);
               console.error(_context4.t0);
               console.log('error');
               // Handle error, e.g., show an error message
-            case 20:
+            case 19:
             case "end":
               return _context4.stop();
           }
-        }, _callee4, null, [[5, 16]]);
+        }, _callee4, null, [[2, 15]]);
       }))();
     },
     logout: function logout() {
@@ -22944,39 +22955,21 @@ var _hoisted_5 = {
   "class": "card bg-white shadow h-100"
 };
 var _hoisted_6 = {
-  "class": "card-body",
-  id: "box"
-};
-var _hoisted_7 = {
   "class": "row"
 };
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-10\"><h5 class=\"card-title\">Check Log</h5><div class=\"row\" id=\"clock\"><h1 class=\"col-md-3 card-text\" id=\"time\"></h1><h6 class=\"col-md-9 card-text my-auto\" id=\"date\"></h6></div><!-- &lt;div id=&quot;clock&quot;&gt;8:10:45&lt;/div&gt; --></div>", 1);
-var _hoisted_9 = {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"col-md-10\"><h5 class=\"card-title\">Check Log</h5><div class=\"row\" id=\"clock\"><h1 class=\"col-md-3 card-text\" id=\"time\"></h1><h6 class=\"col-md-9 card-text my-auto\" id=\"date\"></h6></div><!-- &lt;div id=&quot;clock&quot;&gt;8:10:45&lt;/div&gt; --></div>", 1);
+var _hoisted_8 = {
   "class": "col-md-2 my-auto"
 };
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "img/dashboard/presensi-icon-before.svg",
-  height: "32",
-  width: "32",
-  id: "imgClickAndChange",
-  alt: "img-btn-stop"
-}, null, -1 /* HOISTED */);
-var _hoisted_11 = [_hoisted_10];
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-  src: "img/dashboard/shutdown-icon-before.svg",
-  height: "32",
-  width: "32",
-  id: "imgClickAndChange2",
-  alt: "img-btn-start"
-}, null, -1 /* HOISTED */);
-var _hoisted_13 = [_hoisted_12];
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+var _hoisted_9 = ["src"];
+var _hoisted_10 = ["src"];
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   id: "letGet"
 }, null, -1 /* HOISTED */);
-var _hoisted_15 = {
+var _hoisted_12 = {
   "class": "row"
 };
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-success shadow h-100 py-2"
@@ -23009,7 +23002,7 @@ var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Feby Eka Pradiyanto"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text my-0"
 }, "UI/UX Designer")])])])])], -1 /* HOISTED */);
-var _hoisted_17 = {
+var _hoisted_14 = {
   "class": "modal fade",
   id: "logoutModal",
   tabindex: "-1",
@@ -23017,23 +23010,23 @@ var _hoisted_17 = {
   "aria-labelledby": "exampleModalLabel",
   "aria-hidden": "true"
 };
-var _hoisted_18 = {
+var _hoisted_15 = {
   "class": "modal-dialog",
   role: "document"
 };
-var _hoisted_19 = {
+var _hoisted_16 = {
   "class": "modal-content"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
-var _hoisted_22 = {
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
+var _hoisted_19 = {
   "class": "modal-footer"
 };
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-secondary",
   type: "button",
   "data-dismiss": "modal"
 }, "Cancel", -1 /* HOISTED */);
-var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-primary shadow h-100 py-2"
@@ -23064,7 +23057,7 @@ var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Timesheet"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text"
 }, "Lorem ipsum dolor sit amet, consectur")])])])])], -1 /* HOISTED */);
-var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-danger shadow h-100 py-2"
@@ -23095,9 +23088,14 @@ var _hoisted_25 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Pengajuan Cuti"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text"
 }, "Cuti anda tersisa 12 Hari")])])])])], -1 /* HOISTED */);
-var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    "class": "card-body",
+    id: "box",
+    ref: "box",
+    style: (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeStyle)($data.boxStyle)
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button id=\"btn\" onclick=\"getElementById('demo').innerHTML=Date()\" class=\"btn mx-1 non-active\" style=\"border: 4px solid #E37C77; border-radius: 24%; background-color: white; padding: 5px 5px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"presensi-icon-before.svg\" height =\"32\" width=\"32\" />\r\n                                </button>\r\n                                <button id=\"btn2\" onclick=\"\" class=\"btn mx-1\" style=\"background-color: #64B58A; border-radius: 24%; padding: 8px 8px;\" href=\"#!\" role=\"button\">\r\n                                        <img src=\"shutdown-icon-before.svg\" height =\"32\" width=\"32\" id=\"imgClickAndChange\" onclick=\"changeImage()\"/>\r\n                                </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     id: "btn",
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.submitAttendance && $options.submitAttendance.apply($options, arguments);
@@ -23110,7 +23108,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "border-radius": "24%",
       "padding": "5px 5px"
     }
-  }, _hoisted_11), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $data.buttonImg,
+    height: "32",
+    width: "32",
+    id: "imgClickAndChange",
+    alt: "img-btn-stop"
+  }, null, 8 /* PROPS */, _hoisted_9)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     id: "btn2",
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.saveCheckInTime && $options.saveCheckInTime.apply($options, arguments);
@@ -23123,12 +23127,18 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "border-radius": "24%",
       "padding": "8px 8px"
     }
-  }, _hoisted_13), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [_hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: $data.button2Img,
+    height: "32",
+    width: "32",
+    id: "imgClickAndChange2",
+    alt: "img-btn-start"
+  }, null, 8 /* PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])], 4 /* STYLE */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "btn btn-danger",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.logout && $options.logout.apply($options, arguments);
     })
-  }, "Logout")])])])]), _hoisted_24, _hoisted_25]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_26, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+  }, "Logout")])])])]), _hoisted_21, _hoisted_22]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
 /***/ }),
