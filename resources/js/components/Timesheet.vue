@@ -15,13 +15,12 @@
             <div class="col-md-6">
                 <div class="row justify-content-end" style="padding-right: 3%;">
                     <!-- Page Heading -->
-                    <button type="button" class="btn custom-btn2 rounded-pill font-weight-bold"
-                        data-target="#addForm" data-toggle="modal"
-                        style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
+                    <button type="button" class="btn custom-btn2 rounded-pill font-weight-bold" data-target="#addForm"
+                        data-toggle="modal" style="font-style: bold; width: 200px; height: 40px;">Add Timesheet</button>
                 </div>
             </div>
         </div>
-<!-- TIMESHEET -->
+        <!-- TIMESHEET -->
         <center>
             <table class="table table-hover">
                 <thead class="thead-green">
@@ -58,25 +57,31 @@
                         <td>
                             <center>{{ data . workhour_start }} - {{ data . workhour_end }}</center>
                         </td>
-                        <td><center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
-                                role="button" data-target="#editForm" data-toggle="modal">
-                                <img src="img/timesheet/edit-icon.png" /></button></center></td>
+                        <td>
+                            <center><button @click="viewTimesheet2(data.id)" class="btn mx-1" style="padding: 0px;"
+                                    role="button" data-target="#editForm" data-toggle="modal">
+                                    <img src="img/timesheet/edit-icon.png" /></button></center>
+                        </td>
                         <!-- <td><button class="btn mx-1" style="padding: 0px;" role="button" data-target="#deleteModal"
                                 data-toggle="modal">
                                 <img src="delete-icon.png" /></button></td> -->
-                        <td><center><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
-                                role="button">
-                                <img src="img/timesheet/delete-icon.png" /></button></center></td>
-                        <td><center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
-                                role="button" data-target="#viewForm" data-toggle="modal">
-                                <img src="img/timesheet/eye-icon.png" /></button></center></td>
+                        <td>
+                            <center><button @click="deleteTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
+                                    role="button">
+                                    <img src="img/timesheet/delete-icon.png" /></button></center>
+                        </td>
+                        <td>
+                            <center><button @click="viewTimesheet(data.id)" class="btn mx-1" style="padding: 0px;"
+                                    role="button" data-target="#viewForm" data-toggle="modal">
+                                    <img src="img/timesheet/eye-icon.png" /></button></center>
+                        </td>
 
                     </tr>
 
                 </tbody>
             </table>
         </center>
-<!-- LOGOUT MODAL -->
+        <!-- LOGOUT MODAL -->
         <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -103,8 +108,9 @@
                 <div class="modal-content p-md-3">
                     <div class="modal-header" style="background-color: #64B58A;">
                         <h4 class="modal-title" style="color: white;"><b>Add Timesheet</b></h4>
-                        <button class="close" type="button" @click="handleButtonClick" ref="autoClickButton" data-dismiss="modal" aria-label="Close"
-                            style="color: white;"><span aria-hidden="true">×</span></button>
+                        <button class="close" type="button" @click="handleButtonClick" ref="autoClickButton"
+                            data-dismiss="modal" aria-label="Close" style="color: white;"><span
+                                aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
                         <form @submit.prevent="submitData">
@@ -210,213 +216,191 @@
                 <div class="modal-content p-md-3">
                     <div class="modal-header" style="background-color: #64B58A;">
                         <h4 class="modal-title" style="color: white;"><b>Update Timesheet</b></h4>
-                        <button class="close" type="button" data-dismiss="modal" ref="autoClickButton" aria-label="Close"
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" ref="autoCloseUpdate"
                             style="color: white;"><span aria-hidden="true">×</span></button>
                     </div>
-                    <div v-for="timesheet in timesheetData"  :key="timesheetData.id" class="modal-body">
-                        <form @submit.prevent="submitUpdate(timesheet.id)">
-                            <div v-for="timesheet in timesheetData"  :key="timesheetData.id">
+                    <div class="modal-body">
+                        <form @submit.prevent="submitUpdate">
+                            <div v-for="timesheet in timesheetData" :key="timesheetData.id">
                                 <div class="row" style="color: #455A64;">
                                     <div class="form-group col-lg-12">
-                                    <label class="font-weight-bold text-small" for="project">Project<span
-                                            class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"
-                                        v-model="selectedProjectId" placeholder="Pilih Project">
-                                        <option value="" selected disabled hidden>Pilih Project</option>
-                                        <option v-for="(data, index) in this.projects" :key="index"
-                                            :value="data.id">
-                                            {{ data . project_name }}</option>
-                                    </select>
+                                        <label class="font-weight-bold text-small" for="project">Project<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <select class="form-select" v-model="timesheet.ms_project_id">
+                                            <option v-for="project in projects" :key="project.id"
+                                                :value="project.id">
+                                                {{ project . project_name }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="font-weight-bold text-small" for="project">Employee ID<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <select class="form-select" aria-label="Default select example"
+                                            v-model="timesheet.ms_employee_id">
+                                            <option value="" selected disabled hidden>Pilih Employee</option>
+                                            <option v-for="(data, index) in this.employees" :key="index"
+                                                :value="data.user_id">
+                                                {{ data . full_name }}</option>
+                                        </select>
+                                        <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <input class="form-control" id="tanggal" v-model="timesheet.work_date"
+                                            type="date" required />
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <input class="form-control" v-model="timesheet.work_location" id="tanggal"
+                                            type="text" required />
+                                    </div>
+                                    <h4><b>Jam Kerja</b></h4>
+                                    <div class="form-group col-lg-6">
+                                        <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <input class="form-control" v-model="timesheet.workhour_start" id="settime"
+                                            type="time" step="1" />
+                                    </div>
+                                    <div class="form-group col-lg-6">
+                                        <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <input class="form-control" v-model="timesheet.workhour_end" id="settime"
+                                            type="time" step="1" />
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="font-weight-bold text-small" for="task">Task</label>
+                                        <textarea rows="5" v-model="timesheet.task" class="form-control" id="task" type="text">
+                                    </textarea>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <textarea rows="5" v-model="timesheet.completed_task" class="form-control" id="taskselesai" type="text"
+                                            required="">
+                                    </textarea>
+                                    </div>
+                                    <div class="form-group col-lg-12">
+                                        <label class="font-weight-bold text-small" for="todo">To Do Task<span
+                                                class="text-primary ml-1">*</span></label>
+                                        <textarea rows="5" v-model="timesheet.todo_task" class="form-control" id="todo" type="text"
+                                            required="">
+                                    </textarea>
+                                    </div>
+                                    <div class="form-group col-lg-12 text-center">
+                                        <button @click="submitUpdate(timesheet)"
+                                            class="btn btn-primary custom-btn my-3 font-weight-bold rounded-pill"
+                                            type="submit"
+                                            style="font-style: bold; width: 300px; height: 40px;">Update</button>
+                                    </div>
                                 </div>
-                                    <!-- <label class="font-weight-bold text-small" for="project">Project<span
-                                            class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"
-                                        v-model="selectedProjectId" placeholder="Pilih Project">
-                                        <option value="" selected disabled hidden>Pilih Project</option>
-                                        <option  selected="selected" v-for="(timesheet, index) in this.projects" :key="index"
-                                            :value="timesheet.id">
-                                            {{ timesheet . project_name }}</option>
-                                    </select> -->
-                                <!-- <div class="form-group col-lg-12">
-                                    <label class="font-weight-bold text-small" for="project">Project<span
-                                            class="text-primary ml-1">*</span></label>
-                                            <input  v-model="selectedProjectId" class="form-control" id="projectId" type="text" placeholder/>
-                                </div> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    <!-- DELETE MODAL-->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data Timesheet?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Pilih "Delete" jika anda ingin menghapus data ini</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--GET VIEW MODAL -->
+    <div class="modal fade" id="viewForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content p-md-3">
+                <div class="modal-header" style="background-color: #64B58A;">
+                    <h4 class="modal-title" style="color: white;"><b>Timesheet</b></h4>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"
+                        style="color: white;"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div v-for="timesheet in timesheetData" :key="timesheetData.id">
+                            <div class="row" style="color: #455A64;">
                                 <div class="form-group col-lg-12">
-                                    <label class="font-weight-bold text-small" for="project">Employee <span
+                                    <label class="font-weight-bold text-small" for="project">Project<span
                                             class="text-primary ml-1">*</span></label>
-                                    <select class="form-select" aria-label="Default select example"
-                                        v-model="selectedEmployeeId">
-                                        <option value="" selected disabled hidden>Pilih Employee</option>
-                                        <option v-for="(data, index) in this.employees" :key="index"
-                                            :value="data.user_id">
-                                            {{ data . full_name }}</option>
-                                    </select>
-                                    <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
+                                    <input class="form-control" id="tanggal" type="text" required readonly
+                                        disabled :value="timesheet.project_name" />
+
                                 </div>
-                                <!-- <div class="form-group col-lg-12">
-                                    <label class="font-weight-bold text-small" for="project">Employee ID<span
-                                            class="text-primary ml-1">*</span></label>
-                                            <input v-model="selectedEmployeeId" class="form-control" id="employeeId" type="text" >
-                                </div> -->
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="work_date" class="form-control" id="tanggal" type="date" placeholder="{{timesheet.work_date}}" />
+                                    <input class="form-control" id="tanggal" type="date" required readonly
+                                        disabled :value="timesheet.work_date" />
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="work_location" class="form-control" id="tanggal" type="text" />
+                                    <input class="form-control" id="tanggal" type="text" required readonly
+                                        disabled :value="timesheet.work_location" />
 
                                 </div>
                                 <h4><b>Jam Kerja</b></h4>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="workhour_start" class="form-control" id="tanggal" type="time" step="1"  />
+                                    <input class="form-control" id="tanggal" type="time" required readonly
+                                        disabled :value="timesheet.workhour_start" />
 
                                 </div>
                                 <div class="form-group col-lg-6">
                                     <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
                                             class="text-primary ml-1">*</span></label>
-                                            <input v-model="workhour_end" class="form-control" id="tanggal" type="time"  step="1"    />
-                                    
+                                    <input class="form-control" id="tanggal" type="text" required readonly
+                                        disabled :value="timesheet.workhour_end" />
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="task">Task</label>
-                                    <textarea v-model="task" class="form-control" id="task" type="text"
-                                    placeholder="Deskripsi task yang sedang dikerjakan">
+                                    <textarea rows="5" class="form-control" id="task" type="text" :value='timesheet.task' readonly
+                                        disabled>
                                     </textarea>
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <textarea  v-model="completed_task" class="form-control" id="taskselesai" type="text"
-                                        placeholder="Task yang sudah selesai dikerjakan"
-                                            required="" >
-                                    </textarea>
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="todo">To Do Task<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <textarea v-model="todo_task" class="form-control" id="todo" type="text"
-                                        placeholder="Task yang akan dikerjakan" required=""
-                                            >
-                                    </textarea>
-                                    </div>
-                                    <div class="form-group col-lg-12 text-center">
-                                    <button class="btn btn-primary custom-btn my-3 font-weight-bold rounded-pill"
-                                        type="submit"
-                                        style="font-style: bold; width: 300px; height: 40px;">Update</button>
                                 </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <textarea rows="5" class="form-control" id="taskselesai" type="text" :value='timesheet.completed_task'
+                                        required="" readonly disabled>
+                                    </textarea>
+                                </div>
+                                <div class="form-group col-lg-12">
+                                    <label class="font-weight-bold text-small" for="todo">To Do Task<span
+                                            class="text-primary ml-1">*</span></label>
+                                    <textarea rows="5" class="form-control" id="todo" type="text" :value='timesheet.todo_task'
+                                        required="" readonly disabled>
+                                    </textarea>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <!-- DELETE MODAL-->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Timesheet?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Pilih "Delete" jika anda ingin menghapus data ini</div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">No</button>
-                        <button type="button" class="btn btn-danger">Delete</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--GET VIEW MODAL -->
-        <div class="modal fade" id="viewForm" tabindex="-1" role="dialog" aria-labelledby="quoteForm"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
-                <div class="modal-content p-md-3">
-                    <div class="modal-header" style="background-color: #64B58A;">
-                        <h4 class="modal-title" style="color: white;"><b>Timesheet</b></h4>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"
-                            style="color: white;"><span aria-hidden="true">×</span></button>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div v-for="timesheet in timesheetData" :key="timesheetData.id">
-                                <div class="row" style="color: #455A64;">
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="project">Project<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <input class="form-control" id="tanggal" type="text" required readonly
-                                            disabled :value="timesheet.project_name" />
-
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <input class="form-control" id="tanggal" type="date" required readonly
-                                            disabled :value="timesheet.work_date" />
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="lokasi">Lokasi<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <input class="form-control" id="tanggal" type="text" required readonly
-                                            disabled :value="timesheet.work_location" />
-
-                                    </div>
-                                    <h4><b>Jam Kerja</b></h4>
-                                    <div class="form-group col-lg-6">
-                                        <label class="font-weight-bold text-small" for="jammulai">Jam Mulai<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <input class="form-control" id="tanggal" type="time" required readonly
-                                            disabled :value="timesheet.workhour_start" />
-
-                                    </div>
-                                    <div class="form-group col-lg-6">
-                                        <label class="font-weight-bold text-small" for="jamselesai">Jam Selesai<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <input class="form-control" id="tanggal" type="text" required readonly
-                                            disabled :value="timesheet.workhour_end" />
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="task">Task</label>
-                                        <textarea rows="5" class="form-control" id="task" type="text" :value='timesheet.task' readonly disabled>
-                                    </textarea>
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <textarea rows="5" class="form-control" id="taskselesai" type="text" :value='timesheet.completed_task' required=""
-                                            readonly disabled>
-                                    </textarea>
-                                    </div>
-                                    <div class="form-group col-lg-12">
-                                        <label class="font-weight-bold text-small" for="todo">To Do Task<span
-                                                class="text-primary ml-1">*</span></label>
-                                        <textarea rows="5" class="form-control" id="todo" type="text" :value='timesheet.todo_task' required="" readonly
-                                            disabled>
-                                    </textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
-    <!-- /.container-fluid -->
+</div>
 
-    <!-- Logout Modal-->
 
 </template>
 
@@ -425,9 +409,10 @@
         name: 'timesheet',
         projects: 'projects',
         employees: 'employees',
-        
+
         data() {
             return {
+                timesheetID: null,
                 timesheet: [],
                 selectedProjectId: null,
                 selectedEmployeeId: null,
@@ -443,7 +428,7 @@
                 task: '',
                 completed_task: '',
                 todo_task: '',
-                timesheetUpdate: {
+                timesheetToUpdate: {
                     // Inisialisasi objek timesheet dengan data yang akan diupdate
                     ms_employee_id: "",
                     ms_project_id: "",
@@ -462,13 +447,14 @@
             this.getProject();
             this.getEmployee();
             this.$refs.autoClickButton.click();
-            
+            this.$refs.autoCloseUpdate.click();
+
         },
         created() {
             this.viewTimesheet();
         },
         methods: {
-            clearData(){
+            clearData() {
                 this.selectedEmployeeId = "";
                 this.selectedProjectId = "";
                 this.work_date = "";
@@ -496,14 +482,14 @@
 
                     console.log(response.data);
                     console.log('sukses')
-                    
-                    
+
+
                     // window.location.href = '/timesheet';
                     this.getTimesheet();
                     this.$refs.autoClickButton.click();
                     this.clearData();
                     // this.resetForm();   
-                   
+
 
 
                     // Handle success, e.g., show a success message or redirect
@@ -513,31 +499,33 @@
                     // Handle error, e.g., show an error message
                 }
             },
-            async submitUpdate(timesheetId) {
-                try {
-                    const response = await axios.post(`http://127.0.0.1:8000/api/timesheet/update/${timesheetId}`, {
-                        ms_employee_id: this.selectedEmployeeId,
-                        ms_project_id: this.selectedProjectId,
-                        work_date: this.work_date,
-                        workhour_start: this.workhour_start,
-                        workhour_end: this.workhour_end,
-                        work_location: this.work_location,
-                        task: this.task,
-                        completed_task: this.completed_task,
-                        todo_task: this.todo_task,
-                        // More data properties
-                    });
-                    console.log(response.data);
-                    console.log('update bisaaaaaaaaa')
-                    console.log('sukses');
-                    this.getTimesheet();
-                    this.$refs.autoClickButton.click();
-                    this.clearData();
-                    // window.location.href = '/timesheet';
-                } catch (error) {
-                    console.error(error);
-                    console.log('error');
+            async submitUpdate(timesheet) {
 
+                try {
+                    const response = await axios.post(
+                        `/api/timesheet/update/${timesheet.id}`, {
+                            ms_employee_id: timesheet.ms_employee_id,
+                            ms_project_id: timesheet.ms_project_id,
+                            work_date: timesheet.work_date,
+                            workhour_start: timesheet.workhour_start,
+                            workhour_end: timesheet.workhour_end,
+                            work_location: timesheet.work_location,
+                            task: timesheet.task,
+                            completed_task: timesheet.completed_task,
+                            todo_task: timesheet.todo_task,
+                            // More data properties
+                        }
+                    );
+
+                    console.log(response.data);
+                    console.log('Update successful');
+                    this.getTimesheet();
+                    this.$refs.autoCloseUpdate.click();
+                    this.clearData();
+
+                     // Redirect to the timesheet page after successful update
+                } catch (error) {
+                    console.error('Error updating timesheet:', error);
                 }
             },
             logout() {
@@ -619,6 +607,7 @@
                         this.timesheetData = response.data.data;
                         console.log(this.timesheetData)
                         this.error = null;
+                        console.log('dapat data')
                     })
                     .catch((error) => {
                         this.timesheetData = null;
@@ -626,19 +615,16 @@
                     });
                 // console.log(timesheetId);
             },
-            updateTimesheet(timesheetId) {
-                axios.post(`/api/timesheet/update/${timesheetId}`)
-                    .then((response) => {
-                        // Assuming the Timesheet data is returned in the 'data' property
-                        this.timesheetData = response.data.data;
-                        console.log(this.timesheetData)
-                        this.error = null;
-                    })
-                    .catch((error) => {
-                        this.timesheetData = null;
-                        this.error = 'Failed to fetch Timesheet data.';
-                    });
-            }
+            async viewTimesheet2(timesheetId) {
+                try {
+                    const response = await axios.get(`/api/timesheet/show/${timesheetId}`);
+                    this.timesheetData = response.data.data;
+                    console.log(this.timesheetData);
+                } catch (error) {
+                    this.timesheetData = null;
+                    console.error('Failed to fetch Timesheet data:', error);
+                }
+            },
         }
     }
 </script>
