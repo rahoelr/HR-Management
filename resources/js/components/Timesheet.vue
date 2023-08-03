@@ -232,7 +232,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-12">
+                                    <!-- <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="project">Employee ID<span
                                                 class="text-primary ml-1">*</span></label>
                                         <select class="form-select" aria-label="Default select example"
@@ -242,8 +242,7 @@
                                                 :value="data.user_id">
                                                 {{ data . full_name }}</option>
                                         </select>
-                                        <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
-                                    </div>
+                                    </div> -->
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                                 class="text-primary ml-1">*</span></label>
@@ -509,7 +508,7 @@
                 try {
                     const response = await axios.post(
                         `/api/timesheet/update/${timesheet.id}`, {
-                            ms_employee_id: timesheet.ms_employee_id,
+                            ms_employee_id: this.employeeId,
                             ms_project_id: timesheet.ms_project_id,
                             work_date: timesheet.work_date,
                             workhour_start: timesheet.workhour_start,
