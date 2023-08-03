@@ -16,7 +16,7 @@
             <div class="col-xl mb-4">
                 <div class="card bg-white shadow h-100">
                     <!-- <div class="card bg-white shadow h-100 py-2"> -->
-                    <div class="card-body" id="box">
+                    <div class="card-body" id="box" ref="box" :style="boxStyle">
                         <div class="row">
                             <div class="col-md-10">
                                 <h5 class="card-title">Check Log</h5>
@@ -44,14 +44,14 @@
                                 <button id="btn" @click="submitAttendance" class="btn mx-1" href="#!"
                                     title="stop-btn"
                                     style="border: 4px solid #E37C77; border-radius: 24%; padding: 5px 5px;">
-                                    <img src="img/dashboard/presensi-icon-before.svg" height="32" width="32"
-                                        id="imgClickAndChange" alt="img-btn-stop" />
+                                    <img :src="buttonImg" height="32" width="32" id="imgClickAndChange"
+                                        alt="img-btn-stop" />
                                 </button>
                                 <button id="btn2" @click="saveCheckInTime" class="btn mx-1" href="#!"
                                     title="start-btn"
                                     style="background-color: #64B58A; border-radius: 24%; padding: 8px 8px;">
-                                    <img src="img/dashboard/shutdown-icon-before.svg" height="32" width="32"
-                                        id="imgClickAndChange2" alt="img-btn-start" />
+                                    <img :src="button2Img" height="32" width="32" id="imgClickAndChange2"
+                                        alt="img-btn-start" />
                                 </button>
                                 <!-- tes date demo -->
                                 <p id="letGet"></p>
@@ -183,7 +183,7 @@
 
 <script>
     export default {
-        props:['user'],
+        props: ['user'],
         data() {
             return {
                 employeeId: this.user.id,
@@ -192,84 +192,76 @@
                 checkOut: '',
                 lateCheckinNotes: '',
                 earlyCheckoutNotes: '',
+                buttonImg: "img/dashboard/presensi-icon-before.svg",
+                button2Img: "img/dashboard/shutdown-icon-before.svg",
+                boxStyle: {
+                    backgroundColor: "white",
+                    color: "black",
+                },
             };
         },
         mounted() {
+
+            this.checkButtonStatus();
+            const btn = document.getElementById('btn');
+            const btn2 = document.getElementById('btn2');
+
+            btn.addEventListener('click', () => this.setBoxStyle());
+            btn2.addEventListener('click', () => this.resetBoxStyle());
+
             const savedCheckInTime = localStorage.getItem('checkInTime');
             console.log(savedCheckInTime)
+
+            const btnStatus = localStorage.getItem('btnStatus');
+            console.log('Status Button : ', btnStatus)
             this.updateCheckIn();
 
             setInterval(() => {
                 this.updateCheckIn();
             }, 1000);
 
-            if (box.style.backgroundColor = '#E37C77') {
-                const btn = document.getElementById('btn');
-                const btn2 = document.getElementById('btn2');
 
-                btn.addEventListener('click', function onClick(event) {
-                    const box = document.getElementById('box');
-
-                    if (document.getElementById("imgClickAndChange").src ==
-                        "img/dashboard/presensi-icon-before.svg") {
-                        document.getElementById("imgClickAndChange").src =
-                            "img/dashboard/presensi-icon-after.svg";
-
-                    } else {
-                        btn.style.backgroundColor = "white";
-                        btn.style.border = "4px solid #E37C77";
-                        document.getElementById("imgClickAndChange").src =
-                            "img/dashboard/presensi-icon-before.svg";
-
-                        btn2.style.backgroundColor = "#64B58A";
-                        document.getElementById("imgClickAndChange2").src =
-                            "img/dashboard/shutdown-icon-before.svg";
-
-                    }
-
-                    box.style.backgroundColor = 'white';
-                    box.style.color = 'black';
-
-                });
-
-            }
-
-            // button-start
-            if (box.style.backgroundColor = 'white') {
-                const btn2 = document.getElementById('btn2');
-                const btn = document.getElementById('btn');
-
-                btn2.addEventListener('click', function onClick(event) {
-                    const box = document.getElementById('box');
-
-                    if (document.getElementById("imgClickAndChange2").src ==
-                        "img/dashboard/shutdown-icon-after.svg") {
-                        document.getElementById("imgClickAndChange2").src =
-                            "img/dashboard/shutdown-icon-before.svg";
-
-                    } else {
-                        btn2.style.backgroundColor = 'white';
-                        document.getElementById("imgClickAndChange2").src =
-                            "img/dashboard/shutdown-icon-after.svg";
-
-                        btn.style.backgroundColor = "#E37C77";
-                        btn.style.border = "4px solid white"
-                        document.getElementById("imgClickAndChange").src =
-                            "img/dashboard/presensi-icon-after.svg";
-                    }
-
-                    box.style.backgroundColor = '#E37C77';
-                    box.style.color = 'white';
-                });
-
-            };
             try {
-                this.user = JSON.parse(localStorage.getItem('note'))}
-            catch(e) {
+                this.user = JSON.parse(localStorage.getItem('note'))
+            } catch (e) {
                 this.user = []
             }
         },
         methods: {
+            checkButtonStatus() {
+                if (localStorage.getItem("btnStatus") === "started") {
+                    console.log("button login belum diklik");
+                    this.setBoxStyle();
+                } else {
+                    console.log("button login sudah diklik");
+                    this.resetBoxStyle();
+                }
+            },
+            setBoxStyle() {
+                btn.style.backgroundColor = '#E37C77';
+                box.style.backgroundColor = 'white';
+                box.style.color = 'black';
+                document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-after.svg";
+            },
+            resetBoxStyle() {
+                btn.style.backgroundColor = 'white';
+                box.style.backgroundColor = '#E37C77';
+                box.style.color = 'white';
+                document.getElementById("imgClickAndChange").src = "img/dashboard/presensi-icon-before.svg";
+            },
+            toggleButtonStatus() {
+                if (localStorage.getItem("btnStatus") === "started") {
+                    localStorage.removeItem("btnStatus");
+                    this.resetBoxStyle();
+                } else {
+                    localStorage.setItem("btnStatus", "started");
+                    this.setBoxStyle();
+                }
+            },
+            resetButtonStatus() {
+                localStorage.removeItem("btnStatus");
+                this.resetBoxStyle();
+            },
             async saveCheckInTime() {
                 try {
                     const dateTime = await this.getDate() + ' ' + this
@@ -277,6 +269,7 @@
                     this.checkIn = dateTime;
                     localStorage.setItem('checkInTime', dateTime);
                     console.log("data check-in sementara: ", localStorage.getItem('checkInTime'))
+                    this.resetButtonStatus()
                 } catch (error) {
                     console.error(error); // Tangani jika terjadi kesalahan dalam Promise
                 }
@@ -326,7 +319,6 @@
                 if (!savedCheckInTime) {
                     console.log('Data check-in belum ada, lakukan check-in terlebih dahulu');
                     alert('Data check-in belum ada, lakukan check-in terlebih dahulu')
-                    return;
                 }
 
                 try {
@@ -341,9 +333,12 @@
 
                     console.log(response.data);
                     console.log('sukses input data');
+                    alert('Data check-in sukses terkirim')
                     localStorage.removeItem('checkInTime');
                     this.checkIn = '';
                     console.log('reset data checkIn')
+                    this.toggleButtonStatus()
+
                 } catch (error) {
                     console.error(error);
                     console.log('error');
@@ -374,8 +369,8 @@
             if (savedCheckInTime) {
                 this.checkIn = savedCheckInTime;
             }
-            console.log ("data user");
-            console.log( this.user);
+            console.log("data user");
+            console.log(this.user);
             console.log(this.user.id);
 
         },
