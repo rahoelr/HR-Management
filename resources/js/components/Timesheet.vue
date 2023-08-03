@@ -127,7 +127,7 @@
                                     </select>
                                     <!-- <input v-model="ms_project_id" type="text" placeholder="Employee ID"> -->
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <!-- <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
@@ -137,8 +137,7 @@
                                             :value="data.user_id">
                                             {{ data . full_name }}</option>
                                     </select>
-                                    <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
-                                </div>
+                                </div> -->
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
@@ -216,8 +215,8 @@
                 <div class="modal-content p-md-3">
                     <div class="modal-header" style="background-color: #64B58A;">
                         <h4 class="modal-title" style="color: white;"><b>Update Timesheet</b></h4>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close" ref="autoCloseUpdate"
-                            style="color: white;"><span aria-hidden="true">×</span></button>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close"
+                            ref="autoCloseUpdate" style="color: white;"><span aria-hidden="true">×</span></button>
                     </div>
                     <div class="modal-body">
                         <form @submit.prevent="submitUpdate">
@@ -448,13 +447,18 @@
             this.getEmployee();
             this.$refs.autoClickButton.click();
             this.$refs.autoCloseUpdate.click();
+            this.fetchTimesheet();
 
         },
         created() {
             this.viewTimesheet();
-            this.getTimesheet(this.employeeId);
+            this.fetchTimesheet();
         },
         methods: {
+            fetchTimesheet() {
+                const employeeId = this.employeeId; // Replace with the actual employeeId
+                this.getTimesheet(employeeId);
+            },
             clearData() {
                 this.selectedEmployeeId = "";
                 this.selectedProjectId = "";
@@ -469,7 +473,7 @@
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
-                        ms_employee_id: this.selectedEmployeeId,
+                        ms_employee_id: this.employeeId,
                         ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
@@ -486,7 +490,7 @@
 
 
                     // window.location.href = '/timesheet';
-                    this.getTimesheet();
+                    this.fetchTimesheet();
                     this.$refs.autoClickButton.click();
                     this.clearData();
                     // this.resetForm();   
@@ -520,11 +524,11 @@
 
                     console.log(response.data);
                     console.log('Update successful');
-                    this.getTimesheet();
+                    this.fetchTimesheet();
                     this.$refs.autoCloseUpdate.click();
                     this.clearData();
 
-                     // Redirect to the timesheet page after successful update
+                    // Redirect to the timesheet page after successful update
                 } catch (error) {
                     console.error('Error updating timesheet:', error);
                 }
@@ -589,7 +593,7 @@
                 if (confirm('apakah anda yakin akan menghapus data?')) {
                     axios.get(`http://127.0.0.1:8000/api/timesheet/destroy/${timesheetId}`).then(res => {
                             alert(res.data.message);
-                            this.getTimesheet();
+                            this.fetchTimesheet();
                         })
                         .catch(function(error) {
                             if (error.response) {
