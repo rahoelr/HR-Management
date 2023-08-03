@@ -195,6 +195,17 @@ class TimesheetController extends Controller
         }
     }
 
+
+    public function gettimesheet($id)
+    {
+        $projectName = DB::table('tr_timehsheet')
+            ->select('projects.project_name')
+            ->join('tr_timesheet', 'projects.id', '=', 'tr_timesheet.ms_project_id')
+            ->where('projects.id', '=', $id)
+            ->get();
+        return response()->json($projectName);
+    }
+
     // public function getProjectName($id)
     // {
     //     $projectName = DB::table('projects')
