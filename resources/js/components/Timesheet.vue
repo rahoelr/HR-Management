@@ -127,7 +127,7 @@
                                     </select>
                                     <!-- <input v-model="ms_project_id" type="text" placeholder="Employee ID"> -->
                                 </div>
-                                <div class="form-group col-lg-12">
+                                <!-- <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="project">Employee ID<span
                                             class="text-primary ml-1">*</span></label>
                                     <select class="form-select" aria-label="Default select example"
@@ -137,8 +137,8 @@
                                             :value="data.user_id">
                                             {{ data . full_name }}</option>
                                     </select>
-                                    <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
-                                </div>
+                                    
+                                </div> -->
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                             class="text-primary ml-1">*</span></label>
@@ -233,7 +233,7 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <div class="form-group col-lg-12">
+                                    <!-- <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="project">Employee ID<span
                                                 class="text-primary ml-1">*</span></label>
                                         <select class="form-select" aria-label="Default select example"
@@ -243,8 +243,8 @@
                                                 :value="data.user_id">
                                                 {{ data . full_name }}</option>
                                         </select>
-                                        <!-- <input v-model="ms_employee_id" type="text" placeholder="Employee ID"> -->
-                                    </div>
+                                        
+                                    </div> -->
                                     <div class="form-group col-lg-12">
                                         <label class="font-weight-bold text-small" for="tanggal">Tanggal<span
                                                 class="text-primary ml-1">*</span></label>
@@ -302,7 +302,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <!-- DELETE MODAL-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -399,6 +399,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
 </template>
@@ -469,7 +470,7 @@
             async submitData() {
                 try {
                     const response = await axios.post('http://127.0.0.1:8000/api/timesheet/store', {
-                        ms_employee_id: this.selectedEmployeeId,
+                        ms_employee_id: this.employeeId,
                         ms_project_id: this.selectedProjectId,
                         work_date: this.work_date,
                         workhour_start: this.workhour_start,
@@ -505,7 +506,7 @@
                 try {
                     const response = await axios.post(
                         `/api/timesheet/update/${timesheet.id}`, {
-                            ms_employee_id: timesheet.ms_employee_id,
+                            ms_employee_id: this.user.id,
                             ms_project_id: timesheet.ms_project_id,
                             work_date: timesheet.work_date,
                             workhour_start: timesheet.workhour_start,
