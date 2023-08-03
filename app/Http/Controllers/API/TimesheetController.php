@@ -98,11 +98,11 @@ class TimesheetController extends Controller
         //Ambil Data 1 aja
         $data = Timesheet::when($id, function ($query) use ($id) {
             // If $id is provided, join with the projects table
-            $query->join('projects', 'tr_timesheet.ms_project_id', '=', 'projects.id')
-                  ->where('tr_timesheet.id', '=', $id)
-                  ->select('tr_timesheet.*', 'projects.project_name');
-        })
-        ->get();
+            $query
+                ->join('projects', 'tr_timesheet.ms_project_id', '=', 'projects.id')
+                ->where('tr_timesheet.id', '=', $id)
+                ->select('tr_timesheet.*', 'projects.project_name');
+        })->get();
 
         if ($data) {
             return ApiFormatter::createApi(200, 'Success', $data);
@@ -204,4 +204,21 @@ class TimesheetController extends Controller
     //         ->get();
     //     return response()->json($projectName);
     // }
+
+    public function showTimesheet($ms_employee_id)
+    {
+        // Ambil Data EmployeeId
+        $data = Timesheet::when($ms_employee_id, function ($query) use ($ms_employee_id) {
+            $query
+                ->join('projects', 'tr_timesheet.ms_project_id', '=', 'projects.id')
+                ->where('tr_timesheet.ms_employee_id', '=', $ms_employee_id)
+                ->select('tr_timesheet.*', 'projects.project_name');
+        })->get();
+
+        if ($data->isNotEmpty()) {
+            return ApiFormatter::createApi(200, 'Success', $data);
+        } else {
+            return ApiFormatter::createApi(400, 'Failed');
+        }
+    }
 }

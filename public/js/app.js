@@ -22660,8 +22660,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   name: 'timesheet',
   projects: 'projects',
   employees: 'employees',
+  props: ['user'],
   data: function data() {
     return {
+      employeeId: this.user.id,
       timesheetID: null,
       timesheet: [],
       selectedProjectId: null,
@@ -22701,6 +22703,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   created: function created() {
     this.viewTimesheet();
+    this.getTimesheet(this.employeeId);
   },
   methods: {
     clearData: function clearData() {
@@ -22831,9 +22834,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         console.log(_this4.employees);
       });
     },
-    getTimesheet: function getTimesheet() {
+    getTimesheet: function getTimesheet(employeeId) {
       var _this5 = this;
-      axios.get('http://127.0.0.1:8000/api/timesheet').then(function (res) {
+      axios.get("http://127.0.0.1:8000/api/timesheet/showTimesheet/".concat(employeeId)).then(function (res) {
         _this5.timesheet = res.data.data;
         console.log(_this5.timesheet);
       });

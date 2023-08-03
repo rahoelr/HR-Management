@@ -38,6 +38,8 @@ Route::get('timesheet/show/{id}', [TimesheetController::class, 'show']);
 Route::post('timesheet/update/{id}', [TimesheetController::class, 'update']);
 Route::get('timesheet/destroy/{id}', [TimesheetController::class, 'destroy']);
 Route::get('timesheet/{id}/name', [TimesheetController::class, 'getProjectName']);
+Route::get('timesheet/showTimesheet/{id}', [TimesheetController::class, 'showTimesheet']);
+
 
 
 Route::get('project', [ProjectController::class, 'index']);

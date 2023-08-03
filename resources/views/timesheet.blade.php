@@ -39,7 +39,27 @@
 @section('content')
     <div id="app">
         <div>
-            <timesheet />
+            @if (Auth::check())
+                <timesheet :user="{{ Auth::user() }}"></timesheet>
+            @else
+                <timesheet :user="false"></timesheet>
+            @endif
+
+            <?php
+            use Illuminate\Support\Facades\Auth;
+            $UserId = Auth::id();
+            // echo var_dump($UserId) . '<br>';
+            function debug_to_console($data)
+            {
+                $output = $data;
+                if (is_array($output)) {
+                    $output = implode(',', $output);
+                }
+            
+                echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+            }
+            debug_to_console($UserId);
+            ?>
         </div>
     </div>
 @stop

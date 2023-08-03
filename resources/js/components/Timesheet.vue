@@ -408,9 +408,10 @@
         name: 'timesheet',
         projects: 'projects',
         employees: 'employees',
-
+        props: ['user'],
         data() {
             return {
+                employeeId: this.user.id,
                 timesheetID: null,
                 timesheet: [],
                 selectedProjectId: null,
@@ -451,6 +452,7 @@
         },
         created() {
             this.viewTimesheet();
+            this.getTimesheet(this.employeeId);
         },
         methods: {
             clearData() {
@@ -553,8 +555,8 @@
                     console.log(this.employees);
                 });
             },
-            getTimesheet() {
-                axios.get('http://127.0.0.1:8000/api/timesheet').then(res => {
+            getTimesheet(employeeId) {
+                axios.get(`http://127.0.0.1:8000/api/timesheet/showTimesheet/${employeeId}`).then(res => {
                     this.timesheet = res.data.data
                     console.log(this.timesheet)
                 });
