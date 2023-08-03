@@ -3396,6 +3396,9 @@ textarea.form-control-lg {
   --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg);
   --bs-dropdown-link-active-color: #fff;
   --bs-dropdown-link-active-bg: #0d6efd;
+  /* styling */
+  --bs-dropdown-link-active-bg: #64B58A;
+
   --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);
   --bs-dropdown-item-padding-x: 1rem;
   --bs-dropdown-item-padding-y: 0.25rem;
@@ -11983,4 +11986,9 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+/* styling */
+.fa-bars{
+  color: #64B58A;
 }

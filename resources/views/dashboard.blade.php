@@ -46,7 +46,7 @@
             <?php
             use Illuminate\Support\Facades\Auth;
             $UserId = Auth::id();
-            echo var_dump($UserId) . "<br>";
+            
             function debug_to_console($data) {
                 $output = $data;
                 if (is_array($output))

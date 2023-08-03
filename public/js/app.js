@@ -10297,7 +10297,6 @@ function logError(err, type, contextVNode, throwInDev = true) {
         // crash in dev by default so it's more noticeable
         if (throwInDev) {
             throw err;
-            return true;
         }
         else {
             console.error(err);
@@ -22267,8 +22266,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     try {
       this.user = JSON.parse(localStorage.getItem('note'));
     } catch (e) {
-    //   this.user = [];
-      return true;
+      this.user = [];
     }
   },
   methods: {
