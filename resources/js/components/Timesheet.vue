@@ -45,7 +45,7 @@
                 <tbody>
                     <tr v-for="(data, index) in this.timesheet" :key="index">
                         <th scope="row">
-                            <center>{{ data . id }}</center>
+                            <center>{{ data . ms_project_id }}</center>
                         </th>
                         <td>
                             <center> {{ data . project_name }} </center>
@@ -177,23 +177,23 @@
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="task">Task</label>
-                                    <textarea v-model="task" class="form-control" id="task" type="text"
+                                    <textarea rows="5" v-model="task" class="form-control" id="task" type="text"
                                         placeholder="Deskripsi task yang sedang dikerjakan">
                                     </textarea>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="taskselesai">Task Selesai<span
                                             class="text-primary ml-1">*</span></label>
-                                    <textarea v-model="completed_task" class="form-control" id="taskselesai" type="text"
+                                    <textarea rows="5" v-model="completed_task" class="form-control" id="taskselesai" type="text"
                                         placeholder="Task yang sudah selesai dikerjakan" required="">
                                     </textarea>
                                 </div>
                                 <div class="form-group col-lg-12">
                                     <label class="font-weight-bold text-small" for="todo">To Do Task<span
                                             class="text-primary ml-1">*</span></label>
-                                    <textarea v-model="todo_task" class="form-control" id="todo" type="text"
+                                    <textarea rows="5" v-model="todo_task" class="form-control" id="todo" type="text"
                                         placeholder="Task yang akan dikerjakan" required="">
-                                    </textarea>
+                                    </textarea> 
                                 </div>
                                 <div class="form-group col-lg-12 text-center">
                                     <button class="btn btn-primary custom-btn my-3 font-weight-bold rounded-pill"
