@@ -45,7 +45,7 @@
                 <tbody>
                     <tr v-for="(data, index) in this.timesheet" :key="index">
                         <th scope="row">
-                            <center>{{ data . ms_project_id }}</center>
+                            <center>{{ index+1 }}</center>
                         </th>
                         <td>
                             <center> {{ data . project_name }} </center>
