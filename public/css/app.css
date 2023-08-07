@@ -1,9 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
-@charset "UTF-8"; /*!
- * Bootstrap  v5.3.0 (https://getbootstrap.com/)
- * Copyright 2011-2023 The Bootstrap Authors
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
- */
+
 :root,
 [data-bs-theme=light] {
   --bs-blue: #0d6efd;
@@ -200,6 +196,9 @@ body {
   text-align: var(--bs-body-text-align);
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
+  /* agar webkit tidak error */
+  text-size-adjust: 100%;
+
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
@@ -422,7 +421,10 @@ caption {
 
 th {
   text-align: inherit;
-  text-align: -webkit-match-parent;
+  /* text-align: -webkit-match-parent; */
+  /* agar text align tidak error */
+  text-align: match-parent;
+  
 }
 
 thead,
@@ -3394,6 +3396,9 @@ textarea.form-control-lg {
   --bs-dropdown-link-hover-bg: var(--bs-tertiary-bg);
   --bs-dropdown-link-active-color: #fff;
   --bs-dropdown-link-active-bg: #0d6efd;
+  /* styling */
+  --bs-dropdown-link-active-bg: #64B58A;
+
   --bs-dropdown-link-disabled-color: var(--bs-tertiary-color);
   --bs-dropdown-item-padding-x: 1rem;
   --bs-dropdown-item-padding-y: 0.25rem;
@@ -11981,4 +11986,9 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important;
   }
+}
+
+/* styling */
+.fa-bars{
+  color: #64B58A;
 }
