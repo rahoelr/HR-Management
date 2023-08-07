@@ -26,7 +26,7 @@
                 <thead class="thead-green">
                     <tr>
                         <th scope="col" style="border-radius: 8px 0px 0px 0px;">
-                            <center>ID</center>
+                            <center>NO</center>
                         </th>
                         <th scope="col">
                             <center>Project</center>
