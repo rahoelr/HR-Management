@@ -213,7 +213,7 @@ class TimesheetController extends Controller
                 ->join('projects', 'tr_timesheet.ms_project_id', '=', 'projects.id')
                 ->where('tr_timesheet.ms_employee_id', '=', $ms_employee_id)
                 ->select('tr_timesheet.*', 'projects.project_name')
-                ->orderBy('tr_timesheet.work_date', 'desc');
+                ->orderBy('tr_timesheet.work_date', 'asc');
         })->get();
 
         if ($data->isNotEmpty()) {

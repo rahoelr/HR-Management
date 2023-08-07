@@ -85,9 +85,9 @@
                                         alt="profil-icon" />
                                 </a>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-9" v-bind:key="data">
                                 <h5 class="card-title my-1">Profil</h5>
-                                <p class="card-text my-0">Feby Eka Pradiyanto</p>
+                                <p class="card-text my-0">{{ user.name }}</p>
                                 <p class="card-text my-0">UI/UX Designer</p>
                             </div>
                         </div>
@@ -184,6 +184,8 @@
 <script>
     export default {
         props: ['user'],
+        employees: 'employees',
+
         data() {
             return {
                 employeeId: this.user.id,
@@ -192,6 +194,17 @@
                 checkOut: '',
                 lateCheckinNotes: '',
                 earlyCheckoutNotes: '',
+                full_name: '',
+                jabatan: '',
+                projects: [],
+                employees: [],
+                nik: '',
+                npwp: '',
+                gender: '',
+                address: '',
+                tempat_lahir: '',
+                user_id: '',
+                is_active: '',
                 buttonImg: "img/dashboard/presensi-icon-before.svg",
                 button2Img: "img/dashboard/shutdown-icon-before.svg",
                 boxStyle: {
@@ -225,7 +238,9 @@
                 this.user = JSON.parse(localStorage.getItem('note'))
             } catch (e) {
                 this.user = []
-            }
+            };
+
+            this.getEmployee();
         },
         methods: {
             checkButtonStatus() {
@@ -303,6 +318,12 @@
                 let currentDate = `${year}-${month}-${day}`;
                 return currentDate;
             },
+            getEmployee() {
+                axios.get('http://127.0.0.1:8000/api/employee').then(res => {
+                    this.employees = res.data.data
+                    console.log(res);
+                });
+            },
             async updateDateAttendance() {
                 try {
                     const result = await this.getDate(); // Menunggu janji diselesaikan dan mendapatkan hasil waktu
@@ -372,6 +393,7 @@
             console.log("data user");
             console.log(this.user);
             console.log(this.user.id);
+            console.log(this.employees);
 
         },
     }

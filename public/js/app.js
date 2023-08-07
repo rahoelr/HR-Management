@@ -22228,6 +22228,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['user'],
+  employees: 'employees',
   data: function data() {
     return {
       employeeId: this.user.id,
@@ -22236,6 +22237,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       checkOut: '',
       lateCheckinNotes: '',
       earlyCheckoutNotes: '',
+      full_name: '',
+      jabatan: '',
+      projects: [],
+      employees: [],
+      nik: '',
+      npwp: '',
+      gender: '',
+      address: '',
+      tempat_lahir: '',
+      user_id: '',
+      is_active: '',
       buttonImg: "img/dashboard/presensi-icon-before.svg",
       button2Img: "img/dashboard/shutdown-icon-before.svg",
       boxStyle: {
@@ -22268,6 +22280,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     } catch (e) {
       this.user = [];
     }
+    ;
+    this.getEmployee();
   },
   methods: {
     checkButtonStatus: function checkButtonStatus() {
@@ -22386,8 +22400,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var currentDate = "".concat(year, "-").concat(month, "-").concat(day);
       return currentDate;
     },
-    updateDateAttendance: function updateDateAttendance() {
+    getEmployee: function getEmployee() {
       var _this4 = this;
+      axios.get('http://127.0.0.1:8000/api/employee').then(function (res) {
+        _this4.employees = res.data.data;
+        console.log(res);
+      });
+    },
+    updateDateAttendance: function updateDateAttendance() {
+      var _this5 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
         var result;
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
@@ -22395,11 +22416,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return _this4.getDate();
+              return _this5.getDate();
             case 3:
               result = _context3.sent;
               // Menunggu janji diselesaikan dan mendapatkan hasil waktu
-              _this4.attendanceDate = result; // Mengupdate nilai checkIn dengan hasil waktu
+              _this5.attendanceDate = result; // Mengupdate nilai checkIn dengan hasil waktu
               _context3.next = 10;
               break;
             case 7:
@@ -22414,7 +22435,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }))();
     },
     submitAttendance: function submitAttendance() {
-      var _this5 = this;
+      var _this6 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
         var savedCheckInTime, response;
         return _regeneratorRuntime().wrap(function _callee4$(_context4) {
@@ -22429,13 +22450,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context4.prev = 2;
               _context4.next = 5;
               return axios.post('http://127.0.0.1:8000/api/attendance/store', {
-                ms_employee_id: _this5.employeeId,
-                attendance_date: _this5.attendanceDate,
+                ms_employee_id: _this6.employeeId,
+                attendance_date: _this6.attendanceDate,
                 check_in: savedCheckInTime,
                 // Gunakan data checkIn dari LocalStorage
-                check_out: _this5.checkOut,
-                late_checkin_notes: _this5.lateCheckinNotes,
-                early_checkout_notes: _this5.earlyCheckoutNotes
+                check_out: _this6.checkOut,
+                late_checkin_notes: _this6.lateCheckinNotes,
+                early_checkout_notes: _this6.earlyCheckoutNotes
               });
             case 5:
               response = _context4.sent;
@@ -22443,9 +22464,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               console.log('sukses input data');
               alert('Data check-in sukses terkirim');
               localStorage.removeItem('checkInTime');
-              _this5.checkIn = '';
+              _this6.checkIn = '';
               console.log('reset data checkIn');
-              _this5.toggleButtonStatus();
+              _this6.toggleButtonStatus();
               _context4.next = 19;
               break;
             case 15:
@@ -22475,9 +22496,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this6 = this;
+    var _this7 = this;
     this.interval = setInterval(function () {
-      _this6.updateCheckIn();
+      _this7.updateCheckIn();
     }, 1000);
     this.updateDateAttendance();
     var savedCheckInTime = localStorage.getItem('checkInTime');
@@ -22487,6 +22508,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     console.log("data user");
     console.log(this.user);
     console.log(this.user.id);
+    console.log(this.employees);
   }
 });
 window.addEventListener("load", function () {
@@ -22977,15 +22999,19 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_12 = {
   "class": "row"
 };
-var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_13 = {
   "class": "col-xl-4 col-md-6 mb-4"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_14 = {
   "class": "card bg-white border-left-success shadow h-100 py-2"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_15 = {
   "class": "card-body"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_16 = {
   "class": "row"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-md-3 my-auto mx-auto"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <a href=\"/timesheet\">\r\n                                        <button type=\"button\"> <img src=\"Foto PP.png\" height =\"64\" width=\"64\" /></button>\r\n                                    </a> "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
   "class": "btn",
@@ -23001,16 +23027,17 @@ var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
   height: "48",
   width: "48",
   alt: "profil-icon"
-})])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-  "class": "col-md-9"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
+})])], -1 /* HOISTED */);
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", {
   "class": "card-title my-1"
-}, "Profil"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+}, "Profil", -1 /* HOISTED */);
+var _hoisted_19 = {
   "class": "card-text my-0"
-}, "Feby Eka Pradiyanto"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+};
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text my-0"
-}, "UI/UX Designer")])])])])], -1 /* HOISTED */);
-var _hoisted_14 = {
+}, "UI/UX Designer", -1 /* HOISTED */);
+var _hoisted_21 = {
   "class": "modal fade",
   id: "logoutModal",
   tabindex: "-1",
@@ -23018,23 +23045,23 @@ var _hoisted_14 = {
   "aria-labelledby": "exampleModalLabel",
   "aria-hidden": "true"
 };
-var _hoisted_15 = {
+var _hoisted_22 = {
   "class": "modal-dialog",
   role: "document"
 };
-var _hoisted_16 = {
+var _hoisted_23 = {
   "class": "modal-content"
 };
-var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
-var _hoisted_19 = {
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"modal-header\"><h5 class=\"modal-title\" id=\"exampleModalLabel\">Ready to Leave?</h5><button class=\"close\" type=\"button\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">×</span></button></div><div class=\"modal-body\">Select &quot;Logout&quot; below if you are ready to end your current session. </div>", 2);
+var _hoisted_26 = {
   "class": "modal-footer"
 };
-var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
   "class": "btn btn-secondary",
   type: "button",
   "data-dismiss": "modal"
 }, "Cancel", -1 /* HOISTED */);
-var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_28 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-primary shadow h-100 py-2"
@@ -23065,7 +23092,7 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Timesheet"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text"
 }, "Lorem ipsum dolor sit amet, consectur")])])])])], -1 /* HOISTED */);
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+var _hoisted_29 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "col-xl-4 col-md-6 mb-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
   "class": "card bg-white border-left-danger shadow h-100 py-2"
@@ -23096,7 +23123,7 @@ var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 }, "Pengajuan Cuti"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "card-text"
 }, "Cuti anda tersisa 12 Hari")])])])])], -1 /* HOISTED */);
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
+var _hoisted_30 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"card bg-white shadow mb-4\"><div class=\"card-body\"><h5 class=\"card-title\">Average Working Hour</h5><div class=\"chart-bar\"><canvas id=\"myBarChart\"></canvas></div></div></div>", 1);
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Begin Page Content "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Page Heading "), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"card bg-white shadow h-100 py-2\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
     "class": "card-body",
@@ -23141,12 +23168,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     width: "32",
     id: "imgClickAndChange2",
     alt: "img-btn-start"
-  }, null, 8 /* PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])], 4 /* STYLE */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [_hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, null, 8 /* PROPS */, _hoisted_10)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" tes date demo "), _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p id=\"getTime\"></p> ")])])], 4 /* STYLE */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [_hoisted_17, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+    "class": "col-md-9",
+    key: _ctx.data
+  }, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_19, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.user.name), 1 /* TEXT */), _hoisted_20]))])])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_23, [_hoisted_24, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_26, [_hoisted_27, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     "class": "btn btn-danger",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.logout && $options.logout.apply($options, arguments);
     })
-  }, "Logout")])])])]), _hoisted_21, _hoisted_22]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_23, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
+  }, "Logout")])])])]), _hoisted_28, _hoisted_29]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Content Row "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"row\"> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Bar Chart "), _hoisted_30, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" /.container-fluid ")], 2112 /* STABLE_FRAGMENT, DEV_ROOT_FRAGMENT */);
 }
 
 /***/ }),
@@ -23817,7 +23847,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_center, null, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.id), 1 /* TEXT */)];
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.ms_project_id), 1 /* TEXT */)];
           }),
 
           _: 2 /* DYNAMIC */
@@ -23956,6 +23986,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "time",
     step: "1"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.workhour_end]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_54, [_hoisted_55, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    rows: "5",
     "onUpdate:modelValue": _cache[7] || (_cache[7] = function ($event) {
       return $data.task = $event;
     }),
@@ -23964,6 +23995,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "text",
     placeholder: "Deskripsi task yang sedang dikerjakan"
   }, "\r\n                                    ", 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.task]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_56, [_hoisted_57, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    rows: "5",
     "onUpdate:modelValue": _cache[8] || (_cache[8] = function ($event) {
       return $data.completed_task = $event;
     }),
@@ -23973,6 +24005,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Task yang sudah selesai dikerjakan",
     required: ""
   }, "\r\n                                    ", 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.completed_task]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_58, [_hoisted_59, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+    rows: "5",
     "onUpdate:modelValue": _cache[9] || (_cache[9] = function ($event) {
       return $data.todo_task = $event;
     }),
