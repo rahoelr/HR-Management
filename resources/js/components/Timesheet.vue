@@ -300,7 +300,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <!-- DELETE MODAL-->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -397,6 +397,7 @@
             </div>
         </div>
     </div>
+</div>
 
 
 </template>
